@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPECTER by ZAKA — Inteligência Jurídica Avançada | ZAKA</title>
+  
+  <meta name="description" content="SPECTER by ZAKA é uma plataforma de inteligência jurídica baseada em IA, leitura contextual, automação documental e análise preditiva para departamentos jurídicos e estruturas estratégicas.">
+  <meta property="og:title" content="SPECTER by ZAKA — Inteligência Jurídica Avançada | ZAKA">
+  <meta property="og:description" content="SPECTER by ZAKA é uma plataforma de inteligência jurídica baseada em IA, leitura contextual, automação documental e análise preditiva para departamentos jurídicos e estruturas estratégicas.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zaka.io/specter">
+  
+  <!-- Foundation Styles -->
+  <link rel="stylesheet" href="css/core.css">
+  <link rel="preconnect" href="https://images.unsplash.com">
+
+  <style>
+    /* ===== SPECTER PAGE-SPECIFIC STYLES ===== */
+
+    /* Hero */
+    .hero-specter {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--color-black);
+    }
+    .hero-specter::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.92) 70%);
+      z-index: 1;
+    }
+    .hero-specter .img-cinematic {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.3;
+      filter: grayscale(60%) contrast(120%);
+    }
+    .hero-specter .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Document Grid Lines Overlay */
+    .doc-lines {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.08;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 120px 80px;
+      animation: doc-pan 90s linear infinite;
+    }
+    @keyframes doc-pan {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-120px, -80px); }
+    }
+
+    /* Elegant Cards */
+    .elegant-card {
+      background: var(--color-graphite);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: var(--space-lg);
+      border-radius: 4px;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+    .elegant-card::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 200%;
+      height: 200%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .elegant-card:hover {
+      border-color: rgba(201,166,107,0.25);
+      transform: translateY(-2px);
+    }
+    .elegant-card:hover::before {
+      opacity: 1;
+    }
+    .elegant-card .card-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Alert Card */
+    .alert-card {
+      background: rgba(10,10,10,0.85);
+      border: 1px solid rgba(201,166,107,0.25);
+      border-radius: 4px;
+      padding: var(--space-lg);
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
+    .alert-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--color-accent-gold-muted);
+    }
+
+    /* Glass Card */
+    .glass-card {
+      background: rgba(10,10,10,0.8);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 4px;
+      padding: var(--space-lg);
+    }
+
+    /* Label Styles */
+    .label-gold {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent-gold-muted);
+      margin-bottom: var(--space-md);
+      font-weight: 500;
+    }
+    .label-blue {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent-blue);
+      margin-bottom: var(--space-md);
+      font-weight: 500;
+    }
+
+    /* List Style */
+    .spec-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .spec-list li {
+      font-weight: 300;
+      font-size: 1.1rem;
+      line-height: 2;
+      color: var(--color-gray-text);
+    }
+    .spec-list li::before {
+      content: '— ';
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* Result Block */
+    .result-block {
+      border-left: 2px solid var(--color-accent-gold-muted);
+      padding-left: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .result-block li {
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      line-height: 2;
+    }
+
+    /* Section Image Container */
+    .section-img-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .section-img-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(150%);
+      opacity: 0.08;
+    }
+
+    /* Capability Tags */
+    .cap-tag {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      padding: var(--space-md);
+      font-weight: 300;
+      font-size: 1.05rem;
+      color: var(--color-white);
+      transition: border-color 0.4s ease;
+    }
+    .cap-tag:hover {
+      border-color: rgba(201,166,107,0.2);
+    }
+
+    /* Corporate Grid Item */
+    .corp-item {
+      padding: var(--space-md) 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-weight: 300;
+      font-size: 1.15rem;
+      color: var(--color-gray-text);
+      transition: color 0.3s ease;
+    }
+    .corp-item:hover {
+      color: var(--color-white);
+    }
+
+    /* Quote Highlight */
+    .quote-highlight {
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 1.15;
+      font-weight: 200;
+      color: var(--color-white);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Transform Columns */
+    .transform-list li {
+      font-weight: 300;
+      font-size: 1.15rem;
+      line-height: 2.2;
+    }
+
+    /* CTA Links */
+    .cta-primary {
+      display: inline-block;
+      color: var(--color-white);
+      text-decoration: none;
+      border-bottom: 1px solid var(--color-white);
+      padding-bottom: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 300;
+      transition: opacity 0.3s ease;
+    }
+    .cta-primary:hover {
+      opacity: 0.7;
+    }
+    .cta-secondary {
+      display: inline-block;
+      color: var(--color-gray-text);
+      text-decoration: none;
+      padding-bottom: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 300;
+      transition: color 0.3s ease;
+    }
+    .cta-secondary:hover {
+      color: var(--color-white);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .doc-lines { display: none; }
+      .hero-specter { min-height: 90vh; }
+      .quote-highlight { font-size: clamp(1.5rem, 5vw, 2.5rem); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .doc-lines { animation: none; }
+      .elegant-card { transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- GLOBAL MENU -->
+  <header class="nav-header">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">ZAKA<span class="text-gold">®</span></a>
+      
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        
+        <div class="nav-item-dropdown">
+          <a href="#" class="nav-link" style="color: var(--color-white);">Produtos</a>
+          <div class="dropdown-menu">
+            <div class="dropdown-section-title">Cortex Suite</div>
+            <div class="dropdown-list">
+              <a href="cortex-eleitor.html" class="dropdown-link text-white">Cortex Eleitor</a>
+              <a href="cortex-governo.html" class="dropdown-link text-white">Cortex Governo</a>
+              <a href="cortex-infra.html" class="dropdown-link text-white">Cortex Infra</a>
+              <a href="cortex-care.html" class="dropdown-link text-white">Cortex Care</a>
+              <a href="#" class="dropdown-link">Cortex Control</a>
+              <a href="cortex-food.html" class="dropdown-link text-white">Cortex Food</a>
+            </div>
+            <div class="dropdown-section-title" style="margin-top: 1.5rem;">Other</div>
+            <div class="dropdown-list">
+              <a href="specter.html" class="dropdown-link text-gold">Specter by ZAKA</a>
+            </div>
+          </div>
+        </div>
+        
+        <a href="index.html#differentials" class="nav-link">Diferenciais</a>
+        <a href="index.html#how-we-work" class="nav-link">Como Trabalhamos</a>
+        <a href="#contact" class="nav-link">Contato</a>
+      </nav>
+
+      <button class="mobile-menu-btn" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="#" class="nav-link">Cortex Suite</a>
+      <a href="cortex-eleitor.html" class="nav-link text-white">Cortex Eleitor</a>
+      <a href="cortex-governo.html" class="nav-link text-white">Cortex Governo</a>
+      <a href="cortex-food.html" class="nav-link text-white">Cortex Food</a>
+      <a href="specter.html" class="nav-link text-gold">Specter by ZAKA</a>
+      <a href="index.html#differentials" class="nav-link">Diferenciais</a>
+      <a href="index.html#how-we-work" class="nav-link">Como Trabalhamos</a>
+      <a href="#contact" class="nav-link">Contato</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero-specter">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2670&auto=format&fit=crop"
+        alt="Abstract architectural intelligence" class="img-cinematic" data-parallax="0.05" loading="eager">
+      <div class="doc-lines"></div>
+      
+      <div class="container hero-content">
+        <div class="grid">
+          <div class="col-8 fade-up delay-1">
+            <p class="text-accent text-gold mb-md" style="letter-spacing: 0.15em; font-size: 0.85rem;">SPECTER by ZAKA</p>
+            <h1 style="font-size: clamp(2.8rem, 5vw, 5.2rem); line-height: 1.08; font-weight: 200; margin-bottom: var(--space-lg);">
+              Inteligência jurídica para estruturas que precisam interpretar complexidade em tempo real.
+            </h1>
+            <p class="text-large text-gray-text" style="max-width: 85%; margin-bottom: var(--space-xl); font-weight: 300;">
+              Uma plataforma avançada de IA aplicada ao ambiente jurídico para leitura documental, automação cognitiva, análise contextual e interpretação estratégica.
+            </p>
+            <div style="display: flex; gap: var(--space-lg); align-items: center; flex-wrap: wrap;">
+              <a href="#contact" class="cta-primary">Conhecer a Plataforma</a>
+              <a href="#contact" class="cta-secondary">Falar com a ZAKA</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SECTION 1 — O PROBLEMA ===== -->
+    <section class="section" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="grid items-center" style="gap: var(--space-xl);">
+          
+          <div class="col-5 fade-up delay-1">
+            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.15;">
+              O problema não é falta de documentos.<br>É excesso de complexidade.
+            </h2>
+            <p class="text-gray-text mb-lg" style="font-weight: 300; line-height: 1.8; font-size: 1.1rem;">
+              Hoje, nenhuma equipe humana consegue:
+            </p>
+            <ul class="spec-list mb-lg">
+              <li>ler tudo</li>
+              <li>interpretar tudo</li>
+              <li>correlacionar jurisprudência, contexto e risco</li>
+              <li>revisar grandes massas documentais em velocidade operacional</li>
+              <li>identificar inconsistências antes que virem problema</li>
+            </ul>
+
+            <div class="result-block">
+              <p class="label-gold">RESULTADO</p>
+              <ul style="list-style: none; padding: 0;">
+                <li style="font-weight: 300; color: rgba(255,255,255,0.45); line-height: 2;">— lentidão</li>
+                <li style="font-weight: 300; color: rgba(255,255,255,0.45); line-height: 2;">— retrabalho</li>
+                <li style="font-weight: 300; color: rgba(255,255,255,0.45); line-height: 2;">— risco jurídico acumulado</li>
+                <li style="font-weight: 300; color: rgba(255,255,255,0.45); line-height: 2;">— perda de produtividade</li>
+                <li style="font-weight: 300; color: rgba(255,255,255,0.45); line-height: 2;">— decisões tomadas sem visão completa</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-6 blur-in delay-2" style="position: relative; height: 70vh; border-radius: 4px; overflow: hidden;">
+            <img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?q=80&w=2532&auto=format&fit=crop"
+              alt="Complexity" style="width:100%; height:100%; object-fit:cover; filter: grayscale(100%) contrast(150%); opacity: 0.25;"
+              data-parallax="0.08" loading="lazy">
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SECTION 2 — O QUE O SPECTER É ===== -->
+    <section class="section bg-graphite" style="padding: var(--space-giant) 0; min-height: 70vh; display: flex; align-items: center;">
+      <div class="container">
+        <div style="max-width: 900px; margin: 0 auto; text-align: center;" class="fade-up delay-1">
+          <h2 style="font-size: clamp(2.5rem, 4.5vw, 4.5rem); font-weight: 200; line-height: 1.1; margin-bottom: var(--space-xl);">
+            Não é software jurídico.<br>É inteligência jurídica operacional.
+          </h2>
+          <p class="text-large text-gray-text mb-xl" style="font-weight: 300; max-width: 80%; margin-left: auto; margin-right: auto;">
+            O SPECTER funciona como uma camada contínua de interpretação documental e análise contextual aplicada ao ambiente jurídico corporativo e institucional.
+          </p>
+        </div>
+
+        <div class="fade-up delay-2" style="text-align: center;">
+          <p class="label-gold">ELE COMBINA</p>
+        </div>
+        
+        <div class="grid fade-up delay-2" style="gap: var(--space-md); margin-top: var(--space-lg);">
+          <div class="col-4"><div class="cap-tag">Inteligência artificial avançada</div></div>
+          <div class="col-4"><div class="cap-tag">Leitura contextual</div></div>
+          <div class="col-4"><div class="cap-tag">Automação documental</div></div>
+          <div class="col-4"><div class="cap-tag">Análise preditiva</div></div>
+          <div class="col-4"><div class="cap-tag">Interpretação estratégica</div></div>
+          <div class="col-4"><div class="cap-tag">Processamento massivo de informação</div></div>
+        </div>
+
+        <p class="text-center text-gray-text mt-xl fade-up delay-3" style="font-size: 1.2rem; font-weight: 300;">
+          Tudo operando continuamente.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ===== SECTION 3 — LEITURA DOCUMENTAL ===== -->
+    <section class="section" style="padding: var(--space-giant) 0; position: relative; overflow: hidden;">
+      <div class="section-img-bg">
+        <img src="https://images.unsplash.com/photo-1614729939124-032f0b56c9ce?q=80&w=2670&auto=format&fit=crop"
+          alt="Abstract data" loading="lazy">
+      </div>
+      
+      <div class="container" style="position: relative; z-index: 2;">
+        <p class="label-blue fade-up delay-1">LEITURA DOCUMENTAL</p>
+        <h2 class="text-h1 mb-xl fade-up delay-1" style="font-weight: 200; max-width: 700px;">
+          O único que realmente lê documentos.
+        </h2>
+
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-6 fade-up delay-2">
+            <p class="text-gray-text mb-md" style="font-weight: 300; font-size: 1.1rem;">O SPECTER interpreta:</p>
+            <ul class="spec-list">
+              <li>contratos</li>
+              <li>petições</li>
+              <li>editais</li>
+              <li>pareceres</li>
+              <li>notificações</li>
+              <li>jurisprudência</li>
+              <li>documentos corporativos</li>
+              <li>arquivos massivos</li>
+            </ul>
+          </div>
+
+          <div class="col-5 fade-up delay-3">
+            <div class="glass-card">
+              <p class="text-gray-text mb-md" style="font-weight: 300; font-size: 1rem;">
+                Não apenas por palavras-chave.
+              </p>
+              <p class="text-white mb-md" style="font-weight: 400; font-size: 1.1rem;">Mas por:</p>
+              <ul class="spec-list">
+                <li>contexto</li>
+                <li>intenção</li>
+                <li>relação</li>
+                <li>risco</li>
+                <li>coerência</li>
+                <li>impacto provável</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SECTION 4 — AUTOMAÇÃO COGNITIVA ===== -->
+    <section class="section bg-graphite" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="grid" style="gap: var(--space-xl);">
+          
+          <div class="col-5 fade-up delay-1">
+            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.15;">
+              Automação sem perder inteligência.
+            </h2>
+            <p class="text-gray-text mb-lg" style="font-weight: 300; line-height: 1.8; font-size: 1.1rem;">
+              O SPECTER automatiza:
+            </p>
+            <ul class="spec-list">
+              <li>leitura documental</li>
+              <li>classificação</li>
+              <li>triagem</li>
+              <li>organização</li>
+              <li>interpretação inicial</li>
+              <li>geração de insights</li>
+              <li>apoio à tomada de decisão</li>
+            </ul>
+            <p class="text-gray-text mt-lg" style="font-weight: 300; font-size: 1rem;">
+              Sem transformar o jurídico em operação mecânica.
+            </p>
+          </div>
+
+          <div class="col-6 fade-up delay-2">
+            <div class="glass-card" style="height: 100%;">
+              <p class="label-blue">O SISTEMA CONSEGUE</p>
+              <ul class="spec-list" style="margin-top: var(--space-md);">
+                <li>resumir documentos complexos</li>
+                <li>identificar inconsistências</li>
+                <li>encontrar riscos ocultos</li>
+                <li>localizar cláusulas críticas</li>
+                <li>comparar versões</li>
+                <li>organizar grandes bases</li>
+                <li>acelerar análise jurídica</li>
+                <li>reduzir esforço operacional</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SECTION 5 — CONTEXTO ESTRATÉGICO ===== -->
+    <section class="section" style="padding: var(--space-giant) 0;">
+      <div class="container text-center">
+        <h2 class="text-h1 mb-lg fade-up delay-1" style="font-weight: 200; max-width: 800px; margin: 0 auto var(--space-lg);">
+          Não interpreta apenas texto.<br>Interpreta contexto.
+        </h2>
+        
+        <div class="fade-up delay-2" style="max-width: 700px; margin: 0 auto var(--space-xl);">
+          <p class="text-gray-text" style="font-weight: 300; line-height: 2; font-size: 1.1rem;">
+            O diferencial do SPECTER é sua capacidade de cruzar informação, entender relações, detectar padrões, analisar impacto provável e construir leitura contextual contínua.
+          </p>
+        </div>
+
+        <div class="fade-up delay-3" style="padding: var(--space-xl) 0;">
+          <p class="quote-highlight">
+            Ele não apenas responde perguntas.<br>Ele ajuda a construir compreensão.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SECTION 6 — ANÁLISE PREDITIVA ===== -->
+    <section class="section bg-graphite" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="grid" style="gap: var(--space-xl);">
+          
+          <div class="col-5 fade-up delay-1">
+            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.15;">
+              Detecta risco antes do problema escalar.
+            </h2>
+            <p class="text-gray-text mb-lg" style="font-weight: 300; line-height: 1.8; font-size: 1.1rem;">
+              O SPECTER:
+            </p>
+            <ul class="spec-list">
+              <li>identifica padrões críticos</li>
+              <li>detecta inconsistências recorrentes</li>
+              <li>sinaliza risco potencial</li>
+              <li>organiza prioridade jurídica</li>
+              <li>acelera resposta operacional</li>
+            </ul>
+            <p class="text-gray-text mt-lg" style="font-weight: 300; font-size: 1rem;">Tudo em tempo real.</p>
+          </div>
+
+          <div class="col-6 fade-up delay-2">
+            <div class="alert-card">
+              <p class="label-gold">ALERTA PREDITIVO #2047</p>
+              <p class="text-white mb-md" style="font-size: 1.2rem; font-weight: 300; line-height: 1.6;">
+                "Cláusula incompatível detectada em 3 contratos ativos."
+              </p>
+              <div style="display: flex; gap: var(--space-lg); flex-wrap: wrap; margin-top: var(--space-md);">
+                <div>
+                  <p class="text-small text-gray-text" style="text-transform: uppercase; letter-spacing: 0.1em;">Risco potencial</p>
+                  <p class="text-white" style="font-weight: 300;">inconsistência regulatória</p>
+                </div>
+                <div>
+                  <p class="text-small text-gray-text" style="text-transform: uppercase; letter-spacing: 0.1em;">Recomendação</p>
+                  <p class="text-white" style="font-weight: 300;">revisão jurídica prioritária</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="text-center fade-up delay-3" style="padding-top: var(--space-xl);">
+          <p class="quote-highlight" style="font-size: clamp(1.8rem, 3.5vw, 3.5rem);">
+            Menos reação.<br>Mais antecipação.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SECTION 7 — ESTRUTURA CORPORATIVA ===== -->
+    <section class="section" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="grid" style="gap: var(--space-xl);">
+          
+          <div class="col-4 fade-up delay-1">
+            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.15;">
+              Projetado para ambientes jurídicos complexos.
+            </h2>
+            <p class="text-gray-text" style="font-weight: 300; line-height: 1.8;">
+              Uma plataforma concebida para estruturas onde volume, complexidade e risco operam simultaneamente.
+            </p>
+          </div>
+
+          <div class="col-8 fade-up delay-2">
+            <div class="grid" style="gap: 0;">
+              <div class="col-6"><div class="corp-item">Departamentos jurídicos</div></div>
+              <div class="col-6"><div class="corp-item">Empresas</div></div>
+              <div class="col-6"><div class="corp-item">Escritórios de advocacia</div></div>
+              <div class="col-6"><div class="corp-item">Compliance</div></div>
+              <div class="col-6"><div class="corp-item">Gestão contratual</div></div>
+              <div class="col-6"><div class="corp-item">Setor público</div></div>
+              <div class="col-6"><div class="corp-item">Estruturas regulatórias</div></div>
+              <div class="col-6"><div class="corp-item">Ambientes corporativos de alta complexidade</div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SECTION 8 — NÃO É CHATBOT ===== -->
+    <section class="section" style="padding: var(--space-giant) 0; min-height: 80vh; display: flex; align-items: center; background: var(--color-black);">
+      <div class="container">
+        <div class="text-center mb-xl fade-up delay-1">
+          <h2 style="font-size: clamp(2.2rem, 4vw, 4rem); font-weight: 200; line-height: 1.12;">
+            Não é chatbot jurídico.<br>Não é GPT com interface bonita.
+          </h2>
+        </div>
+
+        <div class="grid" style="gap: var(--space-xl); max-width: 900px; margin: 0 auto;">
+          <div class="col-6 fade-up delay-2">
+            <p class="label-blue">ELE POSSUI</p>
+            <ul class="spec-list">
+              <li>arquitetura proprietária</li>
+              <li>leitura contextual avançada</li>
+              <li>automação cognitiva</li>
+              <li>interpretação documental contínua</li>
+              <li>processamento jurídico estruturado</li>
+            </ul>
+          </div>
+          <div class="col-6 fade-up delay-3">
+            <p class="label-gold">ELE CRIA</p>
+            <ul class="spec-list">
+              <li>camada operacional contínua</li>
+              <li>inteligência jurídica escalável</li>
+              <li>redução de retrabalho sistêmico</li>
+              <li>visão contextual integrada</li>
+              <li>automação com profundidade analítica</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="text-center fade-up delay-4" style="padding-top: var(--space-xl);">
+          <p class="quote-highlight" style="font-size: clamp(1.5rem, 3vw, 2.8rem); color: var(--color-gray-text);">
+            Criando uma camada operacional impossível de reproduzir com ferramentas genéricas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SECTION 9 — DIFERENCIAIS ===== -->
+    <section class="section bg-graphite" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="text-center mb-xl fade-up delay-1">
+          <h2 class="text-h1" style="font-weight: 200;">O que torna o SPECTER diferente.</h2>
+        </div>
+
+        <div class="grid" style="gap: var(--space-md);">
+          <div class="col-3 fade-up delay-1 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">IA aplicada ao jurídico</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-2 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Leitura contextual avançada</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-3 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Automação documental</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-4 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Interpretação contínua</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-3 fade-up delay-1 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Organização massiva de informação</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-2 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Redução de retrabalho</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-3 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Análise preditiva</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-4 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Inteligência operacional</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-3 fade-up delay-1 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Arquitetura proprietária</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-2 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Plataforma escalável</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-3 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Segurança e privacidade</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-4 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Tecnologia centrada no humano</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SECTION 10 — NÃO É SOFTWARE ===== -->
+    <section class="section" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="text-center mb-xl fade-up delay-1">
+          <h2 style="font-size: clamp(2.2rem, 4vw, 4rem); font-weight: 200; line-height: 1.12; color: var(--color-gray-text);">
+            Não é software.<br><span class="text-white">É inteligência jurídica operacional.</span>
+          </h2>
+        </div>
+
+        <div class="grid" style="gap: var(--space-xl); max-width: 800px; margin: 0 auto;">
+          <div class="col-6 fade-up delay-2">
+            <p class="label-blue">REDUZ</p>
+            <ul class="transform-list spec-list">
+              <li>excesso documental</li>
+              <li>lentidão</li>
+              <li>complexidade</li>
+              <li>retrabalho</li>
+              <li>desorganização</li>
+            </ul>
+          </div>
+          <div class="col-6 fade-up delay-3">
+            <p class="label-gold">AUMENTA</p>
+            <ul class="transform-list spec-list">
+              <li>clareza</li>
+              <li>velocidade</li>
+              <li>contexto</li>
+              <li>previsibilidade</li>
+              <li>inteligência acionável</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="text-center fade-up delay-4" style="padding-top: var(--space-xl);">
+          <p class="quote-highlight">
+            O jurídico já produz informação demais.<br>O problema é transformar isso em percepção.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SECTION 11 — CTA FINAL ===== -->
+    <section id="contact" class="section bg-graphite" style="padding: var(--space-giant) 0; min-height: 80vh; display: flex; align-items: center;">
+      <div class="container text-center">
+        <div class="fade-up delay-1" style="max-width: 900px; margin: 0 auto;">
+          <h2 style="font-size: clamp(2.5rem, 4.5vw, 4.5rem); font-weight: 200; line-height: 1.1; margin-bottom: var(--space-lg);">
+            Interprete complexidade em velocidade operacional.
+          </h2>
+          <p class="text-large text-gray-text mb-xl" style="font-weight: 300; max-width: 80%; margin-left: auto; margin-right: auto;">
+            O SPECTER cria uma nova camada de inteligência jurídica para estruturas que precisam operar com mais clareza, velocidade e profundidade analítica.
+          </p>
+          <div style="display: flex; gap: var(--space-lg); justify-content: center; align-items: center; flex-wrap: wrap;">
+            <a href="#contact" class="cta-primary">Falar com a ZAKA</a>
+            <a href="index.html#products" class="cta-secondary">Voltar para Produtos</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="border-top: 1px solid var(--color-gray-border); padding: var(--space-xl) 0; background: var(--color-black);">
+    <div class="container">
+      <div class="grid justify-between">
+        <div class="col-4">
+          <a href="index.html" class="nav-logo">ZAKA<span class="text-gold">®</span></a>
+          <p class="text-small" style="margin-top: 1rem;">Technology with soul.</p>
+          <div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 0.5rem;">
+            <a href="index.html" class="text-small">Home</a>
+            <a href="index.html#products" class="text-small">Produtos</a>
+            <a href="#contact" class="text-small">Contato</a>
+          </div>
+        </div>
+        
+        <div class="col-4">
+          <p class="text-small text-gray-text mb-sm" style="text-transform: uppercase; letter-spacing: 0.1em;">Ecossistema</p>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <a href="cortex-eleitor.html" class="text-small text-white">CORTEX Eleitor</a>
+            <a href="cortex-governo.html" class="text-small text-white">CORTEX Governo</a>
+            <a href="cortex-infra.html" class="text-small text-white">CORTEX Infra</a>
+            <a href="cortex-care.html" class="text-small text-white">CORTEX Care</a>
+            <a href="#" class="text-small">CORTEX Control</a>
+            <a href="cortex-food.html" class="text-small text-white">CORTEX Food</a>
+            <a href="specter.html" class="text-small text-gold mt-sm">Specter by ZAKA</a>
+          </div>
+        </div>
+
+        <div class="col-4" style="text-align: right; display: flex; flex-direction: column; justify-content: flex-end;">
+          <p class="text-small">&copy; 2026 ZAKA Foundation. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- System Scripts -->
+  <script src="js/navigation.js"></script>
+  <script src="js/motion.js"></script>
+  <script src="js/system.js"></script>
+</body>
+</html>

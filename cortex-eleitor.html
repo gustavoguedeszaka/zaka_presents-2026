@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CORTEX Eleitor — Inteligência Política Preditiva | ZAKA</title>
+
+  <meta name="description" content="CORTEX Eleitor é uma plataforma avançada de inteligência política que monitora redes sociais, mídia, narrativas e comportamento digital para antecipar riscos, crises e oportunidades em tempo real.">
+  <meta property="og:title" content="CORTEX Eleitor — Inteligência Política Preditiva | ZAKA">
+  <meta property="og:description" content="CORTEX Eleitor é uma plataforma avançada de inteligência política que monitora redes sociais, mídia, narrativas e comportamento digital para antecipar riscos, crises e oportunidades em tempo real.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zaka.io/cortex-eleitor">
+
+  <link rel="stylesheet" href="css/core.css">
+  <link rel="preconnect" href="https://images.unsplash.com">
+
+  <style>
+    /* ===== CORTEX ELEITOR — PAGE STYLES ===== */
+
+    .hero-eleitor {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--color-black);
+    }
+    .hero-eleitor::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.92) 65%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-eleitor .img-cinematic {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0.35;
+      filter: grayscale(50%) contrast(130%);
+    }
+
+    /* Territory particles */
+    .territory-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.07;
+      background-image:
+        radial-gradient(circle, rgba(201,166,107,0.4) 1px, transparent 1px),
+        radial-gradient(circle, rgba(37,99,235,0.3) 1px, transparent 1px);
+      background-size: 90px 90px, 140px 140px;
+      background-position: 0 0, 45px 45px;
+      animation: territory-drift 150s linear infinite;
+    }
+    @keyframes territory-drift {
+      from { transform: translate(0, 0); }
+      to { transform: translate(-90px, -90px); }
+    }
+
+    /* Problem cards */
+    .problem-card {
+      background: var(--color-graphite);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: var(--space-lg) var(--space-md);
+      border-radius: 4px;
+      text-align: center;
+      transition: border-color 0.5s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+    .problem-card:hover {
+      border-color: rgba(201,166,107,0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Elegant card */
+    .elegant-card {
+      background: var(--color-graphite);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: var(--space-lg);
+      border-radius: 4px;
+      transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+    .elegant-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(37,99,235,0.04) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .elegant-card:hover {
+      border-color: rgba(201,166,107,0.25);
+      transform: translateY(-2px);
+    }
+    .elegant-card:hover::before { opacity: 1; }
+    .elegant-card .card-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Alert card */
+    .alert-card {
+      background: rgba(10,10,10,0.85);
+      border: 1px solid rgba(201,166,107,0.2);
+      border-radius: 4px;
+      padding: var(--space-xl);
+      backdrop-filter: blur(12px);
+      position: relative;
+    }
+    .alert-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--color-accent-gold-muted);
+    }
+
+    /* Spec list */
+    .spec-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .spec-list li {
+      font-weight: 300;
+      font-size: 1.1rem;
+      line-height: 2.1;
+      color: var(--color-gray-text);
+    }
+    .spec-list li::before {
+      content: '— ';
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* Labels */
+    .label-gold {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent-gold-muted);
+      margin-bottom: var(--space-sm);
+      font-weight: 500;
+    }
+    .label-blue {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent-blue);
+      margin-bottom: var(--space-sm);
+      font-weight: 500;
+    }
+
+    /* CTAs */
+    .cta-primary {
+      display: inline-block;
+      color: var(--color-white);
+      text-decoration: none;
+      border-bottom: 1px solid var(--color-white);
+      padding-bottom: 0.5rem;
+      font-size: 1.2rem;
+      font-weight: 300;
+      transition: opacity 0.3s ease;
+    }
+    .cta-primary:hover { opacity: 0.7; }
+    .cta-secondary {
+      display: inline-block;
+      color: var(--color-gray-text);
+      text-decoration: none;
+      padding-bottom: 0.5rem;
+      font-size: 1.2rem;
+      font-weight: 300;
+      transition: color 0.3s ease;
+    }
+    .cta-secondary:hover { color: var(--color-white); }
+
+    /* Section spacing */
+    .s-section {
+      padding: clamp(80px, 10vw, 160px) 0;
+    }
+
+    /* Asymmetry card */
+    .asym-card {
+      background: var(--color-graphite);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: var(--space-lg);
+      border-radius: 4px;
+      text-align: center;
+      transition: border-color 0.5s ease;
+    }
+    .asym-card:hover {
+      border-color: rgba(201,166,107,0.2);
+    }
+    .asym-card .asym-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-sm);
+      font-weight: 500;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .territory-layer { display: none; }
+      .hero-eleitor { min-height: 85vh; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .territory-layer { animation: none; }
+      .elegant-card, .problem-card, .asym-card { transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- GLOBAL MENU — PRESERVED EXACTLY -->
+  <header class="nav-header">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">ZAKA<span class="text-gold">®</span></a>
+      
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        
+        <div class="nav-item-dropdown">
+          <a href="#" class="nav-link" style="color: var(--color-white);">Produtos</a>
+          <div class="dropdown-menu">
+            <div class="dropdown-section-title">Cortex Suite</div>
+            <div class="dropdown-list">
+              <a href="cortex-eleitor.html" class="dropdown-link text-white">Cortex Eleitor</a>
+              <a href="cortex-governo.html" class="dropdown-link text-white">Cortex Governo</a>
+              <a href="cortex-infra.html" class="dropdown-link text-white">Cortex Infra</a>
+              <a href="cortex-care.html" class="dropdown-link text-white">Cortex Care</a>
+              <a href="#" class="dropdown-link">Cortex Control</a>
+              <a href="cortex-food.html" class="dropdown-link text-white">Cortex Food</a>
+            </div>
+            <div class="dropdown-section-title" style="margin-top: 1.5rem;">Other</div>
+            <div class="dropdown-list">
+              <a href="specter.html" class="dropdown-link text-gold">Specter by ZAKA</a>
+            </div>
+          </div>
+        </div>
+        
+        <a href="index.html#differentials" class="nav-link">Diferenciais</a>
+        <a href="index.html#how-we-work" class="nav-link">Como Trabalhamos</a>
+        <a href="#contact" class="nav-link">Contato</a>
+      </nav>
+
+      <button class="mobile-menu-btn" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="#" class="nav-link">Cortex Suite</a>
+      <a href="cortex-eleitor.html" class="nav-link text-white">Cortex Eleitor</a>
+      <a href="cortex-governo.html" class="nav-link text-white">Cortex Governo</a>
+      <a href="cortex-food.html" class="nav-link text-white">Cortex Food</a>
+      <a href="specter.html" class="nav-link text-gold">Specter by ZAKA</a>
+      <a href="index.html#differentials" class="nav-link">Diferenciais</a>
+      <a href="index.html#how-we-work" class="nav-link">Como Trabalhamos</a>
+      <a href="#contact" class="nav-link">Contato</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero-eleitor">
+      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2672&auto=format&fit=crop"
+        alt="Abstract territorial intelligence" class="img-cinematic" data-parallax="0.04" loading="eager">
+      <div class="territory-layer"></div>
+
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="grid">
+          <div class="col-7 fade-up delay-1">
+            <p class="text-accent text-gold mb-md" style="letter-spacing: 0.15em; font-size: 0.8rem;">CORTEX ELEITOR</p>
+            <h1 style="font-size: clamp(2.6rem, 4.5vw, 5rem); line-height: 1.08; font-weight: 200; margin-bottom: var(--space-lg);">
+              Inteligência política que vê tudo, entende tudo e antecipa tudo.
+            </h1>
+            <p class="text-large text-gray-text" style="max-width: 90%; margin-bottom: var(--space-xl); font-weight: 300; line-height: 1.7;">
+              A primeira plataforma avançada de inteligência política da ZAKA, criada para monitorar redes, mídia, narrativas, comportamento digital e risco reputacional em tempo real.
+            </p>
+            <div style="display: flex; gap: var(--space-lg); align-items: center; flex-wrap: wrap;">
+              <a href="#plataforma" class="cta-primary">Conhecer a plataforma</a>
+              <a href="#contact" class="cta-secondary">Falar com a ZAKA</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 1 — O PROBLEMA ===== -->
+    <section id="plataforma" class="s-section">
+      <div class="container">
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-6 fade-up delay-1">
+            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
+              O ambiente político ficou hiperfragmentado, emocionalmente instável e acelerado.
+            </h2>
+            <p class="text-h3 text-gray-text mb-lg" style="font-weight: 300;">
+              O problema não é acesso à informação. É visão incompleta.
+            </p>
+            <p class="text-gray-text" style="font-weight: 300; line-height: 1.9; font-size: 1.05rem;">
+              Hoje, nenhuma equipe humana consegue ler tudo nas redes, acompanhar toda a mídia digital, correlacionar passado, presente e tendência futura, e reagir antes que o dano político ou reputacional se consolide.
+            </p>
+          </div>
+
+          <div class="col-5 fade-up delay-2" style="margin-left: auto;">
+            <div class="grid" style="gap: var(--space-md);">
+              <div class="col-6"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Decisões atrasadas</p></div></div>
+              <div class="col-6"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Respostas emocionais</p></div></div>
+              <div class="col-6"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Risco jurídico acumulado</p></div></div>
+              <div class="col-6"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Risco político e reputacional</p></div></div>
+              <div class="col-12"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Perda de controle narrativo</p></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 2 — O QUE O CORTEX É ===== -->
+    <section class="s-section bg-graphite" style="min-height: 65vh; display: flex; align-items: center;">
+      <div class="container text-center">
+        <div class="fade-up delay-1" style="max-width: 900px; margin: 0 auto;">
+          <h2 style="font-size: clamp(2.2rem, 4vw, 4rem); font-weight: 200; line-height: 1.12; margin-bottom: var(--space-lg);">
+            Não é clipping. Não é dashboard.<br>É inteligência política operacional.
+          </h2>
+          <p class="text-large text-gray-text mb-xl" style="font-weight: 300; max-width: 85%; margin: 0 auto var(--space-xl);">
+            O CORTEX Eleitor funciona como um super agente especializado em política, capaz de monitorar, interpretar, correlacionar e recomendar ações estratégicas com base em dados, contexto e memória política contínua.
+          </p>
+          <p style="font-size: clamp(2rem, 3.5vw, 3.5rem); font-weight: 200; color: var(--color-accent-gold-muted);">
+            Não opina. Calcula.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 3 — REDES SOCIAIS ===== -->
+    <section class="s-section">
+      <div class="container">
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-5 fade-up delay-1">
+            <span class="label-blue">REDES SOCIAIS</span>
+            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
+              O único que pega tudo nas redes sociais.
+            </h2>
+            <p class="text-gray-text mb-lg" style="font-weight: 300; line-height: 1.8; font-size: 1.05rem;">
+              O CORTEX captura o fluxo relevante em tempo real:
+            </p>
+            <ul class="spec-list">
+              <li>menções diretas e indiretas</li>
+              <li>velocidade de propagação</li>
+              <li>mudança de humor coletivo</li>
+              <li>crescimento anômalo de narrativas</li>
+              <li>sinais de ataque coordenado</li>
+              <li>reação por território e público</li>
+            </ul>
+          </div>
+
+          <div class="col-6 fade-up delay-2" style="margin-left: auto; display: flex; align-items: center;">
+            <div style="border-left: 2px solid rgba(255,255,255,0.06); padding-left: var(--space-lg);">
+              <p class="text-gray-text" style="font-weight: 300; font-size: 1.15rem; line-height: 1.8;">
+                Não trabalha por amostragem.<br>
+                Não depende de hashtags isoladas.<br>
+                Não depende de relatórios manuais.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 4 — MÍDIA E IMPRENSA ===== -->
+    <section class="s-section bg-graphite">
+      <div class="container">
+        <div class="fade-up delay-1 mb-xl" style="max-width: 800px;">
+          <span class="label-blue">MÍDIA E IMPRENSA</span>
+          <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
+            Ele não mostra apenas o que saiu. Mostra o que isso pode causar.
+          </h2>
+          <p class="text-gray-text" style="font-weight: 300; line-height: 1.8; font-size: 1.05rem;">
+            O sistema lê a mídia digital relevante, entende contexto, viés, timing e correlação com redes sociais.
+          </p>
+        </div>
+
+        <div class="grid fade-up delay-2" style="gap: var(--space-md);">
+          <div class="col-4 mb-md"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Imprensa digital</p></div></div>
+          <div class="col-4 mb-md"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Portais regionais</p></div></div>
+          <div class="col-4 mb-md"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Viés narrativo</p></div></div>
+          <div class="col-4 mb-md"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Timing de escalada</p></div></div>
+          <div class="col-4 mb-md"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Impacto provável</p></div></div>
+          <div class="col-4 mb-md"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Correlação com redes sociais</p></div></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 5 — CLONE COGNITIVO ===== -->
+    <section class="s-section" style="position: relative; overflow: hidden;">
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-6 fade-up delay-1">
+            <span class="label-gold">CLONE COGNITIVO</span>
+            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
+              A inteligência pensa junto com o eu estratégico do cliente.
+            </h2>
+            <p class="text-gray-text" style="font-weight: 300; line-height: 1.9; font-size: 1.05rem;">
+              O CORTEX incorpora uma camada personalizada baseada em tom de voz, limites éticos, posicionamento político, vulnerabilidades conhecidas e identidade estratégica do candidato ou da estrutura política.
+            </p>
+          </div>
+
+          <div class="col-5 fade-up delay-2" style="margin-left: auto; display: flex; align-items: center;">
+            <div style="border-left: 2px solid rgba(201,166,107,0.2); padding-left: var(--space-lg);">
+              <p style="font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 200; line-height: 1.5; color: var(--color-white);">
+                Máquina + humano.<br>
+                Cálculo + identidade.<br>
+                Estratégia sem ruptura de personalidade.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 6 — SUPER AGENTE POLÍTICO ===== -->
+    <section class="s-section bg-graphite">
+      <div class="container">
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-5 fade-up delay-1" style="position: sticky; top: 120px; align-self: start;">
+            <span class="label-blue">SUPER AGENTE</span>
+            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
+              Um super agente especializado em política.
+            </h2>
+            <p class="text-gray-text" style="font-weight: 300; line-height: 1.8; font-size: 1.05rem;">
+              O sistema foi desenvolvido para operar como uma equipe inteira de especialistas simultâneos.
+            </p>
+          </div>
+
+          <div class="col-6 fade-up delay-2" style="margin-left: auto;">
+            <div style="border-left: 1px solid rgba(255,255,255,0.08); padding-left: var(--space-lg);">
+              <p class="text-gray-text mb-md" style="font-weight: 400; font-size: 1rem; letter-spacing: 0.05em;">ELE CARREGA:</p>
+              <ul class="spec-list" style="margin-top: var(--space-md);">
+                <li>história política</li>
+                <li>padrões eleitorais recorrentes</li>
+                <li>ciclos de ataque, crise e desgaste</li>
+                <li>comportamento regional e cultural</li>
+                <li>passado consolidado</li>
+                <li>presente em tempo real</li>
+                <li>predição probabilística contínua</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 7 — PREDITIVO EM TEMPO REAL ===== -->
+    <section class="s-section" style="position: relative; overflow: hidden;">
+      <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2670&auto=format&fit=crop"
+        alt="Data streams"
+        style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.06; filter: grayscale(100%); z-index: 0;"
+        loading="lazy">
+      <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,1) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,1) 100%); z-index: 1;"></div>
+
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="text-center mb-xl fade-up delay-1">
+          <span class="label-gold">PREDITIVO EM TEMPO REAL</span>
+          <h2 class="text-h1" style="font-weight: 200;">Detecta anomalias no momento em que nascem.</h2>
+          <p class="text-gray-text mt-lg" style="font-weight: 300; font-size: 1.05rem; max-width: 700px; margin: var(--space-md) auto 0;">
+            O CORTEX calcula impacto provável, projeta cenários de escalada e dispara alertas com recomendação pronta.
+          </p>
+        </div>
+
+        <div class="grid justify-center fade-up delay-2">
+          <div class="col-8">
+            <div
+              style="background: rgba(10, 10, 10, 0.8); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: var(--space-xl); backdrop-filter: blur(10px);">
+              <span class="text-small text-gold display-block mb-md" style="letter-spacing: 0.1em;">ALERTA PREDITIVO #3041</span>
+
+              <p class="text-h3 mb-md" style="font-weight: 300;">
+                “Ataque crescendo 380% em 90 minutos na zona sul de São Paulo.”
+              </p>
+
+              <div class="grid"
+                style="margin-top: var(--space-lg); border-top: 1px solid rgba(255,255,255,0.05); padding-top: var(--space-md);">
+                <div class="col-4">
+                  <span class="text-small text-gray-text display-block mb-xs">Público:</span>
+                  <span class="text-large">Homens, classe C, zona sul / SP.</span>
+                </div>
+                <div class="col-4">
+                  <span class="text-small text-gray-text display-block mb-xs">Predominância:</span>
+                  <span class="text-large text-accent" style="color: #ef4444;">Sentimento negativo.</span>
+                </div>
+                <div class="col-4">
+                  <span class="text-small text-gray-text display-block mb-xs">Recomendação:</span>
+                  <span class="text-large text-blue">Não responder em rede ampla. Ação localizada.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 8 — ASSIMETRIA COMPETITIVA ===== -->
+    <section class="s-section bg-graphite">
+      <div class="container">
+        <div class="text-center mb-xl fade-up delay-1">
+          <h2 class="text-h1" style="font-weight: 200;">Não é só sistema. É assimetria competitiva.</h2>
+        </div>
+
+        <div class="grid fade-up delay-2" style="gap: var(--space-xl); max-width: 800px; margin: 0 auto;">
+          <div class="col-6">
+            <span class="text-accent mb-md display-block text-blue" style="font-size: 0.7rem; letter-spacing: 0.15em;">REDUZ</span>
+            <ul style="list-style: none; padding: 0;">
+              <li class="text-large mb-sm" style="font-weight: 300;">— custo</li>
+              <li class="text-large mb-sm" style="font-weight: 300;">— risco</li>
+              <li class="text-large" style="font-weight: 300;">— erro</li>
+            </ul>
+          </div>
+          <div class="col-6">
+            <span class="text-accent mb-md display-block text-gold" style="font-size: 0.7rem; letter-spacing: 0.15em;">AUMENTA</span>
+            <ul style="list-style: none; padding: 0;">
+              <li class="text-large mb-sm" style="font-weight: 300;">— controle</li>
+              <li class="text-large mb-sm" style="font-weight: 300;">— velocidade estratégica</li>
+              <li class="text-large" style="font-weight: 300;">— capacidade de resposta</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="text-center fade-up delay-3" style="margin-top: var(--space-xl); max-width: 750px; margin-left: auto; margin-right: auto;">
+          <p class="text-gray-text" style="font-weight: 300; line-height: 1.8; font-size: 1.05rem;">
+            Contrato e suporte contínuo durante toda a campanha, com primeiro e segundo turnos incluídos. Primeira entrega de módulo em até 30 dias após contratação.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 9 — EXCLUSIVO ===== -->
+    <section class="s-section">
+      <div class="container">
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-4 fade-up delay-1">
+            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
+              O que ninguém tem.
+            </h2>
+            <p class="text-gray-text" style="font-weight: 300; line-height: 1.8; font-size: 1.05rem;">
+              Integração entre política, estratégia, direito e tecnologia.
+            </p>
+          </div>
+
+          <div class="col-7 fade-up delay-2" style="margin-left: auto;">
+            <div class="grid" style="gap: var(--space-md);">
+              <div class="col-6 mb-md">
+                <div class="elegant-card"><div class="card-content">
+                  <h4 class="text-large" style="font-weight: 300;">Arquitetura proprietária de correlação massiva</h4>
+                </div></div>
+              </div>
+              <div class="col-6 mb-md">
+                <div class="elegant-card"><div class="card-content">
+                  <h4 class="text-large" style="font-weight: 300;">Algoritmos próprios de expansão automática</h4>
+                </div></div>
+              </div>
+              <div class="col-6 mb-md">
+                <div class="elegant-card"><div class="card-content">
+                  <h4 class="text-large" style="font-weight: 300;">Base histórica contínua</h4>
+                </div></div>
+              </div>
+              <div class="col-6 mb-md">
+                <div class="elegant-card"><div class="card-content">
+                  <h4 class="text-large" style="font-weight: 300;">Memória política viva</h4>
+                </div></div>
+              </div>
+              <div class="col-6 mb-md">
+                <div class="elegant-card"><div class="card-content">
+                  <h4 class="text-large" style="font-weight: 300;">Alertas acionáveis</h4>
+                </div></div>
+              </div>
+              <div class="col-6 mb-md">
+                <div class="elegant-card"><div class="card-content">
+                  <h4 class="text-large" style="font-weight: 300;">Recomendação estratégica pronta</h4>
+                </div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== CTA FINAL ===== -->
+    <section id="contact" class="s-section bg-graphite" style="min-height: 80vh; display: flex; align-items: center;">
+      <div class="container text-center">
+        <div class="fade-up delay-1" style="max-width: 900px; margin: 0 auto;">
+          <h2 style="font-size: clamp(2.5rem, 4.5vw, 4.5rem); font-weight: 200; line-height: 1.1; margin-bottom: var(--space-lg);">
+            Campanha eleitoral como o Brasil nunca viu.
+          </h2>
+          <p class="text-large text-gray-text mb-xl" style="font-weight: 300; max-width: 85%; margin-left: auto; margin-right: auto;">
+            O CORTEX Eleitor transforma ruído, mídia, narrativa e comportamento coletivo em percepção política contínua para campanhas que precisam operar em tempo real.
+          </p>
+          <div style="display: flex; gap: var(--space-lg); justify-content: center; align-items: center; flex-wrap: wrap;">
+            <a href="#contact" class="cta-primary">Falar com a ZAKA</a>
+            <a href="index.html#products" class="cta-secondary">Voltar para Produtos</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER — PRESERVED -->
+  <footer style="border-top: 1px solid var(--color-gray-border); padding: var(--space-xl) 0; background: var(--color-black);">
+    <div class="container">
+      <div class="grid justify-between">
+        <div class="col-4">
+          <a href="index.html" class="nav-logo">ZAKA<span class="text-gold">®</span></a>
+          <p class="text-small" style="margin-top: 1rem;">Technology with soul.</p>
+          <div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 0.5rem;">
+            <a href="index.html" class="text-small">Home</a>
+            <a href="index.html#products" class="text-small">Produtos</a>
+            <a href="#contact" class="text-small">Contato</a>
+          </div>
+        </div>
+        
+        <div class="col-4">
+          <p class="text-small text-gray-text mb-sm" style="text-transform: uppercase; letter-spacing: 0.1em;">Ecossistema</p>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <a href="cortex-eleitor.html" class="text-small text-white">CORTEX Eleitor</a>
+            <a href="cortex-governo.html" class="text-small text-white">CORTEX Governo</a>
+            <a href="cortex-infra.html" class="text-small text-white">CORTEX Infra</a>
+            <a href="cortex-care.html" class="text-small text-white">CORTEX Care</a>
+            <a href="#" class="text-small">CORTEX Control</a>
+            <a href="cortex-food.html" class="text-small text-white">CORTEX Food</a>
+            <a href="specter.html" class="text-small text-gold mt-sm">Specter by ZAKA</a>
+          </div>
+        </div>
+
+        <div class="col-4" style="text-align: right; display: flex; flex-direction: column; justify-content: flex-end;">
+          <p class="text-small">&copy; 2026 ZAKA Foundation. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/navigation.js"></script>
+  <script src="js/motion.js"></script>
+  <script src="js/system.js"></script>
+</body>
+</html>

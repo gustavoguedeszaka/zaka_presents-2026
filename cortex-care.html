@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CORTEX Care — Inteligência Aplicada à Experiência Humana | ZAKA</title>
+
+  <meta name="description" content="CORTEX Care é uma plataforma proprietária de inteligência aplicada para clínicas premium, estética, wellness e saúde privada, conectando jornada do cliente, operação, agenda e retenção em tempo real.">
+  <meta property="og:title" content="CORTEX Care — Inteligência Aplicada à Experiência Humana | ZAKA">
+  <meta property="og:description" content="CORTEX Care é uma plataforma proprietária de inteligência aplicada para clínicas premium, estética, wellness e saúde privada, conectando jornada do cliente, operação, agenda e retenção em tempo real.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zaka.io/cortex-care">
+
+  <link rel="stylesheet" href="css/core.css">
+  <link rel="preconnect" href="https://images.unsplash.com">
+
+  <style>
+    /* ===== CORTEX CARE PAGE STYLES ===== */
+
+    /* Hero */
+    .hero-care {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--color-black);
+    }
+    .hero-care::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.30) 0%,
+        rgba(0,0,0,0.50) 40%,
+        rgba(0,0,0,0.92) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-care .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0.35;
+      filter: grayscale(30%) contrast(110%) brightness(0.9);
+      transform: scale(1.05) translateZ(0);
+      transition: transform 8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Breathing organic overlay */
+    .hero-organic-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(212,175,55,0.04) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 50% at 80% 30%, rgba(10,132,255,0.03) 0%, transparent 50%);
+      animation: care-breathe 12s ease-in-out infinite alternate;
+    }
+    @keyframes care-breathe {
+      0% { opacity: 0.6; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.03); }
+    }
+
+    /* Subtle gold scan line */
+    .care-scan {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.03;
+      background-image:
+        linear-gradient(rgba(212,175,55,0.06) 1px, transparent 1px);
+      background-size: 100% 120px;
+      animation: care-scan-drift 80s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes care-scan-drift {
+      from { transform: translateY(0); }
+      to { transform: translateY(-120px); }
+    }
+
+    /* Floating particles canvas for Care hero */
+    #care-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    /* CTA buttons */
+    .cta-primary {
+      display: inline-block;
+      color: var(--color-white);
+      text-decoration: none;
+      border-bottom: 1px solid var(--color-white);
+      padding-bottom: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 300;
+      transition: opacity 0.3s ease, border-color 0.3s ease;
+    }
+    .cta-primary:hover {
+      opacity: 0.7;
+      border-color: var(--color-accent-gold);
+    }
+    .cta-secondary {
+      display: inline-block;
+      color: var(--color-gray-text);
+      text-decoration: none;
+      padding-bottom: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 300;
+      transition: color 0.3s ease;
+    }
+    .cta-secondary:hover { color: var(--color-white); }
+
+    /* Labels */
+    .label-gold {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent-gold-muted);
+      margin-bottom: var(--space-sm);
+      font-weight: 500;
+    }
+    .label-blue {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent-blue);
+      margin-bottom: var(--space-sm);
+      font-weight: 500;
+    }
+
+    /* Problem list items */
+    .problem-list li {
+      font-weight: 300;
+      font-size: 1.05rem;
+      line-height: 2.2;
+      color: rgba(255,255,255,0.45);
+    }
+    .problem-list li::before {
+      content: '— ';
+      color: rgba(255,255,255,0.15);
+    }
+
+    /* Content block with gold left border */
+    .content-border-block {
+      border-left: 2px solid rgba(212,175,55,0.15);
+      padding-left: var(--space-lg);
+      transition: border-color 0.5s ease;
+    }
+    .content-border-block:hover {
+      border-color: rgba(212,175,55,0.35);
+    }
+
+    /* Elegant cards for grids */
+    .care-card {
+      background: var(--color-graphite);
+      border: 1px solid rgba(255,255,255,0.04);
+      padding: var(--space-lg);
+      border-radius: 2px;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+    .care-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(10,132,255,0.04) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .care-card:hover {
+      border-color: rgba(212,175,55,0.2);
+      transform: translateY(-2px);
+    }
+    .care-card:hover::before { opacity: 1; }
+    .care-card .card-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Journey timeline */
+    .journey-timeline {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      position: relative;
+      padding: var(--space-lg) 0;
+    }
+    .journey-timeline::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(212,175,55,0.2) 10%,
+        rgba(10,132,255,0.15) 50%,
+        rgba(212,175,55,0.2) 90%,
+        transparent 100%
+      );
+      z-index: 0;
+    }
+    .journey-step {
+      flex: 1;
+      text-align: center;
+      z-index: 1;
+      position: relative;
+    }
+    .journey-step .step-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-accent-gold-muted);
+      margin: 0 auto var(--space-sm) auto;
+      position: relative;
+      transition: all 0.4s ease;
+    }
+    .journey-step .step-dot::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,175,55,0.15);
+      transition: all 0.4s ease;
+    }
+    .journey-step:hover .step-dot {
+      background: var(--color-accent-gold);
+      box-shadow: 0 0 20px rgba(212,175,55,0.3);
+    }
+    .journey-step:hover .step-dot::after {
+      border-color: rgba(212,175,55,0.4);
+      inset: -8px;
+    }
+    .journey-step .step-label {
+      font-family: var(--font-secondary);
+      font-size: 0.75rem;
+      color: var(--color-gray-text);
+      letter-spacing: 0.05em;
+      font-weight: 400;
+      transition: color 0.3s ease;
+    }
+    .journey-step:hover .step-label {
+      color: var(--color-white);
+    }
+
+    /* Operation type cards */
+    .operation-card {
+      background: rgba(20,20,21,0.6);
+      border: 1px solid rgba(255,255,255,0.04);
+      padding: var(--space-md) var(--space-lg);
+      border-radius: 2px;
+      text-align: center;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .operation-card:hover {
+      border-color: rgba(212,175,55,0.15);
+      background: rgba(20,20,21,0.9);
+    }
+    .operation-card h4 {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--color-white-warm);
+    }
+
+    /* Numbered result items */
+    .result-item {
+      padding: var(--space-md) 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      gap: var(--space-md);
+      align-items: baseline;
+    }
+    .result-item:last-child { border-bottom: none; }
+    .result-num {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--color-accent-gold-muted);
+      font-weight: 500;
+      min-width: 2rem;
+      font-family: var(--font-secondary);
+    }
+    .result-text {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--color-gray-text);
+      line-height: 1.5;
+    }
+
+    /* Section bg image */
+    .section-img-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .section-img-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(130%);
+      opacity: 0.05;
+    }
+
+    /* Big quote style */
+    .big-quote {
+      font-size: clamp(2rem, 3.5vw, 3.5rem);
+      font-weight: 200;
+      line-height: 1.15;
+      color: var(--color-white);
+      max-width: 900px;
+    }
+
+    /* Transform list items */
+    .transform-list li {
+      font-weight: 300;
+      font-size: 1.1rem;
+      line-height: 2;
+      color: var(--color-gray-text);
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    .transform-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 6px;
+      height: 1px;
+      background: rgba(212,175,55,0.4);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .journey-timeline {
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+      }
+      .journey-step {
+        flex: 0 0 calc(33.33% - 1rem);
+        margin-bottom: var(--space-md);
+      }
+    }
+    @media (max-width: 768px) {
+      .care-scan { display: none; }
+      .hero-organic-overlay { animation: none; opacity: 0.7; }
+      .hero-care { min-height: 90vh; }
+      .journey-timeline { flex-direction: column; align-items: stretch; }
+      .journey-timeline::before { display: none; }
+      .journey-step { text-align: left; display: flex; align-items: center; gap: var(--space-sm); }
+      .journey-step .step-dot { margin: 0; flex-shrink: 0; }
+      .care-card { padding: var(--space-md); }
+      .content-border-block { padding-left: var(--space-md); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .care-scan { animation: none; }
+      .hero-organic-overlay { animation: none; }
+      .hero-care .hero-bg { transition: none; transform: scale(1); }
+      .care-card, .operation-card { transition: none; }
+      .journey-step .step-dot, .journey-step .step-dot::after { transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- GLOBAL MENU -->
+  <header class="nav-header">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">ZAKA<span class="text-gold">®</span></a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+
+        <div class="nav-item-dropdown">
+          <a href="#" class="nav-link" style="color: var(--color-white);">Produtos</a>
+          <div class="dropdown-menu">
+            <div class="dropdown-section-title">CORTEX</div>
+            <div class="dropdown-list">
+              <a href="cortex-eleitor.html" class="dropdown-link text-white">CORTEX Eleitor</a>
+              <a href="cortex-governo.html" class="dropdown-link text-white">CORTEX Governo</a>
+              <a href="cortex-infra.html" class="dropdown-link text-white">CORTEX Infra</a>
+              <a href="cortex-care.html" class="dropdown-link text-white">CORTEX Care</a>
+              <a href="cortex-food.html" class="dropdown-link text-white">CORTEX Food</a>
+            </div>
+            <div class="dropdown-section-title" style="margin-top: 1.5rem;">Outras Plataformas</div>
+            <div class="dropdown-list">
+              <a href="specter.html" class="dropdown-link text-gold">Specter by ZAKA</a>
+            </div>
+          </div>
+        </div>
+
+        <a href="index.html#differentials" class="nav-link">Diferenciais</a>
+        <a href="index.html#how-we-work" class="nav-link">Como Trabalhamos</a>
+        <a href="#contact" class="nav-link">Contato</a>
+      </nav>
+
+      <button class="mobile-menu-btn" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="mobile-nav-overlay">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="#" class="nav-link">Cortex Suite</a>
+      <a href="cortex-eleitor.html" class="nav-link text-white">Cortex Eleitor</a>
+      <a href="cortex-governo.html" class="nav-link text-white">Cortex Governo</a>
+      <a href="cortex-care.html" class="nav-link text-white">Cortex Care</a>
+      <a href="cortex-food.html" class="nav-link text-white">Cortex Food</a>
+      <a href="specter.html" class="nav-link text-gold">Specter by ZAKA</a>
+      <a href="index.html#differentials" class="nav-link">Diferenciais</a>
+      <a href="index.html#how-we-work" class="nav-link">Como Trabalhamos</a>
+      <a href="#contact" class="nav-link">Contato</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero-care" id="hero">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2670&auto=format&fit=crop"
+        alt="Premium minimalist architecture with soft light" class="hero-bg" data-parallax="0.04" loading="eager">
+      <div class="hero-organic-overlay"></div>
+      <div class="care-scan"></div>
+      <canvas id="care-particles"></canvas>
+
+      <div class="container" style="z-index: 2; position: relative;">
+        <div class="grid items-center" style="min-height: 90vh;">
+          <div class="col-8 fade-up delay-1">
+            <span class="text-accent mb-md display-block" style="letter-spacing: 0.2em; font-size: 0.8rem; color: var(--color-accent-gold-muted);">CORTEX CARE</span>
+            <h1 style="font-size: clamp(2.5rem, 4.5vw, 4.8rem); line-height: 1.1; font-weight: 200; margin-bottom: var(--space-lg); max-width: 900px;">
+              Inteligência aplicada à experiência humana em operações premium de saúde, estética e bem-estar.
+            </h1>
+            <p class="text-large text-gray-text" style="max-width: 80%; margin-bottom: var(--space-xl); font-weight: 300; line-height: 1.7;">
+              Uma plataforma proprietária criada para conectar comportamento, jornada do cliente, agenda, retenção, faturamento e experiência em uma única camada contínua de percepção operacional e comercial.
+            </p>
+            <div style="display: flex; gap: var(--space-lg); align-items: center; flex-wrap: wrap;">
+              <a href="#plataforma" class="cta-primary">Conhecer a Plataforma</a>
+              <a href="#contact" class="cta-secondary">Falar com a ZAKA</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 1 — O PROBLEMA ===== -->
+    <section class="section" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-6 fade-up delay-1">
+            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
+              O mercado premium mudou.
+            </h2>
+            <p class="text-gray-text mb-lg" style="font-weight: 300; line-height: 1.9; font-size: 1.1rem;">
+              Hoje, não basta atender bem, investir em marketing, possuir tecnologia avançada ou ter boa estrutura.
+            </p>
+            <p style="font-size: clamp(1.3rem, 2vw, 1.8rem); font-weight: 300; line-height: 1.4; color: var(--color-white-warm);">
+              O verdadeiro diferencial passou a ser: <span style="color: var(--color-accent-gold-muted);">compreender comportamento, operação e experiência em tempo real.</span>
+            </p>
+          </div>
+
+          <div class="col-5 fade-up delay-2" style="margin-left: auto;">
+            <div class="content-border-block">
+              <span class="label-gold">DIAGNÓSTICO</span>
+              <p class="text-gray-text" style="font-weight: 300; line-height: 1.8; font-size: 1rem; margin-bottom: var(--space-md);">
+                Hoje, nenhuma equipe humana consegue:
+              </p>
+              <ul class="problem-list" style="list-style: none; padding: 0;">
+                <li>interpretar toda a jornada do cliente</li>
+                <li>entender padrões reais de comportamento</li>
+                <li>identificar perda invisível de receita</li>
+                <li>prever horários ociosos</li>
+                <li>cruzar campanha com faturamento real</li>
+                <li>medir experiência operacional continuamente</li>
+                <li>compreender retenção com profundidade</li>
+              </ul>
+            </div>
+
+            <div class="content-border-block" style="margin-top: var(--space-xl); border-color: rgba(255,255,255,0.06);">
+              <span class="label-blue" style="color: rgba(255,255,255,0.3);">RESULTADO</span>
+              <ul class="problem-list" style="list-style: none; padding: 0;">
+                <li>agenda ociosa</li>
+                <li>CAC crescente</li>
+                <li>baixa previsibilidade</li>
+                <li>oportunidades comerciais perdidas</li>
+                <li>retenção inconsistente</li>
+                <li>decisões baseadas em percepção subjetiva</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 2 — O QUE O CORTEX CARE É ===== -->
+    <section id="plataforma" class="section bg-graphite" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-7 fade-up delay-1">
+            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
+              Não é CRM.<br>Não é agenda.<br><span class="text-gray-text">Não é automação isolada.</span>
+            </h2>
+            <p class="text-large text-gray-text" style="font-weight: 300; line-height: 1.7; max-width: 90%; margin-bottom: var(--space-xl);">
+              O CORTEX Care é uma camada ativa de inteligência operacional e comercial para operações centradas em experiência humana.
+            </p>
+          </div>
+          <div class="col-4 fade-up delay-2" style="margin-left: auto; display: flex; align-items: center;">
+            <div>
+              <p class="text-gray-text mb-md" style="font-weight: 400; font-size: 0.95rem;">Ele transforma:</p>
+              <ul class="transform-list" style="list-style: none; padding: 0;">
+                <li>comportamento</li>
+                <li>atendimento</li>
+                <li>campanhas</li>
+                <li>conversão</li>
+                <li>recorrência</li>
+                <li>experiência</li>
+                <li>ocupação</li>
+                <li>faturamento</li>
+              </ul>
+              <p style="margin-top: var(--space-md); font-weight: 300; font-size: 1rem; color: var(--color-white-warm);">
+                em inteligência contínua para tomada de decisão.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 3 — JORNADA COMPLETA ===== -->
+    <section class="section" style="padding: var(--space-giant) 0; position: relative; overflow: hidden;">
+      <div class="section-img-bg">
+        <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?q=80&w=2670&auto=format&fit=crop"
+          alt="Architectural flow" loading="lazy">
+      </div>
+
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="fade-up delay-1 text-center mb-xl">
+          <h2 class="text-h1" style="font-weight: 200;">O CORTEX acompanha toda a experiência.</h2>
+        </div>
+
+        <div class="journey-timeline fade-up delay-2">
+          <div class="journey-step">
+            <div class="step-dot"></div>
+            <span class="step-label">Anúncio</span>
+          </div>
+          <div class="journey-step">
+            <div class="step-dot"></div>
+            <span class="step-label">Primeiro clique</span>
+          </div>
+          <div class="journey-step">
+            <div class="step-dot"></div>
+            <span class="step-label">WhatsApp</span>
+          </div>
+          <div class="journey-step">
+            <div class="step-dot"></div>
+            <span class="step-label">Agendamento</span>
+          </div>
+          <div class="journey-step">
+            <div class="step-dot"></div>
+            <span class="step-label">Comparecimento</span>
+          </div>
+          <div class="journey-step">
+            <div class="step-dot"></div>
+            <span class="step-label">Pagamento</span>
+          </div>
+          <div class="journey-step">
+            <div class="step-dot"></div>
+            <span class="step-label">Retorno</span>
+          </div>
+          <div class="journey-step">
+            <div class="step-dot"></div>
+            <span class="step-label">Recorrência</span>
+          </div>
+          <div class="journey-step">
+            <div class="step-dot"></div>
+            <span class="step-label">Fidelização</span>
+          </div>
+        </div>
+
+        <div class="fade-up delay-3 text-center" style="padding-top: var(--space-xl);">
+          <p class="big-quote" style="margin: 0 auto;">
+            Tudo conectado.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 4 — INTELIGÊNCIA DE AGENDA ===== -->
+    <section class="section bg-graphite" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-6 fade-up delay-1">
+            <span class="label-gold">AGENDA INTELIGENTE</span>
+            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
+              Ociosidade é perda invisível.
+            </h2>
+            <p class="text-gray-text" style="font-weight: 300; line-height: 1.9; font-size: 1.1rem; max-width: 90%;">
+              O CORTEX Care identifica horários com maior risco de vazio, cancelamentos recorrentes, padrões de ausência, oportunidades de encaixe, comportamento de remarcação e capacidade ociosa oculta.
+            </p>
+          </div>
+          <div class="col-5 fade-up delay-2" style="margin-left: auto; display: flex; align-items: center;">
+            <div class="content-border-block">
+              <span class="label-blue" style="color: rgba(10,132,255,0.6);">TRANSFORMAÇÃO</span>
+              <ul class="transform-list" style="list-style: none; padding: 0;">
+                <li>ocupação inteligente</li>
+                <li>otimização operacional</li>
+                <li>aumento de receita</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 5 — PREENCHIMENTO INTELIGENTE ===== -->
+    <section class="section" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-5 fade-up delay-1">
+            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
+              Uma lógica inspirada na hotelaria premium.
+            </h2>
+          </div>
+          <div class="col-6 fade-up delay-2" style="margin-left: auto;">
+            <p class="text-gray-text mb-lg" style="font-weight: 300; line-height: 1.9; font-size: 1.1rem;">
+              O sistema consegue identificar janelas vagas, encontrar clientes compatíveis, sugerir preenchimento automático, ativar campanhas segmentadas e reduzir tempo ocioso da operação.
+            </p>
+            <div style="padding: var(--space-lg) 0; border-top: 1px solid rgba(255,255,255,0.04);">
+              <p class="big-quote" style="font-size: clamp(1.5rem, 2.5vw, 2.5rem);">
+                A agenda deixa de reagir.<br>
+                <span style="color: var(--color-accent-gold-muted);">Passa a operar estrategicamente.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 6 — INTELIGÊNCIA COMERCIAL ===== -->
+    <section class="section bg-graphite" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="fade-up delay-1 mb-xl">
+          <span class="label-gold">INTELIGÊNCIA COMERCIAL</span>
+          <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12; max-width: 800px;">
+            O marketing deixa de operar no escuro.
+          </h2>
+          <p class="text-gray-text" style="font-weight: 300; line-height: 1.9; font-size: 1.1rem; max-width: 800px;">
+            O CORTEX cruza origem do lead, comportamento do cliente, comparecimento, ticket, recorrência, retenção e valor de vida útil. Tudo em tempo real.
+          </p>
+        </div>
+
+        <div class="grid fade-up delay-2" style="gap: var(--space-sm);">
+          <div class="col-4 mb-sm">
+            <div class="care-card"><div class="card-content">
+              <h4 style="font-size: 1.05rem; font-weight: 300; color: var(--color-white-warm);">Identificação de campanhas rentáveis</h4>
+            </div></div>
+          </div>
+          <div class="col-4 mb-sm">
+            <div class="care-card"><div class="card-content">
+              <h4 style="font-size: 1.05rem; font-weight: 300; color: var(--color-white-warm);">Leitura de CAC real</h4>
+            </div></div>
+          </div>
+          <div class="col-4 mb-sm">
+            <div class="care-card"><div class="card-content">
+              <h4 style="font-size: 1.05rem; font-weight: 300; color: var(--color-white-warm);">Inteligência de retenção</h4>
+            </div></div>
+          </div>
+          <div class="col-4 mb-sm">
+            <div class="care-card"><div class="card-content">
+              <h4 style="font-size: 1.05rem; font-weight: 300; color: var(--color-white-warm);">Previsibilidade comercial</h4>
+            </div></div>
+          </div>
+          <div class="col-4 mb-sm">
+            <div class="care-card"><div class="card-content">
+              <h4 style="font-size: 1.05rem; font-weight: 300; color: var(--color-white-warm);">Oportunidade de upsell</h4>
+            </div></div>
+          </div>
+          <div class="col-4 mb-sm">
+            <div class="care-card"><div class="card-content">
+              <h4 style="font-size: 1.05rem; font-weight: 300; color: var(--color-white-warm);">Padrões de recorrência</h4>
+            </div></div>
+          </div>
+          <div class="col-4 mb-sm">
+            <div class="care-card"><div class="card-content">
+              <h4 style="font-size: 1.05rem; font-weight: 300; color: var(--color-white-warm);">Comportamento de consumo</h4>
+            </div></div>
+          </div>
+          <div class="col-4 mb-sm">
+            <div class="care-card"><div class="card-content">
+              <h4 style="font-size: 1.05rem; font-weight: 300; color: var(--color-white-warm);">Perfil de cliente premium</h4>
+            </div></div>
+          </div>
+          <div class="col-4 mb-sm">
+            <div class="care-card"><div class="card-content">
+              <h4 style="font-size: 1.05rem; font-weight: 300; color: var(--color-white-warm);">Análise de jornada completa</h4>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 7 — EXPERIÊNCIA HUMANA ===== -->
+    <section class="section" style="padding: var(--space-giant) 0; position: relative; overflow: hidden;">
+      <div class="section-img-bg">
+        <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2670&auto=format&fit=crop"
+          alt="Minimalist architecture" loading="lazy">
+      </div>
+
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-7 fade-up delay-1">
+            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
+              Tecnologia invisível.<br><span class="text-gray-text">Experiência mais humana.</span>
+            </h2>
+            <p class="text-gray-text" style="font-weight: 300; line-height: 1.9; font-size: 1.1rem; max-width: 85%; margin-bottom: var(--space-xl);">
+              O CORTEX Care não foi criado para transformar atendimento em automação fria. Foi criado para reduzir atrito, melhorar fluidez, aumentar percepção de cuidado, organizar operação e ampliar qualidade da experiência.
+            </p>
+          </div>
+          <div class="col-4 fade-up delay-2" style="margin-left: auto; display: flex; align-items: flex-end;">
+            <p class="big-quote" style="font-size: clamp(1.5rem, 2.5vw, 2.2rem);">
+              A tecnologia trabalha silenciosamente para que o humano apareça mais.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 8 — PREVISIBILIDADE OPERACIONAL ===== -->
+    <section class="section bg-graphite" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-5 fade-up delay-1">
+            <span class="label-gold">PREVISIBILIDADE</span>
+            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
+              Transformando dados dispersos em clareza operacional.
+            </h2>
+          </div>
+          <div class="col-6 fade-up delay-2" style="margin-left: auto;">
+            <p class="text-gray-text mb-lg" style="font-weight: 300; line-height: 1.8; font-size: 1.05rem;">
+              O sistema interpreta continuamente:
+            </p>
+            <div class="result-item"><span class="result-num">01</span><span class="result-text">sazonalidade</span></div>
+            <div class="result-item"><span class="result-num">02</span><span class="result-text">horários de maior conversão</span></div>
+            <div class="result-item"><span class="result-num">03</span><span class="result-text">comportamento de recompra</span></div>
+            <div class="result-item"><span class="result-num">04</span><span class="result-text">padrões de cancelamento</span></div>
+            <div class="result-item"><span class="result-num">05</span><span class="result-text">recorrência provável</span></div>
+            <div class="result-item"><span class="result-num">06</span><span class="result-text">risco de evasão</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 9 — RETENÇÃO INTELIGENTE ===== -->
+    <section class="section" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-6 fade-up delay-1">
+            <span class="label-blue" style="color: rgba(10,132,255,0.5);">RETENÇÃO</span>
+            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
+              Detecta perda antes da evasão acontecer.
+            </h2>
+            <p class="text-gray-text" style="font-weight: 300; line-height: 1.9; font-size: 1.1rem; max-width: 90%;">
+              O CORTEX identifica clientes em risco de abandono, perda de frequência, redução de ticket, mudança de comportamento e oportunidades de reativação. Antes da perda acontecer.
+            </p>
+          </div>
+          <div class="col-5 fade-up delay-2 blur-in" style="margin-left: auto; position: relative; height: 55vh; border-radius: 2px; overflow: hidden;">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2670&auto=format&fit=crop"
+              alt="Serene architectural interior" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(130%); opacity: 0.15;"
+              data-parallax="0.06" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 10 — OPERAÇÃO PREMIUM ===== -->
+    <section class="section bg-graphite" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="fade-up delay-1 text-center mb-xl">
+          <h2 class="text-h1" style="font-weight: 200;">Projetado para operações onde experiência é crítica.</h2>
+        </div>
+
+        <div class="grid fade-up delay-2" style="gap: var(--space-sm);">
+          <div class="col-3 mb-sm"><div class="operation-card"><h4>Clínicas premium</h4></div></div>
+          <div class="col-3 mb-sm"><div class="operation-card"><h4>Dermatologia</h4></div></div>
+          <div class="col-3 mb-sm"><div class="operation-card"><h4>Odontologia estética</h4></div></div>
+          <div class="col-3 mb-sm"><div class="operation-card"><h4>Medicina integrativa</h4></div></div>
+          <div class="col-3 mb-sm"><div class="operation-card"><h4>Estética avançada</h4></div></div>
+          <div class="col-3 mb-sm"><div class="operation-card"><h4>Wellness</h4></div></div>
+          <div class="col-3 mb-sm"><div class="operation-card"><h4>Longevity clinics</h4></div></div>
+          <div class="col-3 mb-sm"><div class="operation-card"><h4>Operações boutique</h4></div></div>
+        </div>
+
+        <div class="fade-up delay-3 text-center" style="padding-top: var(--space-xl);">
+          <p class="text-gray-text" style="font-weight: 300; line-height: 1.8; font-size: 1.1rem; max-width: 700px; margin: 0 auto;">
+            Ambientes onde experiência, previsibilidade, relacionamento e excelência operacional são decisivos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 11 — NÃO É SOFTWARE ===== -->
+    <section class="section" style="padding: var(--space-giant) 0; min-height: 70vh; display: flex; align-items: center;">
+      <div class="container text-center">
+        <div class="fade-up delay-1" style="max-width: 900px; margin: 0 auto;">
+          <h2 style="font-size: clamp(2.2rem, 4vw, 4rem); font-weight: 200; line-height: 1.12; margin-bottom: var(--space-lg);">
+            Não é software.<br><span class="text-gold">É percepção operacional.</span>
+          </h2>
+          <p class="text-large text-gray-text" style="font-weight: 300; max-width: 85%; margin: 0 auto var(--space-xl);">
+            O CORTEX Care cria uma nova camada de inteligência para operações centradas em experiência humana. Uma operação que entende melhor o cliente, reduz atrito, ocupa melhor a agenda, converte melhor, retém mais, organiza melhor a operação e opera com mais clareza.
+          </p>
+        </div>
+
+        <div class="fade-up delay-2" style="padding: var(--space-xl) 0;">
+          <p class="big-quote" style="margin: 0 auto; text-align: center;">
+            Tecnologia altamente avançada<br>com foco humano.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 12 — DIFERENCIAIS ===== -->
+    <section class="section bg-graphite" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="text-center mb-xl fade-up delay-1">
+          <h2 class="text-h1" style="font-weight: 200;">O que torna o CORTEX Care diferente.</h2>
+        </div>
+
+        <div class="grid" style="gap: var(--space-sm);">
+          <div class="col-4 fade-up delay-1 mb-sm">
+            <div class="care-card"><div class="card-content">
+              <h4 style="font-size: 1.05rem; font-weight: 300; color: var(--color-white-warm);">Inteligência aplicada à experiência humana</h4>
+            </div></div>
+          </div>
+          <div class="col-4 fade-up delay-2 mb-sm">
+            <div class="care-card"><div class="card-content">
+              <h4 style="font-size: 1.05rem; font-weight: 300; color: var(--color-white-warm);">Jornada completa do cliente</h4>
+            </div></div>
+          </div>
+          <div class="col-4 fade-up delay-3 mb-sm">
+            <div class="care-card"><div class="card-content">
+              <h4 style="font-size: 1.05rem; font-weight: 300; color: var(--color-white-warm);">Inteligência de agenda</h4>
+            </div></div>
+          </div>
+          <div class="col-4 fade-up delay-1 mb-sm">
+            <div class="care-card"><div class="card-content">
+              <h4 style="font-size: 1.05rem; font-weight: 300; color: var(--color-white-warm);">Previsibilidade operacional</h4>
+            </div></div>
+          </div>
+          <div class="col-4 fade-up delay-2 mb-sm">
+            <div class="care-card"><div class="card-content">
+              <h4 style="font-size: 1.05rem; font-weight: 300; color: var(--color-white-warm);">Retenção inteligente</h4>
+            </div></div>
+          </div>
+          <div class="col-4 fade-up delay-3 mb-sm">
+            <div class="care-card"><div class="card-content">
+              <h4 style="font-size: 1.05rem; font-weight: 300; color: var(--color-white-warm);">Conexão entre marketing e faturamento</h4>
+            </div></div>
+          </div>
+          <div class="col-4 fade-up delay-1 mb-sm">
+            <div class="care-card"><div class="card-content">
+              <h4 style="font-size: 1.05rem; font-weight: 300; color: var(--color-white-warm);">Redução de ociosidade</h4>
+            </div></div>
+          </div>
+          <div class="col-4 fade-up delay-2 mb-sm">
+            <div class="care-card"><div class="card-content">
+              <h4 style="font-size: 1.05rem; font-weight: 300; color: var(--color-white-warm);">Inteligência comercial contínua</h4>
+            </div></div>
+          </div>
+          <div class="col-6 fade-up delay-1 mb-sm">
+            <div class="care-card"><div class="card-content">
+              <h4 style="font-size: 1.05rem; font-weight: 300; color: var(--color-white-warm);">Plataforma proprietária</h4>
+            </div></div>
+          </div>
+          <div class="col-6 fade-up delay-2 mb-sm">
+            <div class="care-card"><div class="card-content">
+              <h4 style="font-size: 1.05rem; font-weight: 300; color: var(--color-white-warm);">Tecnologia centrada nas pessoas</h4>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 13 — TECNOLOGIA COM ALMA ===== -->
+    <section class="section" style="padding: var(--space-giant) 0; position: relative; overflow: hidden;">
+      <div class="section-img-bg">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2670&auto=format&fit=crop"
+          alt="Organic textures" loading="lazy">
+      </div>
+
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-6 fade-up delay-1">
+            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
+              Tecnologia avançada.<br><span style="color: var(--color-accent-gold-muted);">Experiência humana.</span>
+            </h2>
+            <p class="text-gray-text" style="font-weight: 300; line-height: 1.9; font-size: 1.1rem; max-width: 90%;">
+              O CORTEX Care nasce da filosofia da ZAKA: tecnologia altamente avançada com foco na experiência humana.
+            </p>
+          </div>
+          <div class="col-5 fade-up delay-2" style="margin-left: auto;">
+            <p class="text-gray-text mb-md" style="font-weight: 400; font-size: 0.95rem;">Criado para:</p>
+            <ul class="transform-list" style="list-style: none; padding: 0;">
+              <li>melhorar relações</li>
+              <li>ampliar percepção</li>
+              <li>reduzir desgaste operacional</li>
+              <li>aumentar eficiência sem perder humanidade</li>
+              <li>transformar tecnologia em cuidado real</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 14 — VISÃO ===== -->
+    <section class="section bg-graphite" style="padding: var(--space-giant) 0; min-height: 70vh; display: flex; align-items: center;">
+      <div class="container text-center">
+        <div class="fade-up delay-1" style="max-width: 900px; margin: 0 auto;">
+          <h2 class="text-h1 mb-xl" style="font-weight: 200; line-height: 1.15;">
+            O futuro da saúde premium será guiado por inteligência invisível.
+          </h2>
+        </div>
+        <div class="grid fade-up delay-2" style="max-width: 800px; margin: 0 auto; gap: 0;">
+          <div class="col-6" style="padding: var(--space-md);">
+            <p class="text-gray-text" style="font-weight: 300; font-size: 1.05rem; line-height: 1.7;">dados em <span style="color: var(--color-white-warm);">percepção</span></p>
+          </div>
+          <div class="col-6" style="padding: var(--space-md);">
+            <p class="text-gray-text" style="font-weight: 300; font-size: 1.05rem; line-height: 1.7;">operação em <span style="color: var(--color-white-warm);">clareza</span></p>
+          </div>
+          <div class="col-6" style="padding: var(--space-md);">
+            <p class="text-gray-text" style="font-weight: 300; font-size: 1.05rem; line-height: 1.7;">comportamento em <span style="color: var(--color-white-warm);">inteligência</span></p>
+          </div>
+          <div class="col-6" style="padding: var(--space-md);">
+            <p class="text-gray-text" style="font-weight: 300; font-size: 1.05rem; line-height: 1.7;">experiência em <span style="color: var(--color-white-warm);">vantagem competitiva</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== CTA FINAL ===== -->
+    <section id="contact" class="section" style="padding: var(--space-giant) 0; min-height: 80vh; display: flex; align-items: center;">
+      <div class="container text-center">
+        <div class="fade-up delay-1" style="max-width: 900px; margin: 0 auto;">
+          <h2 style="font-size: clamp(2.5rem, 4.5vw, 4.5rem); font-weight: 200; line-height: 1.1; margin-bottom: var(--space-lg);">
+            O atendimento premium não depende apenas de pessoas.
+          </h2>
+          <p style="font-size: clamp(1.2rem, 1.8vw, 1.6rem); font-weight: 300; color: var(--color-gray-text); margin-bottom: var(--space-lg);">
+            Depende da inteligência por trás da experiência.
+          </p>
+          <p class="text-large text-gray-text mb-xl" style="font-weight: 300; max-width: 85%; margin-left: auto; margin-right: auto;">
+            O CORTEX Care transforma comportamento, operação e relacionamento em inteligência contínua para clínicas que querem operar com mais eficiência, previsibilidade e excelência humana.
+          </p>
+          <div style="display: flex; gap: var(--space-lg); justify-content: center; align-items: center; flex-wrap: wrap;">
+            <a href="#contact" class="cta-primary">Conhecer a Plataforma</a>
+            <a href="index.html#products" class="cta-secondary">Voltar para Produtos</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="border-top: 1px solid var(--color-gray-border); padding: var(--space-xl) 0; background: var(--color-black);">
+    <div class="container">
+      <div class="grid justify-between">
+        <div class="col-4">
+          <a href="index.html" class="nav-logo">ZAKA<span class="text-gold">®</span></a>
+          <p class="text-small" style="margin-top: 1rem;">Technology with soul.</p>
+          <div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 0.5rem;">
+            <a href="index.html" class="text-small text-white">Home</a>
+            <a href="index.html#products" class="text-small">Produtos</a>
+            <a href="#contact" class="text-small">Contato</a>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <p class="text-small text-gray-text mb-sm" style="text-transform: uppercase; letter-spacing: 0.1em;">Ecossistema</p>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <a href="cortex-eleitor.html" class="text-small text-white">CORTEX Eleitor</a>
+            <a href="cortex-governo.html" class="text-small text-white">CORTEX Governo</a>
+            <a href="cortex-infra.html" class="text-small text-white">CORTEX Infra</a>
+            <a href="cortex-care.html" class="text-small text-white">CORTEX Care</a>
+            <a href="cortex-food.html" class="text-small text-white">CORTEX Food</a>
+            <a href="specter.html" class="text-small text-gold mt-sm">Specter by ZAKA</a>
+          </div>
+        </div>
+
+        <div class="col-4" style="text-align: right; display: flex; flex-direction: column; justify-content: flex-end;">
+          <p class="text-small">&copy; 2026 ZAKA Foundation. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/navigation.js"></script>
+  <script src="js/motion.js"></script>
+  <script src="js/system.js"></script>
+
+  <script>
+    // CORTEX Care — Premium Particle System
+    (function() {
+      const canvas = document.getElementById('care-particles');
+      if (!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      const isMobile = window.innerWidth <= 768;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (prefersReduced) { canvas.style.display = 'none'; return; }
+
+      let width, height, particles = [], connections = [];
+      const particleCount = isMobile ? 12 : 40;
+      const connectionDist = isMobile ? 100 : 180;
+
+      function resize() {
+        width = canvas.parentElement.offsetWidth;
+        height = canvas.parentElement.offsetHeight;
+        canvas.width = width;
+        canvas.height = height;
+      }
+
+      function createParticles() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.15,
+            vy: (Math.random() - 0.5) * 0.15,
+            radius: Math.random() * 1.5 + 0.5,
+            alpha: Math.random() * 0.4 + 0.1,
+            // Soft warm-cool color mix
+            color: Math.random() > 0.7 ? 'gold' : 'blue'
+          });
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, width, height);
+
+        // Draw connections
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < connectionDist) {
+              const opacity = (1 - dist / connectionDist) * 0.06;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(212, 175, 55, ${opacity})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+
+        // Draw particles
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          if (p.y > height) p.y = 0;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+
+          if (p.color === 'gold') {
+            ctx.fillStyle = `rgba(212, 175, 55, ${p.alpha * 0.5})`;
+          } else {
+            ctx.fillStyle = `rgba(180, 210, 255, ${p.alpha * 0.4})`;
+          }
+          ctx.fill();
+        });
+
+        requestAnimationFrame(draw);
+      }
+
+      resize();
+      createParticles();
+      draw();
+
+      window.addEventListener('resize', () => {
+        resize();
+        createParticles();
+      });
+    })();
+  </script>
+</body>
+</html>

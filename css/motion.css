@@ -1,0 +1,138 @@
+/* Motion Philosophy: Cinematic Silence & Invisible Intelligence */
+
+/* Hardware Acceleration Base */
+.gpu-accel {
+  transform: translateZ(0);
+  will-change: transform, opacity, filter;
+  backface-visibility: hidden;
+}
+
+/* Base transition classes */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px) translateZ(0);
+  transition: opacity var(--duration-slow) var(--ease-cinematic),
+              transform var(--duration-slow) var(--ease-cinematic);
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity var(--duration-slow) var(--ease-cinematic);
+}
+
+.blur-in {
+  opacity: 0;
+  filter: blur(20px);
+  transform: scale(0.97) translateZ(0);
+  transition: opacity var(--duration-slow) var(--ease-cinematic),
+              filter var(--duration-slow) var(--ease-cinematic),
+              transform var(--duration-slow) var(--ease-cinematic);
+}
+
+/* Active states applied via JS IntersectionObserver */
+.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1) translateZ(0);
+  filter: blur(0);
+}
+
+/* Staggering delays for grids */
+.delay-1 { transition-delay: 150ms; }
+.delay-2 { transition-delay: 300ms; }
+.delay-3 { transition-delay: 450ms; }
+.delay-4 { transition-delay: 600ms; }
+
+/* Image Parallax/Depth Base */
+.img-cinematic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05) translateZ(0);
+  transition: transform var(--duration-ambient) var(--ease-slow);
+}
+
+.img-container {
+  overflow: hidden;
+  position: relative;
+  background: var(--color-graphite);
+}
+
+.img-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(3,3,3,0.9), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Cursor Reactive Cards */
+.card-cinematic {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-gray-border);
+  background: var(--color-charcoal);
+  border-radius: 4px;
+  transform-style: preserve-3d;
+  transition: border-color var(--duration-medium) var(--ease-cinematic),
+              box-shadow var(--duration-medium) var(--ease-cinematic);
+  cursor: pointer;
+}
+
+.card-cinematic:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px var(--color-accent-blue-glow);
+}
+
+/* Internal Image Zoom on Hover */
+.card-cinematic .img-cinematic {
+  transition: transform var(--duration-ambient) cubic-bezier(0.1, 0.8, 0.2, 1),
+              filter var(--duration-medium) ease;
+}
+
+.card-cinematic:hover .img-cinematic {
+  transform: scale(1.1) translateZ(0);
+  filter: brightness(1.1);
+}
+
+/* Glass Reflections */
+.card-cinematic::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-20deg) translateZ(0);
+  transition: left 1.5s var(--ease-slow);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.card-cinematic:hover::before {
+  left: 200%;
+}
+
+/* Ambient Particles Canvas */
+#ambient-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.4;
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transform: none !important;
+  }
+}

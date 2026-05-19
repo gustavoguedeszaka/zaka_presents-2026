@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CORTEX Governo — Inteligência Institucional em Tempo Real | ZAKA</title>
+
+  <meta name="description"
+    content="CORTEX Governo é uma plataforma de inteligência institucional que monitora percepção pública, mídia, comportamento digital e sinais sociais em tempo real para governos e secretarias de comunicação.">
+
+  <!-- Foundation Styles -->
+  <link rel="stylesheet" href="css/core.css">
+  <link rel="preconnect" href="https://images.unsplash.com">
+
+  <style>
+    /* Specific adjustments for CORTEX GOVERNO to maintain the aesthetic */
+    .hero-gov {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--color-black);
+    }
+
+    .hero-gov::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.95) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-gov .img-cinematic {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      opacity: 0.5;
+      filter: grayscale(40%) contrast(110%);
+    }
+
+    /* Abstract data lines for hero */
+    .data-lines {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.15;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: slow-pan 60s linear infinite;
+    }
+
+    @keyframes slow-pan {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(50px);
+      }
+    }
+
+    .elegant-card {
+      background: var(--color-graphite);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: var(--space-lg);
+      border-radius: 4px;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .elegant-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(37, 99, 235, 0.05) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .elegant-card:hover {
+      border-color: rgba(201, 166, 107, 0.3);
+      /* Dourado muito discreto */
+      transform: translateY(-2px);
+    }
+
+    .elegant-card:hover::before {
+      opacity: 1;
+    }
+
+    .elegant-card .card-content {
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- GLOBAL MENU -->
+  <header class="nav-header">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">ZAKA<span class="text-gold">®</span></a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+
+        <div class="nav-item-dropdown">
+          <a href="#" class="nav-link" style="color: var(--color-white);">Produtos</a>
+          <div class="dropdown-menu">
+            <div class="dropdown-section-title">Cortex Suite</div>
+            <div class="dropdown-list">
+              <a href="cortex-eleitor.html" class="dropdown-link text-white">Cortex Eleitor</a>
+              <a href="cortex-governo.html" class="dropdown-link text-white">Cortex Governo</a>
+              <a href="cortex-infra.html" class="dropdown-link text-white">Cortex Infra</a>
+              <a href="cortex-care.html" class="dropdown-link text-white">Cortex Care</a>
+              <a href="cortex-food.html" class="dropdown-link text-white">Cortex Food</a>
+            </div>
+            <div class="dropdown-section-title" style="margin-top: 1.5rem;">Outras Plataformas</div>
+            <div class="dropdown-list">
+              <a href="specter.html" class="dropdown-link text-gold">Specter by ZAKA</a>
+            </div>
+          </div>
+        </div>
+
+        <a href="index.html#differentials" class="nav-link">Diferenciais</a>
+        <a href="index.html#how-we-work" class="nav-link">Como Trabalhamos</a>
+        <a href="#contact" class="nav-link">Contato</a>
+      </nav>
+
+      <button class="mobile-menu-btn" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="#" class="nav-link">Cortex Suite</a>
+      <a href="cortex-eleitor.html" class="nav-link text-white">Cortex Eleitor</a>
+      <a href="cortex-governo.html" class="nav-link text-white">Cortex Governo</a>
+      <a href="cortex-food.html" class="nav-link text-white">Cortex Food</a>
+      <a href="specter.html" class="nav-link text-gold">Specter by ZAKA</a>
+      <a href="index.html#differentials" class="nav-link">Diferenciais</a>
+      <a href="index.html#how-we-work" class="nav-link">Como Trabalhamos</a>
+      <a href="#contact" class="nav-link">Contato</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-gov">
+      <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=2656&auto=format&fit=crop"
+        alt="Cidade Noturna" class="img-cinematic" data-parallax="0.05">
+      <div class="data-lines"></div>
+
+      <div class="container" style="z-index: 2;">
+        <div class="grid items-center">
+          <div class="col-8 fade-up delay-1">
+            <span class="text-accent mb-md display-block text-gold" style="letter-spacing: 0.1em;">CORTEX GOVERNO</span>
+            <h1 class="text-huge mb-md" style="font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1;">
+              Inteligência institucional para governos que precisam entender o que a população está sentindo em tempo
+              real.
+            </h1>
+            <p class="text-large text-gray-text mb-xl" style="max-width: 85%;">
+              Uma plataforma ativa de monitoramento, interpretação e análise preditiva que transforma sinais sociais,
+              mídia, comportamento digital e percepção pública em inteligência acionável para comunicação institucional.
+            </p>
+
+            <div class="flex gap-md" style="gap: var(--space-md);">
+              <a href="#plataforma" class="nav-link"
+                style="color: var(--color-white); border-bottom: 1px solid var(--color-white); padding-bottom: 0.5rem; font-size: 1.1rem;">Conhecer
+                a Plataforma</a>
+              <a href="#contact" class="nav-link" style="color: var(--color-gray-text); font-size: 1.1rem;">Falar com a
+                ZAKA</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 1 — O PROBLEMA -->
+    <section id="plataforma" class="section" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="grid items-center">
+          <div class="col-5 fade-up delay-1">
+            <h2 class="text-h1 mb-lg" style="line-height: 1.1;">O problema não é falta de informação. É visão
+              incompleta.</h2>
+            <p class="text-large mb-xl text-gray-text" style="font-weight: 300;">
+              Hoje, nenhuma equipe humana consegue acompanhar simultaneamente redes sociais, imprensa digital, percepção
+              territorial, comportamento coletivo e velocidade de propagação narrativa em tempo real.
+            </p>
+            <div style="border-left: 1px solid rgba(255,255,255,0.2); padding-left: var(--space-md);">
+              <span class="text-small text-gold display-block mb-sm">RESULTADO</span>
+              <ul style="list-style: none;">
+                <li class="text-large mb-sm" style="font-weight: 300;">— respostas tardias</li>
+                <li class="text-large mb-sm" style="font-weight: 300;">— desgaste institucional</li>
+                <li class="text-large mb-sm" style="font-weight: 300;">— ruído acumulado</li>
+                <li class="text-large mb-sm" style="font-weight: 300;">— crise escalando sem percepção</li>
+                <li class="text-large" style="font-weight: 300;">— comunicação desconectada da realidade social</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-6 img-container blur-in delay-2" style="height: 70vh; border-radius: 4px; margin-left: auto;">
+            <img src="https://images.unsplash.com/photo-1498084393753-b411b2d26b34?q=80&w=2689&auto=format&fit=crop"
+              alt="O Problema" class="img-cinematic" style="filter: grayscale(100%) contrast(150%); opacity: 0.3;"
+              data-parallax="0.1">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 2 — O QUE O CORTEX GOVERNO É -->
+    <section class="section flex flex-col justify-center text-center bg-graphite"
+      style="padding: var(--space-giant) 0; min-height: 70vh;">
+      <div class="container fade-up">
+        <h2 class="text-huge mb-lg" style="letter-spacing: -0.03em; line-height: 1.1;">Uma camada contínua de
+          inteligência institucional.</h2>
+        <p class="text-large mx-auto mb-xl text-gray-text" style="max-width: 900px; font-weight: 300;">
+          O CORTEX Governo monitora, organiza, interpreta e correlaciona sinais sociais, imprensa, comportamento digital
+          e percepção pública para apoiar secretarias de comunicação, governos estaduais, prefeituras e estruturas
+          institucionais.
+        </p>
+
+        <div class="grid justify-center mt-lg" style="gap: var(--space-lg);">
+          <div class="col-3">
+            <h4 class="text-large text-white" style="font-weight: 400; text-decoration: line-through; opacity: 0.5;">Não
+              é clipping.</h4>
+          </div>
+          <div class="col-3">
+            <h4 class="text-large text-white" style="font-weight: 400; text-decoration: line-through; opacity: 0.5;">Não
+              é dashboard.</h4>
+          </div>
+          <div class="col-4">
+            <h4 class="text-large text-white" style="font-weight: 400; text-decoration: line-through; opacity: 0.5;">Não
+              é monitoramento passivo.</h4>
+          </div>
+        </div>
+
+        <div class="mt-xl">
+          <h3 class="text-h2 text-gold">É um sistema ativo de inteligência estratégica.</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 3 — O QUE ELE MONITORA -->
+    <section class="section" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="text-center mb-xl fade-up">
+          <span class="text-accent mb-sm display-block text-blue">CAPTAÇÃO</span>
+          <h2 class="text-h1">O que a plataforma monitora.</h2>
+        </div>
+
+        <div class="grid">
+          <!-- Grid Items -->
+          <div class="col-3 fade-up delay-1 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large">Redes sociais</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-2 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large">Imprensa digital</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-3 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large">Narrativas regionais</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-4 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large">Propagação de temas</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-3 fade-up delay-1 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large">Humor coletivo</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-2 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large">Picos de tensão</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-3 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large">Crises emergentes</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-4 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large">Reputação institucional</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-3 fade-up delay-1 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large">Comportamento territorial</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-2 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large">Movimentos de engajamento</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-3 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large">Mudanças abruptas de percepção</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-4 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large">Tendências de escalada</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 4 — COMO O SISTEMA PENSA & BLOCO INTERNO -->
+    <section class="section bg-graphite" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="grid">
+          <div class="col-5 fade-up delay-1" style="position: sticky; top: 120px; align-self: start;">
+            <h2 class="text-h1 mb-md">O CORTEX não apenas lê dados. Ele interpreta contexto.</h2>
+            <p class="text-large mb-md text-gray-text" style="font-weight: 300;">
+              A plataforma cruza em tempo real:
+            </p>
+            <ul style="list-style: none;">
+              <li class="text-large mb-sm" style="font-weight: 300;">— comportamento digital</li>
+              <li class="text-large mb-sm" style="font-weight: 300;">— mídia</li>
+              <li class="text-large mb-sm" style="font-weight: 300;">— território</li>
+              <li class="text-large mb-sm" style="font-weight: 300;">— velocidade de propagação</li>
+              <li class="text-large mb-sm" style="font-weight: 300;">— histórico institucional</li>
+              <li class="text-large mb-sm" style="font-weight: 300;">— recorrência narrativa</li>
+              <li class="text-large mb-sm" style="font-weight: 300;">— intensidade emocional</li>
+            </ul>
+          </div>
+
+          <div class="col-6 fade-up delay-2" style="margin-left: auto;">
+            <div style="border-left: 1px solid rgba(255,255,255,0.1); padding-left: var(--space-lg);">
+              <span class="text-accent mb-md display-block text-blue">O SISTEMA DETECTA</span>
+
+              <div class="mb-md">
+                <h3 class="text-h3" style="font-weight: 400;">Anomalias narrativas</h3>
+              </div>
+              <div class="mb-md">
+                <h3 class="text-h3" style="font-weight: 400;">Crescimento acelerado de temas</h3>
+              </div>
+              <div class="mb-md">
+                <h3 class="text-h3" style="font-weight: 400;">Concentração territorial</h3>
+              </div>
+              <div class="mb-md">
+                <h3 class="text-h3" style="font-weight: 400;">Mudança de humor coletivo</h3>
+              </div>
+              <div class="mb-md">
+                <h3 class="text-h3" style="font-weight: 400;">Risco reputacional</h3>
+              </div>
+              <div class="mb-md">
+                <h3 class="text-h3" style="font-weight: 400;">Temas emergentes</h3>
+              </div>
+              <div class="mb-md">
+                <h3 class="text-h3" style="font-weight: 400;">Tensão social localizada</h3>
+              </div>
+              <div class="mb-md">
+                <h3 class="text-h3" style="font-weight: 400;">Movimentação coordenada</h3>
+              </div>
+              <div class="mb-md">
+                <h3 class="text-h3" style="font-weight: 400;">Início de crise institucional</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 5 — ALERTAS PREDITIVOS -->
+    <section class="section" style="padding: var(--space-giant) 0; overflow: hidden; position: relative;">
+      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2672&auto=format&fit=crop"
+        alt="Global Data"
+        style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.2; filter: grayscale(100%); z-index: 0;">
+      <div
+        style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,1) 100%); z-index: 1;">
+      </div>
+
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="text-center mb-xl fade-up">
+          <h2 class="text-h1">Detecta crises antes que elas se consolidem.</h2>
+        </div>
+
+        <div class="grid justify-center">
+          <div class="col-8 fade-up delay-2">
+            <div
+              style="background: rgba(10, 10, 10, 0.8); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: var(--space-xl); backdrop-filter: blur(10px);">
+              <span class="text-small text-gold display-block mb-md" style="letter-spacing: 0.1em;">ALERTA PREDITIVO
+                #892</span>
+
+              <p class="text-h3 mb-md" style="font-weight: 300;">
+                “Tema relacionado à saúde pública crescendo 280% em 2 horas.”
+              </p>
+
+              <div class="grid"
+                style="margin-top: var(--space-lg); border-top: 1px solid rgba(255,255,255,0.05); padding-top: var(--space-md);">
+                <div class="col-4">
+                  <span class="text-small text-gray-text display-block mb-xs">Maior concentração:</span>
+                  <span class="text-large">Zona Norte / Curitiba.</span>
+                </div>
+                <div class="col-4">
+                  <span class="text-small text-gray-text display-block mb-xs">Predominância:</span>
+                  <span class="text-large text-accent" style="color: #ef4444;">Sentimento negativo.</span>
+                </div>
+                <div class="col-4">
+                  <span class="text-small text-gray-text display-block mb-xs">Recomendação:</span>
+                  <span class="text-large text-blue">Resposta institucional localizada.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 6 & 7 — COMUNICAÇÃO INSTITUCIONAL & SALA DE CONTROLE -->
+    <section class="section bg-graphite" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="grid items-center mb-giant">
+          <div class="col-5 fade-up delay-1">
+            <h2 class="text-h1 mb-md" style="line-height: 1.1;">Comunicação baseada em percepção real.</h2>
+            <p class="text-large mb-lg text-gray-text" style="font-weight: 300;">O CORTEX ajuda governos a:</p>
+            <ul style="list-style: none;">
+              <li class="text-large mb-sm" style="font-weight: 300;">— entender a população</li>
+              <li class="text-large mb-sm" style="font-weight: 300;">— responder mais rápido</li>
+              <li class="text-large mb-sm" style="font-weight: 300;">— reduzir desgaste</li>
+              <li class="text-large mb-sm" style="font-weight: 300;">— antecipar ruído</li>
+              <li class="text-large mb-sm" style="font-weight: 300;">— proteger reputação institucional</li>
+              <li class="text-large mb-sm" style="font-weight: 300;">— melhorar clareza de comunicação</li>
+              <li class="text-large" style="font-weight: 300;">— alinhar narrativa e realidade social</li>
+            </ul>
+          </div>
+          <div class="col-6 img-container blur-in delay-2" style="height: 60vh; border-radius: 4px; margin-left: auto;">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop"
+              alt="Sala de Controle" class="img-cinematic" style="filter: grayscale(80%) contrast(120%); opacity: 0.6;">
+          </div>
+        </div>
+
+        <div class="text-center fade-up delay-3">
+          <h2 class="text-h1 mb-sm">Uma nova camada de percepção para governos.</h2>
+          <p class="text-h3 text-gray-text" style="font-weight: 300;">Menos ruído. Mais clareza institucional.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 8 — DIFERENCIAIS -->
+    <section class="section" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="text-center mb-xl fade-up">
+          <h2 class="text-h1">O que torna o CORTEX Governo diferente.</h2>
+        </div>
+
+        <div class="grid">
+          <!-- Grid Items -->
+          <div class="col-3 fade-up delay-1 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Inteligência preditiva em tempo real</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-2 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Correlação entre mídia e território</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-3 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Monitoramento contínuo</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-4 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Leitura contextual de narrativa</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-3 fade-up delay-1 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Detecção antecipada de crise</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-2 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Análise territorial</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-3 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Interpretação comportamental</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-4 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Alertas acionáveis</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-3 fade-up delay-1 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Plataforma proprietária</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-2 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">IA centrada em experiência humana</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-3 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Conformidade LGPD</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 fade-up delay-4 mb-md">
+            <div class="elegant-card">
+              <div class="card-content">
+                <h4 class="text-large" style="font-weight: 300;">Arquitetura escalável</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 9 — PARA QUEM É -->
+    <section class="section bg-graphite" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="grid">
+          <div class="col-4 fade-up delay-1">
+            <h2 class="text-h1 mb-md">Para quem é</h2>
+            <p class="text-large text-gray-text" style="font-weight: 300;">Uma arquitetura projetada para a alta gestão
+              pública e estratégica.</p>
+          </div>
+          <div class="col-8">
+            <div class="grid">
+              <div class="col-6 fade-up delay-2 mb-sm">
+                <h4 class="text-large"
+                  style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; font-weight: 300;">
+                  Secretarias de Comunicação</h4>
+              </div>
+              <div class="col-6 fade-up delay-3 mb-sm">
+                <h4 class="text-large"
+                  style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; font-weight: 300;">
+                  Prefeituras</h4>
+              </div>
+              <div class="col-6 fade-up delay-2 mb-sm">
+                <h4 class="text-large"
+                  style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; font-weight: 300;">
+                  Governos Estaduais</h4>
+              </div>
+              <div class="col-6 fade-up delay-3 mb-sm">
+                <h4 class="text-large"
+                  style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; font-weight: 300;">
+                  Estruturas Federais</h4>
+              </div>
+              <div class="col-6 fade-up delay-2 mb-sm">
+                <h4 class="text-large"
+                  style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; font-weight: 300;">
+                  Órgãos Institucionais</h4>
+              </div>
+              <div class="col-6 fade-up delay-3 mb-sm">
+                <h4 class="text-large"
+                  style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; font-weight: 300;">
+                  Comunicação Pública</h4>
+              </div>
+              <div class="col-6 fade-up delay-2 mb-sm">
+                <h4 class="text-large"
+                  style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; font-weight: 300;">
+                  Gestão de Crise</h4>
+              </div>
+              <div class="col-6 fade-up delay-3 mb-sm">
+                <h4 class="text-large"
+                  style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; font-weight: 300;">
+                  Relações Institucionais</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 10 — NÃO É SOFTWARE -->
+    <section class="section flex flex-col justify-center text-center bg-black"
+      style="padding: var(--space-giant) 0; min-height: 80vh;">
+      <div class="container fade-up">
+        <h2 class="text-h2 mb-lg text-gray-text">Não é software. É inteligência institucional contínua.</h2>
+        <p class="text-large mx-auto mb-xl" style="max-width: 800px; font-weight: 300;">
+          O CORTEX Governo transforma excesso de informação em percepção estratégica.
+        </p>
+
+        <div class="grid justify-center mb-xl" style="gap: var(--space-xl);">
+          <div class="col-4"
+            style="text-align: left; border-left: 1px solid rgba(255,255,255,0.1); padding-left: var(--space-md);">
+            <span class="text-small text-gray-text display-block mb-sm">ELE REDUZ:</span>
+            <ul style="list-style: none;">
+              <li class="text-large text-white mb-xs" style="font-weight: 300;">— atraso</li>
+              <li class="text-large text-white mb-xs" style="font-weight: 300;">— ruído</li>
+              <li class="text-large text-white mb-xs" style="font-weight: 300;">— cegueira institucional</li>
+              <li class="text-large text-white mb-xs" style="font-weight: 300;">— desgaste</li>
+              <li class="text-large text-white mb-xs" style="font-weight: 300;">— reação emocional</li>
+            </ul>
+          </div>
+          <div class="col-4"
+            style="text-align: left; border-left: 1px solid rgba(255,255,255,0.1); padding-left: var(--space-md);">
+            <span class="text-small text-gold display-block mb-sm">E AUMENTA:</span>
+            <ul style="list-style: none;">
+              <li class="text-large text-white mb-xs" style="font-weight: 300;">— clareza</li>
+              <li class="text-large text-white mb-xs" style="font-weight: 300;">— controle</li>
+              <li class="text-large text-white mb-xs" style="font-weight: 300;">— capacidade de resposta</li>
+              <li class="text-large text-white mb-xs" style="font-weight: 300;">— previsibilidade</li>
+              <li class="text-large text-white mb-xs" style="font-weight: 300;">— percepção social</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-xl pt-xl" style="border-top: 1px solid rgba(255,255,255,0.05);">
+          <h2 class="text-huge" style="line-height: 1.1; letter-spacing: -0.04em;">
+            “O governo já produz dados o tempo todo.<br>
+            <span class="text-gray-text">O problema é não enxergar os sinais antes da crise.”</span>
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 11 — CTA FINAL -->
+    <section class="section bg-graphite flex items-center justify-center text-center" style="min-height: 80vh;">
+      <div class="container fade-up">
+        <h2 class="text-h1 mb-md" style="letter-spacing: -0.03em; max-width: 1000px; margin: 0 auto;">
+          Entenda a população antes que o problema escale.
+        </h2>
+        <p class="text-large text-gray-text mb-xl" style="max-width: 800px; margin: 2rem auto;">
+          O CORTEX Governo cria uma camada contínua de inteligência institucional para governos que precisam responder
+          com mais clareza, velocidade e precisão.
+        </p>
+        <div class="flex gap-md justify-center" style="gap: var(--space-md);">
+          <a href="#contact" class="nav-link"
+            style="color: var(--color-white); border-bottom: 1px solid var(--color-white); padding-bottom: 0.5rem; font-size: 1.25rem;">Falar
+            com a ZAKA</a>
+          <a href="index.html#products" class="nav-link"
+            style="color: var(--color-gray-text); padding-bottom: 0.5rem; font-size: 1.25rem;">Voltar para Produtos</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer
+    style="border-top: 1px solid var(--color-gray-border); padding: var(--space-xl) 0; background: var(--color-black);">
+    <div class="container">
+      <div class="grid justify-between">
+        <div class="col-4">
+          <a href="index.html" class="nav-logo">ZAKA<span class="text-gold">®</span></a>
+          <p class="text-small" style="margin-top: 1rem;">Technology with soul.</p>
+          <div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 0.5rem;">
+            <a href="index.html" class="text-small">Home</a>
+            <a href="index.html#products" class="text-small">Produtos</a>
+            <a href="cortex-governo.html" class="text-small text-white">CORTEX Governo</a>
+            <a href="#contact" class="text-small">Contato</a>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <p class="text-small text-gray-text mb-sm" style="text-transform: uppercase; letter-spacing: 0.1em;">
+            Ecossistema</p>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <a href="cortex-eleitor.html" class="text-small text-white">CORTEX Eleitor</a>
+            <a href="cortex-governo.html" class="text-small text-white">CORTEX Governo</a>
+            <a href="cortex-infra.html" class="text-small text-white">CORTEX Infra</a>
+            <a href="cortex-care.html" class="text-small text-white">CORTEX Care</a>
+            <a href="#" class="text-small">CORTEX Control</a>
+            <a href="cortex-food.html" class="text-small text-white">CORTEX Food</a>
+            <a href="specter.html" class="text-small text-gold mt-sm">Specter by ZAKA</a>
+          </div>
+        </div>
+
+        <div class="col-4" style="text-align: right; display: flex; flex-direction: column; justify-content: flex-end;">
+          <p class="text-small">&copy; 2026 ZAKA Foundation. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- System Scripts -->
+  <script src="js/navigation.js"></script>
+  <script src="js/motion.js"></script>
+  <script src="js/system.js"></script>
+</body>
+</html>

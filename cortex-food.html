@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CORTEX Food — Inteligência Operacional para Restaurantes | ZAKA</title>
+
+  <meta name="description" content="CORTEX Food é uma plataforma de inteligência operacional para restaurantes, combinando visão computacional, controle, auditoria, atendimento, PDV e performance em tempo real.">
+  <meta property="og:title" content="CORTEX Food — Inteligência Operacional para Restaurantes | ZAKA">
+  <meta property="og:description" content="CORTEX Food é uma plataforma de inteligência operacional para restaurantes, combinando visão computacional, controle, auditoria, atendimento, PDV e performance em tempo real.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zaka.io/cortex-food">
+
+  <link rel="stylesheet" href="css/core.css">
+  <link rel="preconnect" href="https://images.unsplash.com">
+
+  <style>
+    /* ===== CORTEX FOOD PAGE STYLES ===== */
+
+    .hero-food {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--color-black);
+    }
+    .hero-food::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.95) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-food .img-cinematic {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      opacity: 0.45;
+      filter: grayscale(40%) contrast(120%);
+    }
+
+    /* Scan lines — subtle intelligence overlay */
+    .scan-lines {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.06;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+      animation: scan-drift 100s linear infinite;
+    }
+    @keyframes scan-drift {
+      from { transform: translate(0, 0); }
+      to { transform: translate(-80px, -80px); }
+    }
+
+    /* Module Cards */
+    .module-card {
+      background: var(--color-graphite);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: var(--space-xl);
+      border-radius: 4px;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+    .module-card::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 250%;
+      height: 250%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(37,99,235,0.04) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .module-card:hover {
+      border-color: rgba(201,166,107,0.25);
+      transform: translateY(-3px);
+    }
+    .module-card:hover::before {
+      opacity: 1;
+    }
+    .module-card .card-inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Elegant Cards */
+    .elegant-card {
+      background: var(--color-graphite);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: var(--space-lg);
+      border-radius: 4px;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+    .elegant-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(37,99,235,0.05) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .elegant-card:hover {
+      border-color: rgba(201,166,107,0.3);
+      transform: translateY(-2px);
+    }
+    .elegant-card:hover::before { opacity: 1; }
+    .elegant-card .card-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Subsection Blocks */
+    .sub-block {
+      border-left: 2px solid rgba(255,255,255,0.06);
+      padding-left: var(--space-lg);
+      margin-bottom: var(--space-xl);
+      transition: border-color 0.4s ease;
+    }
+    .sub-block:hover {
+      border-color: rgba(201,166,107,0.2);
+    }
+    .sub-block h3 {
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: var(--space-md);
+      color: var(--color-white);
+    }
+    .sub-block li {
+      font-weight: 300;
+      font-size: 1.05rem;
+      line-height: 2;
+      color: var(--color-gray-text);
+    }
+    .sub-block li::before {
+      content: '— ';
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* Result Numbers */
+    .result-item {
+      padding: var(--space-lg) 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      gap: var(--space-lg);
+      align-items: baseline;
+    }
+    .result-item:last-child { border-bottom: none; }
+    .result-num {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--color-accent-gold-muted);
+      font-weight: 500;
+      min-width: 2.5rem;
+    }
+    .result-text {
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: var(--color-gray-text);
+      line-height: 1.5;
+    }
+
+    /* Labels */
+    .label-gold {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent-gold-muted);
+      margin-bottom: var(--space-sm);
+      font-weight: 500;
+    }
+    .label-blue {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent-blue);
+      margin-bottom: var(--space-sm);
+      font-weight: 500;
+    }
+
+    /* CTA */
+    .cta-primary {
+      display: inline-block;
+      color: var(--color-white);
+      text-decoration: none;
+      border-bottom: 1px solid var(--color-white);
+      padding-bottom: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 300;
+      transition: opacity 0.3s ease;
+    }
+    .cta-primary:hover { opacity: 0.7; }
+    .cta-secondary {
+      display: inline-block;
+      color: var(--color-gray-text);
+      text-decoration: none;
+      padding-bottom: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 300;
+      transition: color 0.3s ease;
+    }
+    .cta-secondary:hover { color: var(--color-white); }
+
+    /* Section image bg */
+    .section-img-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .section-img-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(140%);
+      opacity: 0.07;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .scan-lines { display: none; }
+      .hero-food { min-height: 90vh; }
+      .module-card { padding: var(--space-lg); }
+      .sub-block { padding-left: var(--space-md); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .scan-lines { animation: none; }
+      .elegant-card, .module-card { transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- GLOBAL MENU -->
+  <header class="nav-header">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">ZAKA<span class="text-gold">®</span></a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+
+        <div class="nav-item-dropdown">
+          <a href="#" class="nav-link" style="color: var(--color-white);">Produtos</a>
+          <div class="dropdown-menu">
+            <div class="dropdown-section-title">Cortex Suite</div>
+            <div class="dropdown-list">
+              <a href="cortex-eleitor.html" class="dropdown-link text-white">Cortex Eleitor</a>
+              <a href="cortex-governo.html" class="dropdown-link text-white">Cortex Governo</a>
+              <a href="cortex-infra.html" class="dropdown-link text-white">Cortex Infra</a>
+              <a href="cortex-care.html" class="dropdown-link text-white">Cortex Care</a>
+              <a href="#" class="dropdown-link">Cortex Control</a>
+              <a href="cortex-food.html" class="dropdown-link text-white">Cortex Food</a>
+            </div>
+            <div class="dropdown-section-title" style="margin-top: 1.5rem;">Other</div>
+            <div class="dropdown-list">
+              <a href="specter.html" class="dropdown-link text-gold">Specter by ZAKA</a>
+            </div>
+          </div>
+        </div>
+
+        <a href="index.html#differentials" class="nav-link">Diferenciais</a>
+        <a href="index.html#how-we-work" class="nav-link">Como Trabalhamos</a>
+        <a href="#contact" class="nav-link">Contato</a>
+      </nav>
+
+      <button class="mobile-menu-btn" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="mobile-nav-overlay">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="#" class="nav-link">Cortex Suite</a>
+      <a href="cortex-eleitor.html" class="nav-link text-white">Cortex Eleitor</a>
+      <a href="cortex-governo.html" class="nav-link text-white">Cortex Governo</a>
+      <a href="cortex-food.html" class="nav-link text-white">Cortex Food</a>
+      <a href="specter.html" class="nav-link text-gold">Specter by ZAKA</a>
+      <a href="index.html#differentials" class="nav-link">Diferenciais</a>
+      <a href="index.html#how-we-work" class="nav-link">Como Trabalhamos</a>
+      <a href="#contact" class="nav-link">Contato</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero-food">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2670&auto=format&fit=crop"
+        alt="Premium restaurant environment" class="img-cinematic" data-parallax="0.05" loading="eager">
+      <div class="scan-lines"></div>
+
+      <div class="container" style="z-index: 2;">
+        <div class="grid items-center">
+          <div class="col-8 fade-up delay-1">
+            <span class="text-accent mb-md display-block text-gold" style="letter-spacing: 0.15em; font-size: 0.85rem;">CORTEX FOOD</span>
+            <h1 style="font-size: clamp(2.8rem, 5vw, 5.2rem); line-height: 1.08; font-weight: 200; margin-bottom: var(--space-lg);">
+              Inteligência operacional para restaurantes que querem enxergar o que ninguém vê.
+            </h1>
+            <p class="text-large text-gray-text" style="max-width: 85%; margin-bottom: var(--space-xl); font-weight: 300;">
+              Uma plataforma de inteligência aplicada que combina visão computacional, controle operacional, auditoria e análise preditiva para transformar salão, cozinha, atendimento e gestão em percepção contínua.
+            </p>
+            <div style="display: flex; gap: var(--space-lg); align-items: center; flex-wrap: wrap;">
+              <a href="#modulos" class="cta-primary">Conhecer módulos</a>
+              <a href="#contact" class="cta-secondary">Falar com a ZAKA</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 1 — INTRODUÇÃO ===== -->
+    <section class="section" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="grid items-center" style="gap: var(--space-xl);">
+          <div class="col-6 fade-up delay-1">
+            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
+              O restaurante moderno produz dados o tempo todo.
+            </h2>
+            <p class="text-h3 text-gray-text mb-lg" style="font-weight: 300;">
+              Mas quase ninguém consegue interpretar esses sinais enquanto a operação acontece.
+            </p>
+            <p class="text-gray-text" style="font-weight: 300; line-height: 1.9; font-size: 1.1rem;">
+              O CORTEX Food foi criado para identificar perdas invisíveis, gargalos, inconsistências de execução, oportunidades comerciais desperdiçadas, ruptura de padrão e falhas operacionais antes que elas afetem margem, experiência e reputação.
+            </p>
+          </div>
+          <div class="col-5 blur-in delay-2" style="position: relative; height: 65vh; border-radius: 4px; overflow: hidden; margin-left: auto;">
+            <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=2670&auto=format&fit=crop"
+              alt="Kitchen operation" style="width:100%; height:100%; object-fit:cover; filter: grayscale(100%) contrast(140%); opacity: 0.25;"
+              data-parallax="0.08" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 2 — DOIS MÓDULOS ===== -->
+    <section id="modulos" class="section bg-graphite" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="text-center mb-xl fade-up delay-1">
+          <h2 style="font-size: clamp(2.5rem, 4.5vw, 4.5rem); font-weight: 200; line-height: 1.1;">
+            Dois módulos. Um mesmo cérebro.
+          </h2>
+        </div>
+
+        <div class="grid" style="gap: var(--space-lg);">
+          <div class="col-6 fade-up delay-2">
+            <div class="module-card">
+              <div class="card-inner">
+                <span class="label-blue">MÓDULO 01</span>
+                <h3 class="text-h2 mb-md" style="font-weight: 300;">CORTEX Vision</h3>
+                <p class="text-gray-text mb-md" style="font-weight: 400; font-size: 1.1rem;">
+                  Inteligência visual para salão, cozinha e experiência.
+                </p>
+                <p class="text-gray-text" style="font-weight: 300; line-height: 1.8;">
+                  Lê comportamento, atendimento, fluxo, tempo, pratos, sobras, oportunidades comerciais e performance da equipe por meio de visão computacional aplicada à operação gastronômica.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 fade-up delay-3">
+            <div class="module-card">
+              <div class="card-inner">
+                <span class="label-gold">MÓDULO 02</span>
+                <h3 class="text-h2 mb-md" style="font-weight: 300;">CORTEX Control</h3>
+                <p class="text-gray-text mb-md" style="font-weight: 400; font-size: 1.1rem;">
+                  Controle operacional, auditoria e proteção de margem.
+                </p>
+                <p class="text-gray-text" style="font-weight: 300; line-height: 1.8;">
+                  Cruza dados de PDV, estoque, consumo, permanência, cancelamentos e estornos para identificar perdas, inconsistências, sub-registros e eventos que exigem auditoria.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 3 — O PROBLEMA ===== -->
+    <section class="section" style="padding: var(--space-giant) 0; position: relative; overflow: hidden;">
+      <div class="section-img-bg">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2670&auto=format&fit=crop"
+          alt="Food atmosphere" loading="lazy">
+      </div>
+
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-6 fade-up delay-1">
+            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
+              O restaurante moderno se tornou operacionalmente invisível.
+            </h2>
+            <p class="text-gray-text mb-lg" style="font-weight: 300; line-height: 1.9; font-size: 1.1rem;">
+              Hoje, nenhuma equipe humana consegue monitorar toda a experiência do salão, detectar gargalos no momento em que surgem, cruzar comportamento real com dados do PDV, interpretar padrões de consumo em tempo real e medir objetivamente a qualidade da execução.
+            </p>
+          </div>
+          <div class="col-5 fade-up delay-2" style="margin-left: auto;">
+            <div style="border-left: 2px solid var(--color-accent-gold-muted); padding-left: var(--space-md);">
+              <span class="label-gold">RESULTADO</span>
+              <ul style="list-style: none; padding: 0; margin-top: var(--space-sm);">
+                <li style="font-weight: 300; color: rgba(255,255,255,0.5); line-height: 2.2; font-size: 1.1rem;">— perda de margem</li>
+                <li style="font-weight: 300; color: rgba(255,255,255,0.5); line-height: 2.2; font-size: 1.1rem;">— experiência inconsistente</li>
+                <li style="font-weight: 300; color: rgba(255,255,255,0.5); line-height: 2.2; font-size: 1.1rem;">— desperdício operacional</li>
+                <li style="font-weight: 300; color: rgba(255,255,255,0.5); line-height: 2.2; font-size: 1.1rem;">— baixa conversão</li>
+                <li style="font-weight: 300; color: rgba(255,255,255,0.5); line-height: 2.2; font-size: 1.1rem;">— decisões baseadas em percepção subjetiva</li>
+                <li style="font-weight: 300; color: rgba(255,255,255,0.5); line-height: 2.2; font-size: 1.1rem;">— falhas que só aparecem tarde demais</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 4 — CORTEX VISION ===== -->
+    <section class="section bg-graphite" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="fade-up delay-1 mb-xl">
+          <span class="label-blue">MÓDULO 01</span>
+          <h2 class="text-h1 mb-md" style="font-weight: 200;">CORTEX Vision</h2>
+          <p class="text-h3 text-gray-text" style="font-weight: 300; max-width: 800px;">
+            Inteligência visual para salão, cozinha e experiência.
+          </p>
+          <p class="text-gray-text mt-lg" style="font-weight: 300; line-height: 1.9; font-size: 1.05rem; max-width: 900px;">
+            O CORTEX Vision utiliza visão computacional e leitura comportamental para compreender o funcionamento da operação em tempo real. Ele não apenas identifica o que acontece. Ele interpreta o que aquilo significa para atendimento, qualidade, conversão e experiência.
+          </p>
+        </div>
+
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-6 fade-up delay-2">
+            <div class="sub-block">
+              <h3>Salão e atendimento</h3>
+              <ul style="list-style: none; padding: 0;">
+                <li>identificação de clientes sentados</li>
+                <li>início da jornada de ocupação da mesa</li>
+                <li>detecção de solicitação física de atendimento</li>
+                <li>identificação de ocorrência de atendimento</li>
+                <li>medição de SLA entre solicitação e resposta</li>
+                <li>medição de tempo entre pedido e entrega</li>
+                <li>leitura de gargalos de fluxo no salão</li>
+              </ul>
+            </div>
+
+            <div class="sub-block">
+              <h3>Oportunidade comercial e aumento de ticket</h3>
+              <ul style="list-style: none; padding: 0;">
+                <li>detecção de copo vazio</li>
+                <li>identificação do momento adequado para reposição</li>
+                <li>suporte ao upsell de bebidas com dados do PDV</li>
+                <li>identificação do encerramento do prato principal</li>
+                <li>abertura de oportunidade para sobremesa e café</li>
+                <li>redução de oportunidade comercial perdida</li>
+                <li>transformação do salão em leitura de conversão</li>
+              </ul>
+            </div>
+
+            <div class="sub-block">
+              <h3>Qualidade operacional e padrão de execução</h3>
+              <ul style="list-style: none; padding: 0;">
+                <li>leitura de tempos fora do padrão</li>
+                <li>identificação de pontos de ruptura</li>
+                <li>detecção de falhas recorrentes de execução</li>
+                <li>leitura de consistência entre turnos e equipes</li>
+                <li>proteção da experiência em operações premium</li>
+                <li>apoio à padronização e controle</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-6 fade-up delay-3">
+            <div class="sub-block">
+              <h3>Inspeção de saída na boqueta</h3>
+              <ul style="list-style: none; padding: 0;">
+                <li>leitura do prato antes da entrega</li>
+                <li>verificação de aderência à ficha técnica</li>
+                <li>detecção de ausência visível de item</li>
+                <li>detecção de desvio de montagem</li>
+                <li>redução de erros que gerariam devolução</li>
+              </ul>
+            </div>
+
+            <div class="sub-block">
+              <h3>Leitura de sobras, rejeição e aceitação</h3>
+              <ul style="list-style: none; padding: 0;">
+                <li>análise do que retorna visualmente no prato</li>
+                <li>identificação de itens com maior rejeição</li>
+                <li>leitura de combinações com baixa adesão</li>
+                <li>identificação de excesso ou desalinhamento</li>
+                <li>apoio à revisão de montagem e porcionamento</li>
+                <li>suporte à revisão de compras e insumos</li>
+                <li>inteligência sobre preferência real do cliente</li>
+              </ul>
+            </div>
+
+            <div class="sub-block">
+              <h3>Performance operacional da equipe</h3>
+              <ul style="list-style: none; padding: 0;">
+                <li>leitura objetiva de performance operacional</li>
+                <li>comparação entre oportunidades e conversões</li>
+                <li>leitura comparativa entre turnos e praças</li>
+                <li>base concreta para reconhecimento e meritocracia</li>
+                <li>redução da subjetividade da gestão</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 5 — CORTEX CONTROL ===== -->
+    <section class="section" style="padding: var(--space-giant) 0; position: relative; overflow: hidden;">
+      <div class="section-img-bg">
+        <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=2574&auto=format&fit=crop"
+          alt="Restaurant control" loading="lazy">
+      </div>
+
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="fade-up delay-1 mb-xl">
+          <span class="label-gold">MÓDULO 02</span>
+          <h2 class="text-h1 mb-md" style="font-weight: 200;">CORTEX Control</h2>
+          <p class="text-h3 text-gray-text" style="font-weight: 300; max-width: 800px;">
+            Auditoria operacional, proteção de margem e governança baseada em evidência.
+          </p>
+          <p class="text-gray-text mt-lg" style="font-weight: 300; line-height: 1.9; font-size: 1.05rem; max-width: 900px;">
+            O CORTEX Control atua na camada invisível da operação. Ele cruza dados operacionais, consumo, permanência, PDV, estoque, cancelamentos e estornos para detectar perdas, inconsistências e comportamentos que normalmente passam despercebidos.
+          </p>
+        </div>
+
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-6 fade-up delay-2">
+            <div class="sub-block">
+              <h3>Auditoria de rendimento</h3>
+              <ul style="list-style: none; padding: 0;">
+                <li>cruzamento entre insumo comprado e quantidade faturada</li>
+                <li>leitura de rendimento real</li>
+                <li>identificação de desvio de insumo</li>
+                <li>apoio à detecção de erro de porcionamento ou perda</li>
+              </ul>
+            </div>
+
+            <div class="sub-block">
+              <h3>Consumo improvável e inconsistência</h3>
+              <ul style="list-style: none; padding: 0;">
+                <li>leitura de permanência da mesa versus ticket</li>
+                <li>identificação de comportamento incompatível</li>
+                <li>sinalização de sub-registro</li>
+                <li>sinalização de cortesias indevidas</li>
+                <li>apoio à investigação operacional no salão</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-6 fade-up delay-3">
+            <div class="sub-block">
+              <h3>Auditoria de caixa e eventos atípicos</h3>
+              <ul style="list-style: none; padding: 0;">
+                <li>monitoramento de cancelamentos</li>
+                <li>leitura de estornos fora do padrão</li>
+                <li>comparação entre saída e registro</li>
+                <li>identificação de eventos que merecem auditoria</li>
+              </ul>
+            </div>
+
+            <div class="sub-block">
+              <h3>Governança e base decisória</h3>
+              <ul style="list-style: none; padding: 0;">
+                <li>leitura de perda operacional</li>
+                <li>leitura de eficiência</li>
+                <li>apoio a decisões com base em evidência</li>
+                <li>redução do achismo na gestão</li>
+                <li>camada analítica de proteção de margem</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 6 — NÃO É SOFTWARE ===== -->
+    <section class="section bg-graphite" style="padding: var(--space-giant) 0; min-height: 70vh; display: flex; align-items: center;">
+      <div class="container text-center">
+        <div class="fade-up delay-1" style="max-width: 900px; margin: 0 auto;">
+          <h2 style="font-size: clamp(2.2rem, 4vw, 4rem); font-weight: 200; line-height: 1.12; margin-bottom: var(--space-lg);">
+            Não é software.<br><span class="text-gold">É percepção operacional.</span>
+          </h2>
+          <p class="text-large text-gray-text mb-xl" style="font-weight: 300; max-width: 85%; margin: 0 auto var(--space-xl);">
+            O CORTEX Food cria uma nova camada de inteligência para restaurantes. Uma operação que vê mais, entende mais, perde menos, converte melhor, protege margem, reduz desperdício, melhora a experiência e opera com mais clareza.
+          </p>
+        </div>
+
+        <div class="fade-up delay-2" style="padding: var(--space-xl) 0;">
+          <p style="font-size: clamp(2rem, 4vw, 4rem); font-weight: 200; line-height: 1.15; max-width: 800px; margin: 0 auto;">
+            Menos achismo.<br>Mais controle real.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 7 — DIFERENCIAIS ===== -->
+    <section class="section" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="text-center mb-xl fade-up delay-1">
+          <h2 class="text-h1" style="font-weight: 200;">O que torna o CORTEX Food diferente.</h2>
+        </div>
+
+        <div class="grid" style="gap: var(--space-md);">
+          <div class="col-3 fade-up delay-1 mb-md">
+            <div class="elegant-card"><div class="card-content">
+              <h4 class="text-large" style="font-weight: 300;">Visão computacional aplicada à gastronomia</h4>
+            </div></div>
+          </div>
+          <div class="col-3 fade-up delay-2 mb-md">
+            <div class="elegant-card"><div class="card-content">
+              <h4 class="text-large" style="font-weight: 300;">Inteligência operacional em tempo real</h4>
+            </div></div>
+          </div>
+          <div class="col-3 fade-up delay-3 mb-md">
+            <div class="elegant-card"><div class="card-content">
+              <h4 class="text-large" style="font-weight: 300;">Integração com PDV</h4>
+            </div></div>
+          </div>
+          <div class="col-3 fade-up delay-4 mb-md">
+            <div class="elegant-card"><div class="card-content">
+              <h4 class="text-large" style="font-weight: 300;">Leitura contínua de comportamento</h4>
+            </div></div>
+          </div>
+
+          <div class="col-3 fade-up delay-1 mb-md">
+            <div class="elegant-card"><div class="card-content">
+              <h4 class="text-large" style="font-weight: 300;">Proteção de margem</h4>
+            </div></div>
+          </div>
+          <div class="col-3 fade-up delay-2 mb-md">
+            <div class="elegant-card"><div class="card-content">
+              <h4 class="text-large" style="font-weight: 300;">Redução de desperdício</h4>
+            </div></div>
+          </div>
+          <div class="col-3 fade-up delay-3 mb-md">
+            <div class="elegant-card"><div class="card-content">
+              <h4 class="text-large" style="font-weight: 300;">Inteligência comercial para salão</h4>
+            </div></div>
+          </div>
+          <div class="col-3 fade-up delay-4 mb-md">
+            <div class="elegant-card"><div class="card-content">
+              <h4 class="text-large" style="font-weight: 300;">Governança baseada em evidência</h4>
+            </div></div>
+          </div>
+
+          <div class="col-6 fade-up delay-1 mb-md">
+            <div class="elegant-card"><div class="card-content">
+              <h4 class="text-large" style="font-weight: 300;">Operação orientada por percepção</h4>
+            </div></div>
+          </div>
+          <div class="col-6 fade-up delay-2 mb-md">
+            <div class="elegant-card"><div class="card-content">
+              <h4 class="text-large" style="font-weight: 300;">Tecnologia centrada na experiência humana</h4>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 8 — RESULTADOS ESPERADOS ===== -->
+    <section class="section bg-graphite" style="padding: var(--space-giant) 0;">
+      <div class="container">
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-4 fade-up delay-1">
+            <h2 class="text-h1" style="font-weight: 200; line-height: 1.15;">
+              O que a operação passa a enxergar.
+            </h2>
+          </div>
+
+          <div class="col-7 fade-up delay-2" style="margin-left: auto;">
+            <div class="result-item">
+              <span class="result-num">01</span>
+              <span class="result-text">Onde a margem está escapando.</span>
+            </div>
+            <div class="result-item">
+              <span class="result-num">02</span>
+              <span class="result-text">Onde o atendimento está falhando.</span>
+            </div>
+            <div class="result-item">
+              <span class="result-num">03</span>
+              <span class="result-text">Onde o salão perde oportunidades.</span>
+            </div>
+            <div class="result-item">
+              <span class="result-num">04</span>
+              <span class="result-text">Onde o prato quebra o padrão.</span>
+            </div>
+            <div class="result-item">
+              <span class="result-num">05</span>
+              <span class="result-text">Onde o consumo não fecha com a operação.</span>
+            </div>
+            <div class="result-item">
+              <span class="result-num">06</span>
+              <span class="result-text">Onde a equipe performa melhor — ou pior.</span>
+            </div>
+            <div class="result-item">
+              <span class="result-num">07</span>
+              <span class="result-text">Onde a experiência pode ser protegida.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 9 — CTA FINAL ===== -->
+    <section id="contact" class="section" style="padding: var(--space-giant) 0; min-height: 80vh; display: flex; align-items: center;">
+      <div class="container text-center">
+        <div class="fade-up delay-1" style="max-width: 900px; margin: 0 auto;">
+          <h2 style="font-size: clamp(2.5rem, 4.5vw, 4.5rem); font-weight: 200; line-height: 1.1; margin-bottom: var(--space-lg);">
+            O restaurante já produz dados. O problema é que ninguém está enxergando tudo.
+          </h2>
+          <p class="text-large text-gray-text mb-xl" style="font-weight: 300; max-width: 85%; margin-left: auto; margin-right: auto;">
+            O CORTEX Food transforma operação, atendimento, comportamento e consumo em inteligência contínua para restaurantes que querem operar com mais precisão, eficiência e controle.
+          </p>
+          <div style="display: flex; gap: var(--space-lg); justify-content: center; align-items: center; flex-wrap: wrap;">
+            <a href="#contact" class="cta-primary">Falar com a ZAKA</a>
+            <a href="index.html#products" class="cta-secondary">Voltar para Produtos</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="border-top: 1px solid var(--color-gray-border); padding: var(--space-xl) 0; background: var(--color-black);">
+    <div class="container">
+      <div class="grid justify-between">
+        <div class="col-4">
+          <a href="index.html" class="nav-logo">ZAKA<span class="text-gold">®</span></a>
+          <p class="text-small" style="margin-top: 1rem;">Technology with soul.</p>
+          <div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 0.5rem;">
+            <a href="index.html" class="text-small">Home</a>
+            <a href="index.html#products" class="text-small">Produtos</a>
+            <a href="#contact" class="text-small">Contato</a>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <p class="text-small text-gray-text mb-sm" style="text-transform: uppercase; letter-spacing: 0.1em;">Ecossistema</p>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <a href="cortex-eleitor.html" class="text-small text-white">CORTEX Eleitor</a>
+            <a href="cortex-governo.html" class="text-small text-white">CORTEX Governo</a>
+            <a href="cortex-infra.html" class="text-small text-white">CORTEX Infra</a>
+            <a href="cortex-care.html" class="text-small text-white">CORTEX Care</a>
+            <a href="#" class="text-small">CORTEX Control</a>
+            <a href="cortex-food.html" class="text-small text-white">CORTEX Food</a>
+            <a href="specter.html" class="text-small text-gold mt-sm">Specter by ZAKA</a>
+          </div>
+        </div>
+
+        <div class="col-4" style="text-align: right; display: flex; flex-direction: column; justify-content: flex-end;">
+          <p class="text-small">&copy; 2026 ZAKA Foundation. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/navigation.js"></script>
+  <script src="js/motion.js"></script>
+  <script src="js/system.js"></script>
+</body>
+</html>

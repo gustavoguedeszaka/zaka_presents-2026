@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CORTEX Infra — Inteligência Estratégica para Infraestrutura | ZAKA</title>
+
+  <meta name="description"
+    content="CORTEX Infra é uma plataforma proprietária de inteligência estratégica para infraestrutura, contratos públicos, ambiente regulatório e operações de engenharia pesada.">
+
+  <!-- Foundation Styles -->
+  <link rel="stylesheet" href="css/core.css">
+
+  <style>
+    /* ═══════════════════════════════════════════════════
+       CORTEX INFRA — Page-specific Styles
+       Aesthetic: Architectural intelligence, monumental silence
+       ═══════════════════════════════════════════════════ */
+
+    /* Constrained content width for readability */
+    .content-narrow {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 90%;
+    }
+
+    /* ── HERO ── */
+    .hero-infra {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--color-black-deep);
+    }
+
+    .hero-infra::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+          rgba(0, 0, 0, 0.4) 0%,
+          rgba(0, 0, 0, 0.7) 50%,
+          rgba(0, 0, 0, 0.95) 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-infra .img-cinematic {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      opacity: 0.45;
+      filter: grayscale(50%) contrast(120%) brightness(0.9);
+    }
+
+    /* Blueprint grid breathing */
+    .blueprint-grid {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.08;
+      background-image:
+        linear-gradient(rgba(212, 175, 55, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 55, 0.3) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: grid-breathe 8s ease-in-out infinite, grid-pan 120s linear infinite;
+    }
+
+    @keyframes grid-breathe {
+
+      0%,
+      100% {
+        opacity: 0.06;
+      }
+
+      50% {
+        opacity: 0.12;
+      }
+    }
+
+    @keyframes grid-pan {
+      from {
+        transform: translate(0, 0);
+      }
+
+      to {
+        transform: translate(60px, 60px);
+      }
+    }
+
+    /* Metallic particle canvas specific to this page */
+    #infra-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.5;
+    }
+
+    .hero-infra-content {
+      position: relative;
+      z-index: 3;
+      padding-top: calc(var(--header-height) + var(--space-lg));
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-secondary);
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-accent-gold);
+      font-weight: 500;
+      margin-bottom: var(--space-md);
+      display: block;
+    }
+
+    .hero-headline {
+      font-family: var(--font-primary);
+      font-size: clamp(2.5rem, 5vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--color-white);
+      max-width: 900px;
+    }
+
+    .hero-sub {
+      font-family: var(--font-primary);
+      font-size: clamp(1.1rem, 1.4vw, 1.5rem);
+      color: var(--color-gray-text);
+      font-weight: 300;
+      line-height: 1.6;
+      max-width: 720px;
+      margin-top: var(--space-md);
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+      flex-wrap: wrap;
+    }
+
+    .cta-primary {
+      font-family: var(--font-secondary);
+      font-size: 1rem;
+      color: var(--color-white);
+      border-bottom: 1px solid var(--color-white);
+      padding-bottom: 0.5rem;
+      transition: color var(--duration-fast) ease, border-color var(--duration-fast) ease;
+    }
+
+    .cta-primary:hover {
+      color: var(--color-accent-gold);
+      border-color: var(--color-accent-gold);
+    }
+
+    .cta-secondary {
+      font-family: var(--font-secondary);
+      font-size: 1rem;
+      color: var(--color-gray-text);
+      transition: color var(--duration-fast) ease;
+    }
+
+    .cta-secondary:hover {
+      color: var(--color-white);
+    }
+
+    /* ── SECTIONS ── */
+    .infra-section {
+      padding: clamp(5rem, 8vw, 10rem) 0;
+      position: relative;
+    }
+
+    .infra-section--alt {
+      background: var(--color-graphite);
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-secondary);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-accent-blue);
+      font-weight: 500;
+      margin-bottom: var(--space-sm);
+      display: block;
+    }
+
+    .section-headline {
+      font-family: var(--font-primary);
+      font-size: clamp(2rem, 3.5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--color-white);
+      max-width: 900px;
+    }
+
+    .section-headline--center {
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .section-sub {
+      font-family: var(--font-primary);
+      font-size: clamp(1.1rem, 1.3vw, 1.4rem);
+      color: var(--color-gray-text);
+      font-weight: 300;
+      line-height: 1.6;
+      max-width: 700px;
+      margin-top: var(--space-sm);
+    }
+
+    .section-sub--center {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-body {
+      font-family: var(--font-primary);
+      font-size: clamp(1rem, 1.2vw, 1.25rem);
+      color: var(--color-gray-text);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 650px;
+    }
+
+    /* ── EMPHASIS QUOTE ── */
+    .emphasis-block {
+      border-left: 1px solid rgba(212, 175, 55, 0.4);
+      padding-left: var(--space-md);
+      margin: var(--space-lg) 0;
+    }
+
+    .emphasis-text {
+      font-family: var(--font-primary);
+      font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+      font-weight: 300;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      color: var(--color-white);
+    }
+
+    /* ── LIST ITEMS ── */
+    .infra-list {
+      list-style: none;
+      margin-top: var(--space-md);
+    }
+
+    .infra-list li {
+      font-family: var(--font-primary);
+      font-size: clamp(1rem, 1.2vw, 1.25rem);
+      color: var(--color-gray-text);
+      font-weight: 300;
+      padding: 0.625rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .infra-list li::before {
+      content: '—';
+      margin-right: 0.75rem;
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* ── MODULE CARDS (Two modules side by side) ── */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+
+    .module-card {
+      background: var(--color-charcoal);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 2px;
+      padding: var(--space-lg);
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--duration-medium) var(--ease-cinematic),
+        box-shadow var(--duration-medium) var(--ease-cinematic);
+    }
+
+    .module-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg,
+          transparent 0%,
+          rgba(212, 175, 55, 0.3) 50%,
+          transparent 100%);
+      opacity: 0;
+      transition: opacity var(--duration-medium) ease;
+    }
+
+    .module-card:hover {
+      border-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .module-card:hover::before {
+      opacity: 1;
+    }
+
+    .module-label {
+      font-family: var(--font-secondary);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-accent-gold-muted);
+      margin-bottom: var(--space-sm);
+      display: block;
+    }
+
+    .module-title {
+      font-family: var(--font-primary);
+      font-size: clamp(1.5rem, 2vw, 2rem);
+      font-weight: 400;
+      color: var(--color-white);
+      line-height: 1.2;
+      margin-bottom: var(--space-xs);
+    }
+
+    .module-sub {
+      font-family: var(--font-primary);
+      font-size: clamp(1rem, 1.1vw, 1.15rem);
+      color: var(--color-accent-blue);
+      font-weight: 400;
+      margin-bottom: var(--space-md);
+    }
+
+    .module-body {
+      font-family: var(--font-primary);
+      font-size: clamp(0.9375rem, 1vw, 1.0625rem);
+      color: var(--color-gray-text);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .module-deliveries {
+      margin-top: var(--space-lg);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: var(--space-md);
+    }
+
+    .module-deliveries-label {
+      font-family: var(--font-secondary);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-gray-text);
+      margin-bottom: var(--space-sm);
+      display: block;
+    }
+
+    .module-deliveries-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+    }
+
+    .module-deliveries-list li {
+      font-family: var(--font-primary);
+      font-size: 0.9375rem;
+      color: var(--color-white-warm);
+      font-weight: 300;
+      padding: 0.375rem 0;
+    }
+
+    .module-deliveries-list li::before {
+      content: '·';
+      margin-right: 0.5rem;
+      color: var(--color-accent-gold-muted);
+    }
+
+    .module-emphasis {
+      margin-top: var(--space-lg);
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .module-emphasis-text {
+      font-family: var(--font-primary);
+      font-size: clamp(1.1rem, 1.3vw, 1.3rem);
+      color: var(--color-white);
+      font-weight: 300;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    /* ── ALERT CARD ── */
+    .alert-card {
+      background: rgba(10, 10, 10, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 2px;
+      padding: var(--space-lg) var(--space-xl);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+      max-width: 900px;
+      margin: var(--space-xl) auto 0;
+    }
+
+    .alert-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+          transparent,
+          rgba(10, 132, 255, 0.4),
+          transparent);
+    }
+
+    .alert-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(10, 132, 255, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .alert-label {
+      font-family: var(--font-secondary);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-accent-gold);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .alert-label::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-accent-blue);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        opacity: 0.4;
+        box-shadow: 0 0 0 0 rgba(10, 132, 255, 0.4);
+      }
+
+      50% {
+        opacity: 1;
+        box-shadow: 0 0 8px 2px rgba(10, 132, 255, 0.2);
+      }
+    }
+
+    .alert-body {
+      font-family: var(--font-primary);
+      font-size: clamp(1.25rem, 1.5vw, 1.5rem);
+      color: var(--color-white-warm);
+      font-weight: 300;
+      line-height: 1.5;
+      margin-top: var(--space-md);
+    }
+
+    .alert-recommendation {
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .alert-recommendation-label {
+      font-family: var(--font-secondary);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-gray-text);
+    }
+
+    .alert-recommendation-text {
+      font-family: var(--font-primary);
+      font-size: 1.125rem;
+      color: var(--color-accent-blue);
+      font-weight: 400;
+      margin-top: 0.5rem;
+    }
+
+    /* ── REDUCTION GRID ── */
+    .reduction-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-sm);
+      margin-top: var(--space-xl);
+    }
+
+    .reduction-card {
+      background: var(--color-charcoal);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 2px;
+      padding: var(--space-md) var(--space-sm);
+      text-align: center;
+      transition: border-color var(--duration-medium) var(--ease-cinematic),
+        transform var(--duration-medium) var(--ease-cinematic);
+    }
+
+    .reduction-card:hover {
+      border-color: rgba(212, 175, 55, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .reduction-label {
+      font-family: var(--font-secondary);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-accent-gold-muted);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .reduction-text {
+      font-family: var(--font-primary);
+      font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+      color: var(--color-white-warm);
+      font-weight: 300;
+    }
+
+    /* Two-column reduction display */
+    .reduction-dual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      margin-top: var(--space-xl);
+    }
+
+    .reduction-column {
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+      padding-left: var(--space-md);
+    }
+
+    .reduction-column-label {
+      font-family: var(--font-secondary);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: var(--space-sm);
+      display: block;
+    }
+
+    .reduction-column-label--reduce {
+      color: var(--color-gray-text);
+    }
+
+    .reduction-column-label--increase {
+      color: var(--color-accent-gold);
+    }
+
+    /* ── SOURCE GRID ── */
+    .source-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-lg);
+    }
+
+    .source-tag {
+      font-family: var(--font-secondary);
+      font-size: 0.875rem;
+      color: var(--color-white-warm);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 0.5rem 1.25rem;
+      border-radius: 2px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      transition: border-color var(--duration-fast) ease, color var(--duration-fast) ease;
+    }
+
+    .source-tag:hover {
+      border-color: rgba(10, 132, 255, 0.3);
+      color: var(--color-accent-blue);
+    }
+
+    /* ── ARCHITECTURE LIST ── */
+    .arch-list {
+      list-style: none;
+      margin-top: var(--space-md);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem var(--space-lg);
+    }
+
+    .arch-list li {
+      font-family: var(--font-primary);
+      font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+      color: var(--color-white-warm);
+      font-weight: 300;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .arch-list li::before {
+      content: '—';
+      margin-right: 0.75rem;
+      color: rgba(212, 175, 55, 0.4);
+    }
+
+    /* ── IMAGINE LIST ── */
+    .imagine-list {
+      list-style: none;
+      margin-top: var(--space-lg);
+    }
+
+    .imagine-list li {
+      font-family: var(--font-primary);
+      font-size: clamp(1.1rem, 1.3vw, 1.35rem);
+      color: var(--color-white-warm);
+      font-weight: 300;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      transition: color var(--duration-fast) ease;
+    }
+
+    .imagine-list li:hover {
+      color: var(--color-white);
+    }
+
+    .imagine-list li::before {
+      content: '→';
+      margin-right: 0.75rem;
+      color: var(--color-accent-blue);
+      opacity: 0.6;
+    }
+
+    /* ── INTEGRATION TAGS ── */
+    .integration-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-lg);
+    }
+
+    .integration-tag {
+      font-family: var(--font-primary);
+      font-size: 1rem;
+      color: var(--color-white-warm);
+      font-weight: 300;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 2px;
+      transition: all var(--duration-fast) ease;
+    }
+
+    .integration-tag:hover {
+      border-color: rgba(212, 175, 55, 0.3);
+      background: rgba(212, 175, 55, 0.05);
+    }
+
+    /* ── CTA FINAL ── */
+    .cta-final {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--color-graphite);
+    }
+
+    .cta-final-headline {
+      font-family: var(--font-primary);
+      font-size: clamp(2rem, 3.5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--color-white);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .cta-final-sub {
+      font-family: var(--font-primary);
+      font-size: clamp(1rem, 1.2vw, 1.25rem);
+      color: var(--color-gray-text);
+      font-weight: 300;
+      line-height: 1.6;
+      max-width: 780px;
+      margin: var(--space-md) auto 0;
+    }
+
+    .cta-final-buttons {
+      display: flex;
+      gap: var(--space-md);
+      justify-content: center;
+      margin-top: var(--space-xl);
+      flex-wrap: wrap;
+    }
+
+    /* ── HELPER CLASSES ── */
+    .display-block {
+      display: block;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-white {
+      color: var(--color-white);
+    }
+
+    .mt-sm {
+      margin-top: var(--space-sm);
+    }
+
+    .mt-md {
+      margin-top: var(--space-md);
+    }
+
+    .mt-lg {
+      margin-top: var(--space-lg);
+    }
+
+    .mt-xl {
+      margin-top: var(--space-xl);
+    }
+
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pt-xl {
+      padding-top: var(--space-xl);
+    }
+
+    .text-gray-text {
+      color: var(--color-gray-text);
+    }
+
+    /* ── BACKGROUND IMAGE SECTION ── */
+    .bg-image-section {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bg-image-section .bg-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.15;
+      filter: grayscale(100%);
+      z-index: 0;
+    }
+
+    .bg-image-section .bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 1) 100%);
+      z-index: 1;
+    }
+
+    .bg-image-section .section-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .modules-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .reduction-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .arch-list {
+        grid-template-columns: 1fr;
+      }
+
+      .module-deliveries-list {
+        grid-template-columns: 1fr;
+      }
+
+      .reduction-dual {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-infra {
+        min-height: 90vh;
+      }
+
+      .blueprint-grid {
+        animation: none;
+        opacity: 0.04;
+      }
+
+      .reduction-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-cta-group {
+        flex-direction: column;
+        gap: var(--space-sm);
+      }
+
+      .cta-final-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+
+      .alert-card {
+        padding: var(--space-md);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .reduction-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      .blueprint-grid {
+        animation: none !important;
+      }
+
+      .alert-label::before {
+        animation: none !important;
+      }
+
+      #infra-particles {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- GLOBAL MENU -->
+  <header class="nav-header">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">ZAKA<span class="text-gold">®</span></a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+
+        <div class="nav-item-dropdown">
+          <a href="#" class="nav-link" style="color: var(--color-white);">Produtos</a>
+          <div class="dropdown-menu">
+            <div class="dropdown-section-title">Cortex Suite</div>
+            <div class="dropdown-list">
+              <a href="cortex-eleitor.html" class="dropdown-link text-white">Cortex Eleitor</a>
+              <a href="cortex-governo.html" class="dropdown-link text-white">Cortex Governo</a>
+              <a href="cortex-infra.html" class="dropdown-link text-white">Cortex Infra</a>
+              <a href="#" class="dropdown-link">Cortex Care</a>
+              <a href="#" class="dropdown-link">Cortex Control</a>
+              <a href="cortex-food.html" class="dropdown-link text-white">Cortex Food</a>
+            </div>
+            <div class="dropdown-section-title" style="margin-top: 1.5rem;">Other</div>
+            <div class="dropdown-list">
+              <a href="specter.html" class="dropdown-link text-gold">Specter by ZAKA</a>
+            </div>
+          </div>
+        </div>
+
+        <a href="index.html#differentials" class="nav-link">Diferenciais</a>
+        <a href="index.html#how-we-work" class="nav-link">Como Trabalhamos</a>
+        <a href="#contact" class="nav-link">Contato</a>
+      </nav>
+
+      <button class="mobile-menu-btn" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="#" class="nav-link">Cortex Suite</a>
+      <a href="cortex-eleitor.html" class="nav-link text-white">Cortex Eleitor</a>
+      <a href="cortex-governo.html" class="nav-link text-white">Cortex Governo</a>
+      <a href="cortex-infra.html" class="nav-link text-white">Cortex Infra</a>
+      <a href="cortex-food.html" class="nav-link text-white">Cortex Food</a>
+      <a href="specter.html" class="nav-link text-gold">Specter by ZAKA</a>
+      <a href="index.html#differentials" class="nav-link">Diferenciais</a>
+      <a href="index.html#how-we-work" class="nav-link">Como Trabalhamos</a>
+      <a href="#contact" class="nav-link">Contato</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ═══════════════════════════════════════════════════
+         HERO SECTION
+         ═══════════════════════════════════════════════════ -->
+    <section class="hero-infra" id="hero">
+      <img
+        src="assets/hero-cortex-infra.png"
+        alt="Megaestrutura arquitetônica abstrata"
+        class="img-cinematic"
+        data-parallax="0.05"
+        loading="eager">
+      <div class="blueprint-grid"></div>
+      <canvas id="infra-particles"></canvas>
+
+      <div class="content-narrow hero-infra-content">
+        <span class="hero-eyebrow fade-up delay-1">CORTEX INFRA</span>
+        <h1 class="hero-headline fade-up delay-2">
+          Inteligência estratégica para o setor que constrói o Brasil.
+        </h1>
+        <p class="hero-sub fade-up delay-3">
+          Uma plataforma proprietária de inteligência aplicada para infraestrutura, contratos públicos, ambiente regulatório e operações de engenharia pesada.
+        </p>
+        <div class="hero-cta-group fade-up delay-4">
+          <a href="#plataforma" class="cta-primary">Conhecer a Plataforma</a>
+          <a href="#contact" class="cta-secondary">Falar com a ZAKA</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SEÇÃO 1 — O PROBLEMA
+         ═══════════════════════════════════════════════════ -->
+    <section class="infra-section" id="plataforma">
+      <div class="content-narrow">
+        <div class="fade-up">
+          <h2 class="section-headline">A infraestrutura não perde dinheiro por falta de engenharia.</h2>
+          <p class="section-sub" style="color: var(--color-accent-blue); font-weight: 400;">Perde por falta de inteligência operacional.</p>
+        </div>
+
+        <div class="fade-up delay-1" style="margin-top: var(--space-xl);">
+          <p class="section-body">O ambiente de infraestrutura brasileiro se tornou:</p>
+          <ul class="infra-list" style="max-width: 500px;">
+            <li>hipercomplexo</li>
+            <li>regulatoriamente instável</li>
+            <li>tecnicamente exigente</li>
+            <li>documentalmente massivo</li>
+          </ul>
+        </div>
+
+        <div class="fade-up delay-2" style="margin-top: var(--space-lg);">
+          <p class="section-body">Hoje, grandes decisões ainda dependem de:</p>
+          <ul class="infra-list" style="max-width: 500px;">
+            <li>leitura manual</li>
+            <li>análise fragmentada</li>
+            <li>interpretação humana limitada</li>
+            <li>reação tardia</li>
+          </ul>
+        </div>
+
+        <div class="emphasis-block fade-up delay-3">
+          <p class="emphasis-text">
+            O problema não é falta de informação.<br>
+            <span class="text-gray-text">É excesso de informação sem inteligência estruturada.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SEÇÃO 2 — O QUE O CORTEX INFRA É
+         ═══════════════════════════════════════════════════ -->
+    <section class="infra-section infra-section--alt">
+      <div class="content-narrow text-center">
+        <div class="fade-up">
+          <h2 class="section-headline section-headline--center">Não é clipping. Não é dashboard. Não é consultoria tradicional.</h2>
+        </div>
+
+        <div class="fade-up delay-1" style="margin-top: var(--space-xl);">
+          <p class="section-sub section-sub--center">O CORTEX Infra é um sistema ativo de:</p>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-sm); margin-top: var(--space-lg); max-width: 700px; margin-left: auto; margin-right: auto;">
+            <span style="font-family: var(--font-primary); font-size: 1rem; color: var(--color-white-warm); font-weight: 300; padding: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.04);">leitura técnica</span>
+            <span style="font-family: var(--font-primary); font-size: 1rem; color: var(--color-white-warm); font-weight: 300; padding: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.04);">correlação massiva</span>
+            <span style="font-family: var(--font-primary); font-size: 1rem; color: var(--color-white-warm); font-weight: 300; padding: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.04);">monitoramento regulatório</span>
+            <span style="font-family: var(--font-primary); font-size: 1rem; color: var(--color-white-warm); font-weight: 300; padding: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.04);">inteligência documental</span>
+            <span style="font-family: var(--font-primary); font-size: 1rem; color: var(--color-white-warm); font-weight: 300; padding: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.04);">análise preditiva</span>
+            <span style="font-family: var(--font-primary); font-size: 1rem; color: var(--color-white-warm); font-weight: 300; padding: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.04);">recomendação operacional</span>
+          </div>
+          <p style="font-family: var(--font-primary); font-size: 1rem; color: var(--color-gray-text); font-weight: 300; margin-top: var(--space-lg);">Tudo operando continuamente.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SEÇÃO 3 — DOIS MÓDULOS
+         ═══════════════════════════════════════════════════ -->
+    <section class="infra-section">
+      <div class="content-narrow">
+        <div class="fade-up text-center">
+          <h2 class="section-headline section-headline--center">Dois módulos. O mesmo cérebro.</h2>
+        </div>
+
+        <div class="modules-grid">
+          <!-- CARD 01 — Regulatory Intelligence -->
+          <div class="module-card fade-up delay-1">
+            <span class="module-label">Módulo 01</span>
+            <h3 class="module-title">CORTEX Regulatory Intelligence</h3>
+            <p class="module-sub">O radar estratégico do setor.</p>
+            <p class="module-body">
+              Monitora continuamente DNIT, TCU, Diário Oficial, Projetos de Lei, mudanças técnicas, instruções normativas, editais e alterações regulatórias. Tudo em tempo real.
+            </p>
+
+            <div class="module-deliveries">
+              <span class="module-deliveries-label">Entregas</span>
+              <ul class="module-deliveries-list">
+                <li>Alertas antecipados</li>
+                <li>Diagnóstico institucional</li>
+                <li>Dossiês técnicos</li>
+                <li>Projeção de risco sistêmico</li>
+                <li>Monitoramento regulatório contínuo</li>
+                <li>Correlação normativa</li>
+                <li>Inteligência institucional</li>
+              </ul>
+            </div>
+
+            <div class="module-emphasis">
+              <p class="module-emphasis-text">
+                "O objetivo não é mostrar o que foi publicado. É mostrar o que aquilo provavelmente vai impactar."
+              </p>
+            </div>
+          </div>
+
+          <!-- CARD 02 — Bid Intelligence -->
+          <div class="module-card fade-up delay-2">
+            <span class="module-label">Módulo 02</span>
+            <h3 class="module-title">CORTEX Bid Intelligence</h3>
+            <p class="module-sub">Inteligência aplicada à engenharia e licitações.</p>
+            <p class="module-body">
+              Automatiza leitura e interpretação de editais altamente complexos. Analisa editais extensos, requisitos técnicos, cláusulas críticas, exigências documentais e riscos ocultos — em minutos.
+            </p>
+
+            <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(255,255,255,0.02); border: 1px solid rgba(10, 132, 255, 0.1); border-radius: 2px;">
+              <p style="font-family: var(--font-primary); font-size: clamp(1rem, 1.2vw, 1.2rem); color: var(--color-white); font-weight: 300; text-align: center;">
+                O único que lê editais de 1.000 páginas em minutos.
+              </p>
+            </div>
+
+            <p class="module-body" style="margin-top: var(--space-md);">
+              Cruza exigências técnicas com acervo da empresa, currículos de engenheiros, histórico de obras, aditivos contratuais, documentos internos e experiência técnica acumulada.
+            </p>
+
+            <div class="module-deliveries">
+              <span class="module-deliveries-label">Entregas</span>
+              <ul class="module-deliveries-list">
+                <li>Risco de desclassificação</li>
+                <li>Lacunas técnicas</li>
+                <li>Documentos faltantes</li>
+                <li>Prazos inviáveis</li>
+                <li>Riscos financeiros ocultos</li>
+                <li>Sugestões estruturais para proposta</li>
+              </ul>
+            </div>
+
+            <div class="module-emphasis">
+              <p class="module-emphasis-text">
+                "Muito além de organização documental. É inteligência comercial aplicada à engenharia."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SEÇÃO 4 — DETECÇÃO DE RISCO
+         ═══════════════════════════════════════════════════ -->
+    <section class="infra-section infra-section--alt bg-image-section">
+      <img
+        src="https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=2670&auto=format&fit=crop"
+        alt="Infraestrutura"
+        class="bg-image"
+        loading="lazy">
+      <div class="bg-overlay"></div>
+
+      <div class="content-narrow section-content">
+        <div class="fade-up text-center">
+          <h2 class="section-headline section-headline--center">Detecta risco antes do impacto.</h2>
+          <p class="section-sub section-sub--center">
+            O CORTEX identifica alterações normativas críticas, impacto potencial em contratos ativos, conflitos regulatórios, mudanças técnicas relevantes, risco jurídico acumulado e gargalos sistêmicos. Tudo transformado em alerta acionável.
+          </p>
+        </div>
+
+        <!-- Alert Card -->
+        <div class="alert-card fade-up delay-2">
+          <span class="alert-label">ALERTA NORMATIVO</span>
+          <p class="alert-body">
+            "Alteração normativa publicada às 18h.<br>
+            Impacto potencial em 2 contratos ativos."
+          </p>
+          <div class="alert-recommendation">
+            <span class="alert-recommendation-label">Recomendação:</span>
+            <p class="alert-recommendation-text">Revisão imediata da cláusula técnica.</p>
+          </div>
+        </div>
+
+        <div class="emphasis-block fade-up delay-3" style="max-width: 700px; margin: var(--space-xl) auto 0; text-align: center; border-left: none; padding-left: 0;">
+          <p class="emphasis-text">
+            O humano lê uma parte.<br>
+            <span class="text-gray-text">O CORTEX lê tudo. E cruza tudo.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SEÇÃO 5 — ASSIMETRIA INFORMACIONAL
+         ═══════════════════════════════════════════════════ -->
+    <section class="infra-section">
+      <div class="content-narrow">
+        <div class="fade-up">
+          <h2 class="section-headline">Não é software. É assimetria informacional.</h2>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); margin-top: var(--space-xl);">
+          <div class="fade-up delay-1">
+            <p class="section-body" style="color: var(--color-gray-text);">O CORTEX Infra transforma:</p>
+            <ul class="infra-list">
+              <li>volume documental</li>
+              <li>complexidade regulatória</li>
+              <li>excesso de normas</li>
+              <li>ambiente técnico fragmentado</li>
+            </ul>
+          </div>
+          <div class="fade-up delay-2">
+            <p class="section-body" style="color: var(--color-accent-gold);">em:</p>
+            <ul class="infra-list">
+              <li style="color: var(--color-white-warm);">clareza</li>
+              <li style="color: var(--color-white-warm);">antecipação</li>
+              <li style="color: var(--color-white-warm);">velocidade</li>
+              <li style="color: var(--color-white-warm);">poder técnico</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SEÇÃO 6 — PREDITIVO EM TEMPO REAL
+         ═══════════════════════════════════════════════════ -->
+    <section class="infra-section infra-section--alt">
+      <div class="content-narrow">
+        <div class="fade-up">
+          <span class="section-eyebrow">OPERAÇÃO CONTÍNUA</span>
+          <h2 class="section-headline">Preditivo contínuo para operações críticas.</h2>
+        </div>
+
+        <ul class="infra-list fade-up delay-1" style="max-width: 700px; margin-top: var(--space-lg);">
+          <li>detecta anomalias no momento em que surgem</li>
+          <li>projeta cenários de paralisação</li>
+          <li>calcula impacto provável</li>
+          <li>dispara recomendações prontas</li>
+          <li>identifica riscos antes da operação ser afetada</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SEÇÃO 7 — CONEXÃO DIRETA COM FONTES OFICIAIS
+         ═══════════════════════════════════════════════════ -->
+    <section class="infra-section">
+      <div class="content-narrow">
+        <div class="fade-up">
+          <h2 class="section-headline">Conexão direta com a fonte oficial.</h2>
+          <p class="section-sub">Não existe intermediário. O sistema trabalha diretamente com:</p>
+        </div>
+
+        <div class="source-grid fade-up delay-1">
+          <span class="source-tag">DOU</span>
+          <span class="source-tag">Câmara</span>
+          <span class="source-tag">TCU</span>
+          <span class="source-tag">DNIT</span>
+          <span class="source-tag">PNCP</span>
+          <span class="source-tag">SICRO</span>
+          <span class="source-tag">Bases Públicas</span>
+          <span class="source-tag">Execução Orçamentária</span>
+          <span class="source-tag">Transparência Governamental</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SEÇÃO 8 — ARQUITETURA PROPRIETÁRIA
+         ═══════════════════════════════════════════════════ -->
+    <section class="infra-section infra-section--alt">
+      <div class="content-narrow">
+        <div class="fade-up">
+          <span class="section-eyebrow">TECNOLOGIA PROPRIETÁRIA</span>
+          <h2 class="section-headline">Criado especificamente para ambientes críticos de infraestrutura.</h2>
+        </div>
+
+        <ul class="arch-list fade-up delay-1">
+          <li>algoritmos próprios de leitura técnica</li>
+          <li>correlação massiva de dados</li>
+          <li>memória histórica contínua</li>
+          <li>estrutura preditiva</li>
+          <li>mecanismos de redução de erro</li>
+          <li>inteligência documental contextual</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SEÇÃO 9 — O QUE O CORTEX REDUZ
+         ═══════════════════════════════════════════════════ -->
+    <section class="infra-section">
+      <div class="content-narrow">
+        <div class="fade-up text-center">
+          <h2 class="section-headline section-headline--center">O que o CORTEX Infra reduz.</h2>
+        </div>
+
+        <div class="reduction-grid fade-up delay-1">
+          <div class="reduction-card">
+            <span class="reduction-label">Reduz</span>
+            <span class="reduction-text">risco</span>
+          </div>
+          <div class="reduction-card">
+            <span class="reduction-label">Reduz</span>
+            <span class="reduction-text">erro técnico</span>
+          </div>
+          <div class="reduction-card">
+            <span class="reduction-label">Reduz</span>
+            <span class="reduction-text">tempo de análise</span>
+          </div>
+          <div class="reduction-card">
+            <span class="reduction-label">Reduz</span>
+            <span class="reduction-text">reação tardia</span>
+          </div>
+          <div class="reduction-card">
+            <span class="reduction-label">Reduz</span>
+            <span class="reduction-text">vulnerabilidade regulatória</span>
+          </div>
+        </div>
+
+        <div class="reduction-dual fade-up delay-2">
+          <div class="reduction-column">
+            <span class="reduction-column-label reduction-column-label--increase">E aumenta:</span>
+            <ul class="infra-list">
+              <li style="color: var(--color-white-warm);">previsibilidade</li>
+              <li style="color: var(--color-white-warm);">competitividade</li>
+              <li style="color: var(--color-white-warm);">controle</li>
+              <li style="color: var(--color-white-warm);">velocidade técnica</li>
+              <li style="color: var(--color-white-warm);">capacidade institucional</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SEÇÃO 10 — IMPACTO REAL
+         ═══════════════════════════════════════════════════ -->
+    <section class="infra-section infra-section--alt">
+      <div class="content-narrow">
+        <div class="fade-up">
+          <h2 class="section-headline">Isso muda completamente o nível do jogo.</h2>
+          <p class="section-sub" style="margin-top: var(--space-md);">Imagine:</p>
+        </div>
+
+        <ul class="imagine-list fade-up delay-1" style="max-width: 800px;">
+          <li>editais analisados em minutos</li>
+          <li>risco detectado antes da proposta</li>
+          <li>diagnóstico técnico pronto para reunião</li>
+          <li>impacto regulatório identificado automaticamente</li>
+          <li>decisões baseadas em evidência e não intuição</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SEÇÃO 11 — EXCLUSIVO
+         ═══════════════════════════════════════════════════ -->
+    <section class="infra-section">
+      <div class="content-narrow">
+        <div class="fade-up">
+          <h2 class="section-headline">O que ninguém faz.</h2>
+          <p class="section-sub">Integração entre:</p>
+        </div>
+
+        <div class="integration-grid fade-up delay-1">
+          <span class="integration-tag">infraestrutura</span>
+          <span class="integration-tag">engenharia</span>
+          <span class="integration-tag">tecnologia</span>
+          <span class="integration-tag">direito</span>
+          <span class="integration-tag">estratégia</span>
+          <span class="integration-tag">inteligência regulatória</span>
+        </div>
+
+        <p style="font-family: var(--font-primary); font-size: 1rem; color: var(--color-gray-text); font-weight: 300; margin-top: var(--space-lg); max-width: 600px;" class="fade-up delay-2">
+          Tudo dentro de uma única arquitetura operacional.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SEÇÃO 12 — TECNOLOGIA COM ALMA
+         ═══════════════════════════════════════════════════ -->
+    <section class="infra-section infra-section--alt">
+      <div class="content-narrow">
+        <div class="fade-up">
+          <h2 class="section-headline">Tecnologia avançada com foco humano.</h2>
+          <p class="section-sub" style="margin-top: var(--space-md);">O CORTEX Infra segue a filosofia central da ZAKA.</p>
+        </div>
+
+        <div class="fade-up delay-1" style="margin-top: var(--space-lg);">
+          <p class="section-body" style="margin-bottom: var(--space-sm);">Criado para:</p>
+          <ul class="infra-list" style="max-width: 600px;">
+            <li>ampliar capacidade técnica</li>
+            <li>reduzir desgaste operacional</li>
+            <li>acelerar decisões</li>
+            <li>transformar complexidade em clareza</li>
+            <li>proteger pessoas e organizações através da inteligência</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SEÇÃO 13 — VISÃO
+         ═══════════════════════════════════════════════════ -->
+    <section class="infra-section" style="min-height: 70vh; display: flex; align-items: center;">
+      <div class="content-narrow">
+        <div class="fade-up">
+          <h2 class="section-headline" style="font-size: clamp(2rem, 3.5vw, 3.5rem);">O setor de infraestrutura é complexo demais para operar no improviso.</h2>
+        </div>
+
+        <div class="fade-up delay-1" style="margin-top: var(--space-xl);">
+          <p class="section-body" style="margin-bottom: var(--space-sm);">O CORTEX Infra transforma:</p>
+          <ul class="infra-list" style="max-width: 700px;">
+            <li style="color: var(--color-white-warm);">informação dispersa em vantagem estratégica</li>
+            <li style="color: var(--color-white-warm);">volume documental em inteligência</li>
+            <li style="color: var(--color-white-warm);">reação tardia em antecipação</li>
+            <li style="color: var(--color-white-warm);">complexidade regulatória em decisão objetiva</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         CTA FINAL
+         ═══════════════════════════════════════════════════ -->
+    <section class="cta-final" id="contact">
+      <div class="content-narrow fade-up">
+        <h2 class="cta-final-headline">
+          O futuro da infraestrutura será decidido por quem entende primeiro.
+        </h2>
+        <p class="cta-final-sub">
+          O CORTEX Infra transforma risco, norma, contrato e informação técnica em inteligência operacional contínua para organizações que precisam operar com mais velocidade, segurança e poder estratégico.
+        </p>
+        <div class="cta-final-buttons">
+          <a href="#contact" class="cta-primary" style="font-size: 1.15rem;">Conhecer a Plataforma</a>
+          <a href="index.html#products" class="cta-secondary" style="font-size: 1.15rem;">Voltar para Produtos</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer
+    style="border-top: 1px solid var(--color-gray-border); padding: var(--space-xl) 0; background: var(--color-black);">
+    <div class="container">
+      <div class="grid justify-between">
+        <div class="col-4">
+          <a href="index.html" class="nav-logo">ZAKA<span class="text-gold">®</span></a>
+          <p class="text-small" style="margin-top: 1rem;">Technology with soul.</p>
+          <div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 0.5rem;">
+            <a href="index.html" class="text-small">Home</a>
+            <a href="index.html#products" class="text-small">Produtos</a>
+            <a href="cortex-infra.html" class="text-small text-white">CORTEX Infra</a>
+            <a href="#contact" class="text-small">Contato</a>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <p class="text-small text-gray-text mb-sm" style="text-transform: uppercase; letter-spacing: 0.1em;">
+            Ecossistema</p>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <a href="cortex-eleitor.html" class="text-small text-white">CORTEX Eleitor</a>
+            <a href="cortex-governo.html" class="text-small text-white">CORTEX Governo</a>
+            <a href="cortex-infra.html" class="text-small text-white">CORTEX Infra</a>
+            <a href="#" class="text-small">CORTEX Care</a>
+            <a href="#" class="text-small">CORTEX Control</a>
+            <a href="cortex-food.html" class="text-small text-white">CORTEX Food</a>
+            <a href="specter.html" class="text-small text-gold mt-sm">Specter by ZAKA</a>
+          </div>
+        </div>
+
+        <div class="col-4" style="text-align: right; display: flex; flex-direction: column; justify-content: flex-end;">
+          <p class="text-small">&copy; 2026 ZAKA Foundation. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- System Scripts -->
+  <script src="js/navigation.js"></script>
+  <script src="js/motion.js"></script>
+  <script src="js/system.js"></script>
+
+  <!-- CORTEX Infra — Metallic Particle System -->
+  <script>
+    (function () {
+      'use strict';
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) return;
+
+      const canvas = document.getElementById('infra-particles');
+      if (!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      const isMobile = window.innerWidth <= 768;
+      let width, height, particles;
+
+      function init() {
+        const hero = canvas.parentElement;
+        width = hero.offsetWidth;
+        height = hero.offsetHeight;
+        canvas.width = width;
+        canvas.height = height;
+
+        const numParticles = isMobile ? 15 : 50;
+        particles = [];
+
+        for (let i = 0; i < numParticles; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            radius: Math.random() * 1.5 + 0.3,
+            vx: (Math.random() - 0.5) * 0.15,
+            vy: (Math.random() - 0.5) * 0.1 - 0.05,
+            alpha: Math.random() * 0.4 + 0.1,
+            // Metallic gold tint
+            r: 200 + Math.floor(Math.random() * 55),
+            g: 175 + Math.floor(Math.random() * 45),
+            b: 80 + Math.floor(Math.random() * 60)
+          });
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, width, height);
+
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          if (p.y > height) p.y = 0;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${p.r}, ${p.g}, ${p.b}, ${p.alpha})`;
+          ctx.fill();
+        });
+
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', () => {
+        init();
+      });
+
+      init();
+      draw();
+    })();
+  </script>
+</body>
+
+</html>

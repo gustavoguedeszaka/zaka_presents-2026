@@ -1,0 +1,45 @@
+:root {
+  /* Color System */
+  --color-black: #030303;
+  --color-black-deep: #000000;
+  --color-graphite: #141415;
+  --color-charcoal: #1C1C1E;
+  --color-charcoal-light: #2C2C2E;
+  
+  --color-white: #FFFFFF;
+  --color-white-warm: #F5F5F7;
+  --color-gray-text: #A1A1A6;
+  --color-gray-border: rgba(255, 255, 255, 0.06);
+
+  --color-accent-blue: #0A84FF; /* Restrained institutional blue */
+  --color-accent-blue-glow: rgba(10, 132, 255, 0.15);
+  
+  --color-accent-gold: #D4AF37;
+  --color-accent-gold-muted: rgba(212, 175, 55, 0.4);
+
+  /* Typography */
+  --font-primary: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-secondary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Fluid Spacing (mobile to 3840px) */
+  --space-xs: clamp(0.5rem, 0.5vw, 1rem);
+  --space-sm: clamp(1rem, 1vw, 2rem);
+  --space-md: clamp(2rem, 2vw, 4rem);
+  --space-lg: clamp(4rem, 4vw, 8rem);
+  --space-xl: clamp(8rem, 8vw, 16rem);
+  --space-giant: clamp(12rem, 12vw, 24rem);
+
+  /* Easing & Motion */
+  --ease-cinematic: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-slow: cubic-bezier(0.16, 1, 0.3, 1);
+  
+  --duration-fast: 300ms;
+  --duration-medium: 600ms;
+  --duration-slow: 1200ms;
+  --duration-ambient: 4000ms;
+
+  /* Layout */
+  --container-width: 90vw;
+  --container-max: 3400px; /* Supports up to 3840px gracefully */
+  --header-height: 80px;
+}

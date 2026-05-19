@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAKA® | Tecnologia Avançada com Foco Humano</title>
+
+  <!-- SEO & Meta -->
+  <meta name="description"
+    content="ZAKA® — Plataformas proprietárias de inteligência artificial, visão computacional e análise estratégica criadas para transformar complexidade em clareza, percepção e decisão.">
+  <meta property="og:title" content="ZAKA® | Tecnologia Avançada com Foco Humano">
+  <meta property="og:description"
+    content="Plataformas proprietárias de inteligência aplicada a ambientes críticos, estratégicos e altamente complexos.">
+  <meta property="og:type" content="website">
+
+  <!-- Foundation Styles -->
+  <link rel="stylesheet" href="css/core.css">
+  <link rel="stylesheet" href="css/home.css">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://images.unsplash.com">
+</head>
+
+<body>
+
+  <!-- GLOBAL MENU -->
+  <header class="nav-header">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">ZAKA<span class="text-gold">®</span></a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link" style="color: var(--color-white);">Home</a>
+
+        <div class="nav-item-dropdown">
+          <a href="#produtos" class="nav-link">Produtos</a>
+          <div class="dropdown-menu">
+            <div class="dropdown-section-title">CORTEX</div>
+            <div class="dropdown-list">
+              <a href="cortex-eleitor.html" class="dropdown-link text-white">CORTEX Eleitor</a>
+              <a href="cortex-governo.html" class="dropdown-link text-white">CORTEX Governo</a>
+              <a href="#" class="dropdown-link">CORTEX Infra</a>
+              <a href="cortex-care.html" class="dropdown-link text-white">CORTEX Care</a>
+              <a href="cortex-food.html" class="dropdown-link text-white">CORTEX Food</a>
+            </div>
+            <div class="dropdown-section-title" style="margin-top: 1.5rem;">Outras Plataformas</div>
+            <div class="dropdown-list">
+              <a href="specter.html" class="dropdown-link text-gold">Specter by ZAKA</a>
+            </div>
+          </div>
+        </div>
+
+        <a href="#diferenciais" class="nav-link">Diferenciais</a>
+        <a href="#como-trabalhamos" class="nav-link">Como Trabalhamos</a>
+        <a href="#contato" class="nav-link">Contato</a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-btn" aria-label="Abrir Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="#produtos" class="nav-link">Produtos</a>
+      <a href="cortex-eleitor.html" class="nav-link text-white">CORTEX Eleitor</a>
+      <a href="cortex-governo.html" class="nav-link text-white">CORTEX Governo</a>
+      <a href="cortex-care.html" class="nav-link text-white">CORTEX Care</a>
+      <a href="cortex-food.html" class="nav-link text-white">CORTEX Food</a>
+      <a href="specter.html" class="nav-link text-gold">Specter by ZAKA</a>
+      <a href="#diferenciais" class="nav-link">Diferenciais</a>
+      <a href="#como-trabalhamos" class="nav-link">Como Trabalhamos</a>
+      <a href="#contato" class="nav-link">Contato</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero-home" id="hero">
+      <img src="assets/hero-home.png"
+        alt="Arquitetura japonesa contemporânea com vidro e iluminação controlada" class="hero-bg" data-parallax="0.04"
+        loading="eager">
+      <div class="hero-organic-overlay"></div>
+      <div class="home-scan"></div>
+      <canvas id="home-particles"></canvas>
+
+      <div class="container hero-content">
+        <div style="min-height: 90vh; display: flex; align-items: center;">
+          <div style="max-width: 900px;">
+            <span class="hero-eyebrow fade-up delay-1">ZAKA</span>
+            <h1 class="hero-headline fade-up delay-2">
+              Tecnologia avançada<br>com foco humano.
+            </h1>
+            <p class="hero-sub fade-up delay-3">
+              Plataformas proprietárias de inteligência artificial, visão computacional e análise estratégica criadas
+              para transformar complexidade em clareza, percepção e decisão.
+            </p>
+            <div class="fade-up delay-4" style="display: flex; gap: var(--space-lg); align-items: center; flex-wrap: wrap;">
+              <a href="#produtos" class="cta-primary">Conhecer Produtos</a>
+              <a href="#contato" class="cta-secondary">Falar com a ZAKA</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== MANIFESTO ===== -->
+    <section id="manifesto" class="manifesto-section">
+      <div class="container">
+        <div class="blur-in">
+          <h2 class="manifesto-headline">
+            Não entregamos dashboards.<br>
+            <span class="text-gray-text">Entregamos clareza.</span>
+          </h2>
+          <div class="manifesto-text">
+            <p>
+              A ZAKA cria plataformas proprietárias de inteligência aplicadas a ambientes críticos, estratégicos e
+              altamente complexos.
+            </p>
+            <span class="manifesto-emphasis">
+              Tecnologia silenciosa.<br>
+              Inteligência invisível.<br>
+              Experiência humana.
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== O PROBLEMA ===== -->
+    <section id="problema" class="problem-section">
+      <div class="problem-bg">
+        <img src="assets/problem-section.png" alt="Fragmentação de dados" loading="lazy">
+      </div>
+      <div class="container">
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-7 fade-up delay-1">
+            <span class="section-label">O Problema</span>
+            <h2 class="problem-headline">
+              O excesso de informação tornou a decisão mais difícil.
+            </h2>
+          </div>
+          <div class="col-5 fade-up delay-2" style="display: flex; align-items: flex-end;">
+            <div class="problem-body">
+              <p>
+                Hoje, empresas, governos e operações críticas produzem dados o tempo todo.
+              </p>
+              <span class="problem-bold">
+                O problema não é acesso à informação.<br>
+                É transformar informação em percepção real.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== O QUE A ZAKA FAZ ===== -->
+    <section id="solucao" class="solution-section">
+      <div class="container">
+        <div class="grid" style="gap: var(--space-xl);">
+          <div class="col-6 fade-up delay-1">
+            <span class="section-label">Inteligência Aplicada</span>
+            <h2 class="solution-headline">
+              Transformamos dados em percepção operacional.
+            </h2>
+          </div>
+          <div class="col-5 fade-up delay-2" style="margin-left: auto;">
+            <p class="text-gray-text"
+              style="font-weight: 300; line-height: 1.8; font-size: 1.05rem; margin-bottom: var(--space-md);">
+              A ZAKA conecta:
+            </p>
+            <ul class="solution-list">
+              <li>Inteligência artificial</li>
+              <li>Visão computacional</li>
+              <li>Comportamento</li>
+              <li>Contexto</li>
+              <li>Análise preditiva</li>
+              <li>Automação estratégica</li>
+            </ul>
+            <p class="solution-conclusion">
+              em plataformas proprietárias de inteligência contínua.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== PRODUTOS ===== -->
+    <section id="produtos" class="products-section">
+      <div class="container">
+        <div class="section-header fade-up">
+          <span class="section-label">Ecossistema</span>
+          <h2 class="section-headline">Nossas Plataformas.</h2>
+        </div>
+
+        <div class="product-grid">
+
+          <!-- CORTEX Eleitor -->
+          <a href="cortex-eleitor.html" class="product-card fade-up delay-1">
+            <img
+              src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2672&auto=format&fit=crop"
+              class="product-bg" alt="CORTEX Eleitor" loading="lazy">
+            <div class="product-card-content">
+              <h3>CORTEX Eleitor</h3>
+              <p>Inteligência eleitoral preditiva.</p>
+            </div>
+          </a>
+
+          <!-- CORTEX Governo -->
+          <a href="cortex-governo.html" class="product-card fade-up delay-2">
+            <img
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop"
+              class="product-bg" alt="CORTEX Governo" loading="lazy">
+            <div class="product-card-content">
+              <h3>CORTEX Governo</h3>
+              <p>Gestão pública e percepção estratégica.</p>
+            </div>
+          </a>
+
+          <!-- CORTEX Infra -->
+          <a href="#" class="product-card fade-up delay-1">
+            <img
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2669&auto=format&fit=crop"
+              class="product-bg" alt="CORTEX Infra" loading="lazy">
+            <div class="product-card-content">
+              <h3>CORTEX Infra</h3>
+              <p>Monitoramento inteligente de infraestrutura.</p>
+            </div>
+          </a>
+
+          <!-- CORTEX Care -->
+          <a href="cortex-care.html" class="product-card fade-up delay-2">
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2670&auto=format&fit=crop"
+              class="product-bg" alt="CORTEX Care" loading="lazy">
+            <div class="product-card-content">
+              <h3>CORTEX Care</h3>
+              <p>Inteligência aplicada à experiência humana.</p>
+            </div>
+          </a>
+
+          <!-- CORTEX Food -->
+          <a href="cortex-food.html" class="product-card fade-up delay-1">
+            <img
+              src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2670&auto=format&fit=crop"
+              class="product-bg" alt="CORTEX Food" loading="lazy">
+            <div class="product-card-content">
+              <h3>CORTEX Food</h3>
+              <p>Inteligência para operações gastronômicas.</p>
+            </div>
+          </a>
+
+          <!-- Specter by ZAKA -->
+          <a href="specter.html" class="product-card product-card--specter fade-up delay-2">
+            <img
+              src="https://images.unsplash.com/photo-1614729939124-032f0b56c9ce?q=80&w=2670&auto=format&fit=crop"
+              class="product-bg" alt="Specter by ZAKA" loading="lazy">
+            <div class="product-card-content">
+              <h3 class="text-gold">Specter by ZAKA</h3>
+              <p style="color: var(--color-accent-gold-muted);">Inteligência avançada furtiva.</p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== DIFERENCIAIS ===== -->
+    <section id="diferenciais" class="differentials-section">
+      <div class="container">
+        <div class="fade-up" style="text-align: center;">
+          <span class="section-label">Capacidades</span>
+          <h2 class="section-headline">O que torna a ZAKA diferente.</h2>
+        </div>
+
+        <div class="diff-grid fade-up delay-1">
+          <div class="diff-item">
+            <h4>Plataformas proprietárias</h4>
+          </div>
+          <div class="diff-item">
+            <h4>Inteligência contextual</h4>
+          </div>
+          <div class="diff-item">
+            <h4>Visão computacional</h4>
+          </div>
+          <div class="diff-item">
+            <h4>IA aplicada à operação real</h4>
+          </div>
+          <div class="diff-item">
+            <h4>Inteligência preditiva</h4>
+          </div>
+          <div class="diff-item">
+            <h4>Correlação massiva de dados</h4>
+          </div>
+          <div class="diff-item">
+            <h4>Tecnologia centrada em pessoas</h4>
+          </div>
+          <div class="diff-item">
+            <h4>Arquitetura escalável</h4>
+          </div>
+          <div class="diff-item">
+            <h4>Operação em tempo real</h4>
+          </div>
+          <div class="diff-item">
+            <h4>Inteligência estratégica contínua</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== FILOSOFIA ===== -->
+    <section id="filosofia" class="philosophy-section">
+      <div class="container">
+        <div class="blur-in">
+          <h2 class="philosophy-headline">
+            Tecnologia silenciosa.<br>
+            <span class="text-gray-text">Impacto real.</span>
+          </h2>
+          <p class="philosophy-text">
+            Acreditamos que a melhor tecnologia é aquela que desaparece para que a experiência humana apareça.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== COMO TRABALHAMOS ===== -->
+    <section id="como-trabalhamos" class="workflow-section">
+      <div class="container">
+        <div class="fade-up" style="text-align: center; margin-bottom: clamp(4rem, 6vw, 8rem);">
+          <span class="section-label">Processo</span>
+          <h2 class="section-headline">Como Trabalhamos.</h2>
+        </div>
+
+        <div class="workflow-timeline fade-up delay-1">
+          <div class="workflow-step">
+            <span class="step-number">01</span>
+            <div class="step-dot"></div>
+            <span class="step-label">Diagnóstico</span>
+          </div>
+          <div class="workflow-step">
+            <span class="step-number">02</span>
+            <div class="step-dot"></div>
+            <span class="step-label">Arquitetura</span>
+          </div>
+          <div class="workflow-step">
+            <span class="step-number">03</span>
+            <div class="step-dot"></div>
+            <span class="step-label">Inteligência</span>
+          </div>
+          <div class="workflow-step">
+            <span class="step-number">04</span>
+            <div class="step-dot"></div>
+            <span class="step-label">Operação</span>
+          </div>
+          <div class="workflow-step">
+            <span class="step-number">05</span>
+            <div class="step-dot"></div>
+            <span class="step-label">Evolução Contínua</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== CTA FINAL ===== -->
+    <section id="contato" class="final-cta-section">
+      <div class="container">
+        <div class="fade-up">
+          <h2 class="final-cta-headline">
+            Transforme complexidade<br>em percepção.
+          </h2>
+          <p class="final-cta-sub">
+            A ZAKA cria plataformas avançadas de inteligência para organizações que precisam operar com mais clareza,
+            velocidade e precisão.
+          </p>
+          <div style="display: flex; gap: var(--space-lg); align-items: center; justify-content: center; flex-wrap: wrap;">
+            <a href="#produtos" class="cta-primary">Conhecer Produtos</a>
+            <a href="mailto:contato@zaka.io" class="cta-secondary">Entrar em Contato</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">ZAKA<span class="text-gold">®</span></a>
+          <p>Tecnologia avançada com foco humano.</p>
+          <div class="footer-nav-list" style="margin-top: var(--space-md);">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="#produtos" class="footer-link">Produtos</a>
+            <a href="#diferenciais" class="footer-link">Diferenciais</a>
+            <a href="#contato" class="footer-link">Contato</a>
+          </div>
+        </div>
+
+        <div>
+          <span class="footer-label">CORTEX</span>
+          <div class="footer-nav-list">
+            <a href="cortex-eleitor.html" class="footer-link">CORTEX Eleitor</a>
+            <a href="cortex-governo.html" class="footer-link">CORTEX Governo</a>
+            <a href="#" class="footer-link">CORTEX Infra</a>
+            <a href="cortex-care.html" class="footer-link">CORTEX Care</a>
+            <a href="cortex-food.html" class="footer-link">CORTEX Food</a>
+          </div>
+          <span class="footer-label" style="margin-top: var(--space-md); display: block;">Outras Plataformas</span>
+          <div class="footer-nav-list">
+            <a href="specter.html" class="footer-link" style="color: var(--color-accent-gold-muted);">Specter by ZAKA</a>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: flex-end; text-align: right;">
+          <p style="font-size: 0.8rem; color: rgba(255,255,255,0.3);">© 2026 ZAKA Foundation.<br>Todos os direitos reservados.</p>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- System Scripts -->
+  <script src="js/navigation.js"></script>
+  <script src="js/motion.js"></script>
+  <script src="js/system.js"></script>
+
+  <!-- Home-specific particle canvas -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('home-particles');
+      if (!canvas) return;
+      
+      const ctx = canvas.getContext('2d');
+      const isMobile = window.innerWidth <= 768;
+      let width, height, particles;
+
+      const initCanvas = () => {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        particles = [];
+        const numParticles = isMobile ? 8 : 28;
+        
+        for (let i = 0; i < numParticles; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            radius: Math.random() * 1.5 + 0.3,
+            vx: (Math.random() - 0.5) * 0.15,
+            vy: (Math.random() - 0.5) * 0.12,
+            alpha: Math.random() * 0.3 + 0.05
+          });
+        }
+      };
+
+      const draw = () => {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          if (p.y > height) p.y = 0;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(190, 210, 240, ${p.alpha})`;
+          ctx.fill();
+        });
+        requestAnimationFrame(draw);
+      };
+
+      window.addEventListener('resize', initCanvas);
+      initCanvas();
+
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        draw();
+      }
+    });
+  </script>
+
+</body>
+
+</html>
