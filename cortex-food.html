@@ -299,30 +299,31 @@
 
   <main>
 
-    <!-- ===== HERO ===== -->
-    <section class="hero-food">
-      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2670&auto=format&fit=crop"
-        alt="Premium restaurant environment" class="img-cinematic" data-parallax="0.05" loading="eager">
-      <div class="scan-lines"></div>
+    <!-- ===== HERO VIDEO SCROLL ===== -->
+    <div id="hero-scroll-container" style="height: 400vh; position: relative;">
+      <section class="hero-food" style="position: sticky; top: 0; height: 100vh; overflow: hidden; margin: 0; display: flex; align-items: center;">
+        <video id="hero-scrub-video" src="video/CORTEX FOOD.mp4" muted playsinline preload="auto" class="img-cinematic" style="object-fit: cover; width: 100%; height: 100%; position: absolute; inset: 0; pointer-events: none; opacity: 0.3;"></video>
+        <div class="scan-lines"></div>
 
-      <div class="container" style="z-index: 2;">
-        <div class="grid items-center">
-          <div class="col-8 fade-up delay-1">
-            <span class="text-accent mb-md display-block text-gold" style="letter-spacing: 0.15em; font-size: 0.85rem;">CORTEX FOOD</span>
-            <h1 style="font-size: clamp(2.8rem, 5vw, 5.2rem); line-height: 1.08; font-weight: 200; margin-bottom: var(--space-lg);">
-              Inteligência operacional aplicada à experiência, eficiência e rentabilidade no food service.
-            </h1>
-            <p class="text-large text-gray-text" style="max-width: 85%; margin-bottom: var(--space-xl); font-weight: 300;">
-              Uma plataforma proprietária de inteligência operacional que transforma restaurantes em ambientes capazes de enxergar, interpretar e evoluir continuamente.
-            </p>
-            <div style="display: flex; gap: var(--space-lg); align-items: center; flex-wrap: wrap;">
-              <a href="#modulos" class="cta-primary">Conhecer a Plataforma</a>
-              <a href="index.html#contact" class="cta-secondary">Falar com a ZAKA</a>
+        <div class="container" style="z-index: 2; position: relative; width: 100%;">
+          <div class="grid items-center">
+            <div class="col-8 fade-up delay-1">
+              <span class="text-accent mb-md display-block text-gold" style="letter-spacing: 0.15em; font-size: 0.85rem;">CORTEX FOOD</span>
+              <h1 style="font-size: clamp(2.8rem, 5vw, 5.2rem); line-height: 1.08; font-weight: 200; margin-bottom: var(--space-lg);">
+                Inteligência operacional aplicada à experiência, eficiência e rentabilidade no food service.
+              </h1>
+              <p class="text-large text-gray-text" style="max-width: 85%; margin-bottom: var(--space-xl); font-weight: 300;">
+                Uma plataforma proprietária de inteligência operacional que transforma restaurantes em ambientes capazes de enxergar, interpretar e evoluir continuamente.
+              </p>
+              <div style="display: flex; gap: var(--space-lg); align-items: center; flex-wrap: wrap;">
+                <a href="#modulos" class="cta-primary">Conhecer a Plataforma</a>
+                <a href="index.html#contact" class="cta-secondary">Falar com a ZAKA</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
 
     <!-- ===== SEÇÃO 1 — O PROBLEMA ===== -->
@@ -714,5 +715,56 @@
   <script src="js/navigation.js"></script>
   <script src="js/motion.js"></script>
   <script src="js/system.js"></script>
+  <!-- VIDEO SCRUBBING LOGIC -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const video = document.getElementById("hero-scrub-video");
+      const container = document.getElementById("hero-scroll-container");
+      
+      if (!video || !container) return;
+
+      // Force video to load its metadata
+      video.load();
+
+      const updateVideoTime = () => {
+        if (!video.duration || isNaN(video.duration)) return;
+        
+        const containerRect = container.getBoundingClientRect();
+        // Since container is relative to document, we can use scrollY relative to its top
+        const containerTop = container.offsetTop;
+        const containerHeight = container.offsetHeight;
+        const windowHeight = window.innerHeight;
+        
+        // Scroll distance available within the container
+        const scrollableDistance = containerHeight - windowHeight;
+        
+        let scrollY = window.scrollY - containerTop;
+        
+        // Clamp scrollY between 0 and scrollableDistance
+        if (scrollY < 0) scrollY = 0;
+        if (scrollY > scrollableDistance) scrollY = scrollableDistance;
+        
+        const progress = scrollY / scrollableDistance;
+        
+        // Update video time
+        video.currentTime = progress * video.duration;
+      };
+
+      // Listen for scroll events using requestAnimationFrame for smoothness
+      let ticking = false;
+      window.addEventListener("scroll", () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updateVideoTime();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      // Initial update once metadata is loaded
+      video.addEventListener("loadedmetadata", updateVideoTime);
+    });
+  </script>
 </body>
 </html>
