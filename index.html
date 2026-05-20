@@ -85,34 +85,34 @@
 
   <main>
 
-    <!-- ===== HERO ===== -->
-    <section class="hero-home" id="hero">
-      <img src="assets/hero-home.png"
-        alt="Arquitetura japonesa contemporânea com vidro e iluminação controlada" class="hero-bg" data-parallax="0.04"
-        loading="eager">
-      <div class="hero-organic-overlay"></div>
-      <div class="home-scan"></div>
-      <canvas id="home-particles"></canvas>
+    <!-- ===== HERO VIDEO SCROLL ===== -->
+    <div id="hero-scroll-container" style="height: 400vh; position: relative;">
+      <section class="hero-home" id="hero" style="position: sticky; top: 0; height: 100vh; overflow: hidden; margin: 0;">
+        <video id="hero-scrub-video" src="video/zaka-home-scrub.mp4" muted playsinline preload="auto" class="hero-bg" style="object-fit: cover; width: 100%; height: 100%; position: absolute; inset: 0; pointer-events: none;"></video>
+        <div class="hero-organic-overlay"></div>
+        <div class="home-scan"></div>
+        <canvas id="home-particles"></canvas>
 
-      <div class="container hero-content">
-        <div style="min-height: 90vh; display: flex; align-items: center;">
-          <div style="max-width: 900px;">
-            <span class="hero-eyebrow fade-up delay-1">ZAKA</span>
-            <h1 class="hero-headline fade-up delay-2">
-              Tecnologia avançada<br>com foco humano.
-            </h1>
-            <p class="hero-sub fade-up delay-3">
-              Plataformas proprietárias de inteligência artificial, visão computacional e análise estratégica criadas
-              para transformar complexidade em clareza, percepção e decisão.
-            </p>
-            <div class="fade-up delay-4" style="display: flex; gap: var(--space-lg); align-items: center; flex-wrap: wrap;">
-              <a href="#produtos" class="cta-primary">Conhecer Produtos</a>
-              <a href="#contato" class="cta-secondary">Falar com a ZAKA</a>
+        <div class="container hero-content">
+          <div style="min-height: 90vh; display: flex; align-items: center;">
+            <div style="max-width: 900px;">
+              <span class="hero-eyebrow fade-up delay-1">ZAKA</span>
+              <h1 class="hero-headline fade-up delay-2">
+                Tecnologia avançada<br>com foco humano.
+              </h1>
+              <p class="hero-sub fade-up delay-3">
+                Plataformas proprietárias de inteligência artificial, visão computacional e análise estratégica criadas
+                para transformar complexidade em clareza, percepção e decisão.
+              </p>
+              <div class="fade-up delay-4" style="display: flex; gap: var(--space-lg); align-items: center; flex-wrap: wrap;">
+                <a href="#produtos" class="cta-primary">Conhecer Produtos</a>
+                <a href="#contato" class="cta-secondary">Falar com a ZAKA</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
 
     <!-- ===== MANIFESTO ===== -->
@@ -506,6 +506,47 @@
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         draw();
       }
+    });
+  </script>
+
+  <!-- VIDEO SCRUBBING LOGIC -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const video = document.getElementById("hero-scrub-video");
+      const container = document.getElementById("hero-scroll-container");
+      
+      if (!video || !container) return;
+
+      video.load();
+
+      const updateVideoTime = () => {
+        if (!video.duration || isNaN(video.duration)) return;
+        
+        const containerTop = container.offsetTop;
+        const containerHeight = container.offsetHeight;
+        const windowHeight = window.innerHeight;
+        const scrollableDistance = containerHeight - windowHeight;
+        
+        let scrollY = window.scrollY - containerTop;
+        if (scrollY < 0) scrollY = 0;
+        if (scrollY > scrollableDistance) scrollY = scrollableDistance;
+        
+        const progress = scrollY / scrollableDistance;
+        video.currentTime = progress * video.duration;
+      };
+
+      let ticking = false;
+      window.addEventListener("scroll", () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updateVideoTime();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      video.addEventListener("loadedmetadata", updateVideoTime);
     });
   </script>
 
