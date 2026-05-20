@@ -440,32 +440,33 @@
 
   <main>
 
-    <!-- ===== HERO ===== -->
-    <section class="hero-care" id="hero">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2670&auto=format&fit=crop"
-        alt="Premium minimalist architecture with soft light" class="hero-bg" data-parallax="0.04" loading="eager">
-      <div class="hero-organic-overlay"></div>
-      <div class="care-scan"></div>
-      <canvas id="care-particles"></canvas>
+    <!-- ===== HERO VIDEO SCROLL ===== -->
+    <div id="hero-scroll-container" style="height: 400vh; position: relative;">
+      <section class="hero-care" id="hero" style="position: sticky; top: 0; height: 100vh; overflow: hidden; margin: 0;">
+        <video id="hero-scrub-video" src="video/care-scrub.mp4" muted playsinline preload="auto" class="hero-bg" style="object-fit: cover; width: 100%; height: 100%; position: absolute; inset: 0; pointer-events: none; transform: none; filter: grayscale(25%) contrast(110%) brightness(0.9); opacity: 0.35; transition: none;"></video>
+        <div class="hero-organic-overlay"></div>
+        <div class="care-scan"></div>
+        <canvas id="care-particles"></canvas>
 
-      <div class="container" style="z-index: 2; position: relative;">
-        <div class="grid items-center" style="min-height: 90vh;">
-          <div class="col-8 fade-up delay-1">
-            <span class="text-accent mb-md display-block" style="letter-spacing: 0.2em; font-size: 0.8rem; color: var(--color-accent-gold-muted);">CORTEX CARE</span>
-            <h1 style="font-size: clamp(2.5rem, 4.5vw, 4.8rem); line-height: 1.1; font-weight: 200; margin-bottom: var(--space-lg); max-width: 900px;">
-              Inteligência aplicada à experiência humana em operações premium de saúde, estética e bem-estar.
-            </h1>
-            <p class="text-large text-gray-text" style="max-width: 80%; margin-bottom: var(--space-xl); font-weight: 300; line-height: 1.7;">
-              Uma plataforma proprietária criada para conectar comportamento, jornada do cliente, agenda, retenção, faturamento e experiência em uma única camada contínua de percepção operacional e comercial.
-            </p>
-            <div style="display: flex; gap: var(--space-lg); align-items: center; flex-wrap: wrap;">
-              <a href="#plataforma" class="cta-primary">Conhecer a Plataforma</a>
-              <a href="#contact" class="cta-secondary">Falar com a ZAKA</a>
+        <div class="container" style="z-index: 2; position: relative;">
+          <div class="grid items-center" style="min-height: 90vh;">
+            <div class="col-8 fade-up delay-1">
+              <span class="text-accent mb-md display-block" style="letter-spacing: 0.2em; font-size: 0.8rem; color: var(--color-accent-gold-muted);">CORTEX CARE</span>
+              <h1 style="font-size: clamp(2.5rem, 4.5vw, 4.8rem); line-height: 1.1; font-weight: 200; margin-bottom: var(--space-lg); max-width: 900px;">
+                Inteligência aplicada à experiência humana em operações premium de saúde, estética e bem-estar.
+              </h1>
+              <p class="text-large text-gray-text" style="max-width: 80%; margin-bottom: var(--space-xl); font-weight: 300; line-height: 1.7;">
+                Uma plataforma proprietária criada para conectar comportamento, jornada do cliente, agenda, retenção, faturamento e experiência em uma única camada contínua de percepção operacional e comercial.
+              </p>
+              <div style="display: flex; gap: var(--space-lg); align-items: center; flex-wrap: wrap;">
+                <a href="#plataforma" class="cta-primary">Conhecer a Plataforma</a>
+                <a href="#contact" class="cta-secondary">Falar com a ZAKA</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
 
     <!-- ===== SEÇÃO 1 — O PROBLEMA ===== -->
@@ -1135,6 +1136,47 @@
         createParticles();
       });
     })();
+  </script>
+
+  <!-- VIDEO SCRUBBING LOGIC -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const video = document.getElementById("hero-scrub-video");
+      const container = document.getElementById("hero-scroll-container");
+      
+      if (!video || !container) return;
+
+      video.load();
+
+      const updateVideoTime = () => {
+        if (!video.duration || isNaN(video.duration)) return;
+        
+        const containerTop = container.offsetTop;
+        const containerHeight = container.offsetHeight;
+        const windowHeight = window.innerHeight;
+        const scrollableDistance = containerHeight - windowHeight;
+        
+        let scrollY = window.scrollY - containerTop;
+        if (scrollY < 0) scrollY = 0;
+        if (scrollY > scrollableDistance) scrollY = scrollableDistance;
+        
+        const progress = scrollY / scrollableDistance;
+        video.currentTime = progress * video.duration;
+      };
+
+      let ticking = false;
+      window.addEventListener("scroll", () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updateVideoTime();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      video.addEventListener("loadedmetadata", updateVideoTime);
+    });
   </script>
 </body>
 </html>
