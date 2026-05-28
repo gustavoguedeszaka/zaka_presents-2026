@@ -264,16 +264,70 @@
       color: var(--color-white);
     }
 
+    /* Full-Bleed Mockup Banner */
+    .mockup-banner {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--color-black);
+      padding: var(--space-giant) 0;
+    }
+    .mockup-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.6) 60%, rgba(10,10,10,0.92) 100%);
+      z-index: 2;
+    }
+    .mockup-banner .banner-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+      z-index: 1;
+      transform: scale(1.01);
+      transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mockup-banner:hover .banner-bg-img {
+      transform: scale(1.04);
+    }
+    .mockup-banner .banner-content {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+    }
+    .mockup-banner .asymmetric-title {
+      border-left: 2px solid var(--color-accent-gold-muted);
+      padding-left: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .doc-lines { display: none; }
       .hero-specter { min-height: 90vh; }
       .quote-highlight { font-size: clamp(1.5rem, 5vw, 2.5rem); }
+      .mockup-banner {
+        min-height: 80vh;
+        padding: var(--space-xl) 0;
+      }
+      .mockup-banner::before {
+        background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.7) 60%, rgba(10,10,10,0.95) 100%);
+      }
+      .mockup-banner .asymmetric-title {
+        padding-left: var(--space-md);
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .doc-lines { animation: none; }
       .elegant-card { transition: none; }
+      .mockup-banner .banner-bg-img { transition: none; }
+      .mockup-banner:hover .banner-bg-img { transform: none; }
     }
   </style>
 </head>
@@ -408,16 +462,25 @@
     </section>
 
 
-    <!-- ===== INTERFACE MOCKUP SECTION ===== -->
-    <section class="section" style="padding: var(--space-giant) 0; position: relative; overflow: hidden; background: var(--color-black);">
-      <div class="container text-center fade-up delay-1">
-        <h2 style="font-size: clamp(2rem, 3.5vw, 4rem); font-weight: 200; line-height: 1.1; margin-bottom: var(--space-lg);">
-          O refinamento técnico da advocacia.<br><span class="text-gold">Em tempo real.</span>
-        </h2>
-      </div>
-      <div class="container" style="display: flex; justify-content: center; margin-top: var(--space-xl);">
-        <div class="blur-in delay-2" style="position: relative; max-width: 1000px; width: 100%;">
-          <img src="assets/specter_macbook.png" alt="SPECTER Interface Mockup no MacBook" style="width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));">
+    <!-- ===== INTERFACE MOCKUP SECTION (FULL-BLEED BANNER) ===== -->
+    <section class="mockup-banner">
+      <img src="assets/specter_macbook_banner.png" alt="SPECTER Interface no MacBook" class="banner-bg-img" loading="lazy">
+      <div class="container banner-content">
+        <div class="grid">
+          <div class="col-7 fade-up delay-1">
+            <p class="text-accent text-gold mb-md" style="letter-spacing: 0.15em; font-size: 0.85rem;">TECNOLOGIA & PRECISÃO</p>
+            <div class="asymmetric-title">
+              <h2 style="font-size: clamp(2.2rem, 4vw, 4.5rem); font-weight: 200; line-height: 1.1; margin: 0; color: var(--color-white);">
+                O refinamento técnico da advocacia.<br><span class="text-gold">Em tempo real.</span>
+              </h2>
+            </div>
+            <p class="text-large text-gray-text mb-xl" style="max-width: 90%; font-weight: 300; line-height: 1.8;">
+              Projetado especificamente para demandas de alta complexidade tributária e empresarial, entregando profundidade de parecer com cálculo, jurisprudência e análise preditiva na tela do seu dispositivo.
+            </p>
+            <div style="display: flex; gap: var(--space-lg); align-items: center;">
+              <a href="#contact" class="cta-primary">Agendar Demonstração</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
