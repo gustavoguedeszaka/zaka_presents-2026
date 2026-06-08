@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CORTEX Eleitor — Inteligência Política Preditiva | ZAKA</title>
 
-  <meta name="description" content="CORTEX Eleitor é uma plataforma avançada de inteligência política que monitora redes sociais, mídia, narrativas e comportamento digital para antecipar riscos, crises e oportunidades em tempo real.">
+  <meta name="description" content="CORTEX Eleitor é a plataforma de inteligência política mais avançada do Brasil. IA especializada em campanha, reputação, narrativa e crise em tempo real.">
   <meta property="og:title" content="CORTEX Eleitor — Inteligência Política Preditiva | ZAKA">
-  <meta property="og:description" content="CORTEX Eleitor é uma plataforma avançada de inteligência política que monitora redes sociais, mídia, narrativas e comportamento digital para antecipar riscos, crises e oportunidades em tempo real.">
+  <meta property="og:description" content="CORTEX Eleitor é a plataforma de inteligência política mais avançada do Brasil. IA especializada em campanha, reputação, narrativa e crise em tempo real.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zaka.io/cortex-eleitor">
 
@@ -15,209 +15,542 @@
   <link rel="preconnect" href="https://images.unsplash.com">
 
   <style>
-    /* ===== CORTEX ELEITOR — PAGE STYLES ===== */
+    /* ===== CORTEX ELEITOR — REDESIGN 2026 ===== */
 
-    .hero-eleitor {
+    /* ---------- HERO ---------- */
+    .ce-hero {
       position: relative;
-      min-height: 92vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       overflow: hidden;
       background: var(--color-black);
     }
-    .hero-eleitor::before {
+    .ce-hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(160deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.92) 65%);
+      background: rgba(3, 3, 3, 0.3);
       z-index: 1;
       pointer-events: none;
     }
-    .hero-eleitor .img-cinematic {
+    .ce-hero .img-cinematic {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       object-fit: cover;
       z-index: 0;
-      opacity: 0.35;
-      filter: grayscale(50%) contrast(130%);
+      opacity: 0.8;
     }
-
-    /* Territory particles */
-    .territory-layer {
+    .ce-hero__signal {
       position: absolute;
       inset: 0;
       z-index: 1;
-      opacity: 0.07;
+      opacity: 0.04;
       background-image:
-        radial-gradient(circle, rgba(201,166,107,0.4) 1px, transparent 1px),
-        radial-gradient(circle, rgba(37,99,235,0.3) 1px, transparent 1px);
-      background-size: 90px 90px, 140px 140px;
-      background-position: 0 0, 45px 45px;
-      animation: territory-drift 150s linear infinite;
+        radial-gradient(circle, rgba(10,132,255,0.5) 1px, transparent 1px),
+        radial-gradient(circle, rgba(212,175,55,0.3) 1px, transparent 1px);
+      background-size: 120px 120px, 200px 200px;
+      background-position: 0 0, 60px 60px;
+      animation: signal-drift 200s linear infinite;
     }
-    @keyframes territory-drift {
+    @keyframes signal-drift {
       from { transform: translate(0, 0); }
-      to { transform: translate(-90px, -90px); }
+      to { transform: translate(-120px, -120px); }
     }
-
-    /* Problem cards */
-    .problem-card {
-      background: var(--color-graphite);
-      border: 1px solid rgba(255,255,255,0.05);
-      padding: var(--space-lg) var(--space-md);
-      border-radius: 4px;
-      text-align: center;
-      transition: border-color 0.5s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1);
-    }
-    .problem-card:hover {
-      border-color: rgba(201,166,107,0.2);
-      transform: translateY(-2px);
-    }
-
-    /* Elegant card */
-    .elegant-card {
-      background: var(--color-graphite);
-      border: 1px solid rgba(255,255,255,0.05);
-      padding: var(--space-lg);
-      border-radius: 4px;
-      transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
-      position: relative;
-      overflow: hidden;
-      height: 100%;
-    }
-    .elegant-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(37,99,235,0.04) 0%, transparent 70%);
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
-    .elegant-card:hover {
-      border-color: rgba(201,166,107,0.25);
-      transform: translateY(-2px);
-    }
-    .elegant-card:hover::before { opacity: 1; }
-    .elegant-card .card-content {
+    .ce-hero__content {
       position: relative;
       z-index: 2;
+      max-width: 900px;
     }
-
-    /* Alert card */
-    .alert-card {
-      background: rgba(10,10,10,0.85);
-      border: 1px solid rgba(201,166,107,0.2);
-      border-radius: 4px;
-      padding: var(--space-xl);
-      backdrop-filter: blur(12px);
-      position: relative;
+    .ce-hero__label {
+      display: inline-block;
+      font-family: var(--font-secondary);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-accent-gold);
+      margin-bottom: var(--space-sm);
     }
-    .alert-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 3px;
-      height: 100%;
-      background: var(--color-accent-gold-muted);
+    .ce-hero__headline {
+      font-size: clamp(2.8rem, 5.5vw, 5.5rem);
+      font-weight: 200;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      color: var(--color-white);
+      margin-bottom: var(--space-sm);
     }
-
-    /* Spec list */
-    .spec-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .spec-list li {
+    .ce-hero__sub {
+      font-size: clamp(1.05rem, 1.3vw, 1.4rem);
       font-weight: 300;
-      font-size: 1.1rem;
-      line-height: 2.1;
+      line-height: 1.7;
       color: var(--color-gray-text);
-    }
-    .spec-list li::before {
-      content: '— ';
-      color: rgba(255,255,255,0.25);
+      max-width: 680px;
+      margin-bottom: var(--space-md);
     }
 
-    /* Labels */
-    .label-gold {
-      display: inline-block;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--color-accent-gold-muted);
-      margin-bottom: var(--space-sm);
-      font-weight: 500;
-    }
-    .label-blue {
-      display: inline-block;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--color-accent-blue);
-      margin-bottom: var(--space-sm);
-      font-weight: 500;
-    }
-
-    /* CTAs */
-    .cta-primary {
+    /* ---------- CTAs ---------- */
+    .ce-cta {
       display: inline-block;
       color: var(--color-white);
       text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 300;
+      padding-bottom: 0.5rem;
       border-bottom: 1px solid var(--color-white);
-      padding-bottom: 0.5rem;
-      font-size: 1.2rem;
-      font-weight: 300;
-      transition: opacity 0.3s ease;
+      transition: opacity var(--duration-fast) ease;
     }
-    .cta-primary:hover { opacity: 0.7; }
-    .cta-secondary {
-      display: inline-block;
+    .ce-cta:hover { opacity: 0.65; }
+    .ce-cta--ghost {
+      border-bottom: none;
       color: var(--color-gray-text);
-      text-decoration: none;
-      padding-bottom: 0.5rem;
-      font-size: 1.2rem;
-      font-weight: 300;
-      transition: color 0.3s ease;
+      transition: color var(--duration-fast) ease;
     }
-    .cta-secondary:hover { color: var(--color-white); }
-
-    /* Section spacing */
-    .s-section {
-      padding: clamp(80px, 10vw, 160px) 0;
+    .ce-cta--ghost:hover { color: var(--color-white); opacity: 1; }
+    .ce-cta-group {
+      display: flex;
+      gap: var(--space-md);
+      align-items: center;
+      flex-wrap: wrap;
     }
 
-    /* Asymmetry card */
-    .asym-card {
+    /* ---------- SECTIONS BASE ---------- */
+    .ce-section {
+      padding: clamp(100px, 12vw, 200px) 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .ce-section--dark { background: var(--color-black); }
+    .ce-section--graphite { background: var(--color-graphite); }
+
+    .ce-label {
+      display: inline-block;
+      font-family: var(--font-secondary);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-xs);
+    }
+    .ce-label--gold { color: var(--color-accent-gold); }
+    .ce-label--blue { color: var(--color-accent-blue); }
+
+    /* ---------- SEC 2 — ENVIRONMENT ---------- */
+    .ce-giant-word {
+      font-size: clamp(2.2rem, 5vw, 6rem);
+      font-weight: 200;
+      line-height: 1.15;
+      color: var(--color-white);
+      letter-spacing: -0.03em;
+      display: block;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s var(--ease-cinematic), transform 1s var(--ease-cinematic);
+    }
+    .ce-giant-word.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .ce-giant-word--accent {
+      color: rgba(255,255,255,0.18);
+    }
+    .ce-vision-text {
+      font-size: clamp(1.6rem, 2.5vw, 2.8rem);
+      font-weight: 200;
+      line-height: 1.25;
+      color: var(--color-white);
+      letter-spacing: -0.02em;
+    }
+
+    /* ---------- SEC 3 — NO TEAM ---------- */
+    .ce-signal-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+    }
+    .ce-signal-item {
       background: var(--color-graphite);
-      border: 1px solid rgba(255,255,255,0.05);
-      padding: var(--space-lg);
-      border-radius: 4px;
-      text-align: center;
-      transition: border-color 0.5s ease;
+      padding: clamp(1.5rem, 2.5vw, 3rem);
+      font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+      font-weight: 300;
+      color: var(--color-gray-text);
+      transition: color var(--duration-fast) ease, background var(--duration-fast) ease;
+      border: 1px solid rgba(255,255,255,0.03);
     }
-    .asym-card:hover {
-      border-color: rgba(201,166,107,0.2);
+    .ce-signal-item:hover {
+      color: var(--color-white);
+      background: var(--color-charcoal);
     }
-    .asym-card .asym-label {
+    .ce-tempo-block {
+      border-left: 2px solid rgba(255,255,255,0.06);
+      padding-left: var(--space-sm);
+    }
+    .ce-tempo-line {
+      font-size: clamp(1rem, 1.2vw, 1.3rem);
+      font-weight: 300;
+      line-height: 2.2;
+      color: var(--color-gray-text);
+    }
+    .ce-tempo-line em {
+      font-style: normal;
+      color: var(--color-white);
+    }
+
+    /* ---------- SEC 4 — WHAT CORTEX DOES ---------- */
+    .ce-triad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .ce-triad-card {
+      position: relative;
+      background: var(--color-graphite);
+      padding: clamp(3rem, 5vw, 6rem) clamp(2rem, 3vw, 4rem);
+      min-height: clamp(350px, 40vh, 500px);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.03);
+      transition: border-color var(--duration-medium) ease;
+    }
+    .ce-triad-card:hover {
+      border-color: rgba(255,255,255,0.08);
+    }
+    .ce-triad-card .ce-card-bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.18;
+      filter: grayscale(30%) contrast(120%);
+      z-index: 0;
+      transition: opacity var(--duration-slow) ease, transform var(--duration-ambient) ease;
+    }
+    .ce-triad-card:hover .ce-card-bg {
+      opacity: 0.3;
+      transform: scale(1.04);
+    }
+    .ce-triad-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, var(--color-graphite) 0%, rgba(20,20,21,0.7) 40%, rgba(20,20,21,0.3) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .ce-triad-num {
+      position: relative; z-index: 2;
+      font-family: var(--font-secondary);
       font-size: 0.65rem;
-      letter-spacing: 0.15em;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.15);
       text-transform: uppercase;
       margin-bottom: var(--space-sm);
-      font-weight: 500;
+    }
+    .ce-triad-title {
+      position: relative; z-index: 2;
+      font-size: clamp(1.8rem, 2.8vw, 3rem);
+      font-weight: 200;
+      color: var(--color-white);
+      line-height: 1.1;
+      margin-bottom: var(--space-xs);
+      letter-spacing: -0.02em;
+    }
+    .ce-triad-desc {
+      position: relative; z-index: 2;
+      font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+      font-weight: 300;
+      color: var(--color-gray-text);
+      line-height: 1.7;
+      max-width: 380px;
     }
 
-    /* Responsive */
+    /* ---------- SEC 5 — PREDICTIVE ALERT ---------- */
+    .ce-alert-shell {
+      max-width: 860px;
+      margin: 0 auto;
+      background: rgba(8,8,10,0.9);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 2px;
+      padding: clamp(2.5rem, 4vw, 5rem);
+      position: relative;
+      overflow: hidden;
+    }
+    .ce-alert-shell::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: linear-gradient(180deg, var(--color-accent-blue) 0%, rgba(10,132,255,0.1) 100%);
+    }
+    .ce-alert-shell::after {
+      content: '';
+      position: absolute;
+      top: -1px; right: -1px;
+      width: 60px; height: 60px;
+      border-top: 1px solid rgba(10,132,255,0.3);
+      border-right: 1px solid rgba(10,132,255,0.3);
+      pointer-events: none;
+    }
+    .ce-alert-id {
+      font-family: var(--font-secondary);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      color: var(--color-accent-blue);
+      text-transform: uppercase;
+      margin-bottom: var(--space-sm);
+      display: block;
+    }
+    .ce-alert-quote {
+      font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+      font-weight: 300;
+      color: var(--color-white);
+      line-height: 1.35;
+      margin-bottom: var(--space-md);
+      font-family: var(--font-primary);
+    }
+    .ce-alert-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: var(--space-sm);
+    }
+    .ce-alert-meta dt {
+      font-family: var(--font-secondary);
+      font-size: 0.75rem;
+      color: var(--color-gray-text);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .ce-alert-meta dd {
+      font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+      font-weight: 300;
+      color: var(--color-white);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .ce-alert-meta dd.text-danger {
+      color: #ef4444;
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .ce-alert-meta dd.text-blue {
+      color: var(--color-accent-blue);
+    }
+
+    /* ---------- SEC 6 — CLONE COGNITIVO ---------- */
+    .ce-clone-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+    }
+    .ce-clone-cell {
+      background: var(--color-graphite);
+      border: 1px solid rgba(255,255,255,0.03);
+      padding: clamp(1.8rem, 2.5vw, 3rem) clamp(1.2rem, 1.5vw, 2rem);
+      text-align: center;
+      transition: border-color var(--duration-medium) ease, background var(--duration-medium) ease;
+    }
+    .ce-clone-cell:hover {
+      border-color: rgba(212,175,55,0.15);
+      background: var(--color-charcoal);
+    }
+    .ce-clone-cell p {
+      font-size: clamp(0.9rem, 1vw, 1.05rem);
+      font-weight: 300;
+      color: var(--color-gray-text);
+      line-height: 1.5;
+    }
+
+    /* ---------- SEC 7 — SUPER AGENT ---------- */
+    .ce-stack-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .ce-stack-item {
+      padding: clamp(1rem, 1.5vw, 1.8rem) 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: clamp(1.05rem, 1.3vw, 1.4rem);
+      font-weight: 300;
+      color: var(--color-gray-text);
+      transition: color var(--duration-fast) ease, padding-left var(--duration-fast) ease;
+    }
+    .ce-stack-item:hover {
+      color: var(--color-white);
+      padding-left: 0.5rem;
+    }
+    .ce-stack-item::before {
+      content: '—';
+      margin-right: 1rem;
+      color: rgba(255,255,255,0.12);
+    }
+
+    /* ---------- SEC 8 — AUDIENCE ---------- */
+    .ce-audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+    }
+    .ce-audience-card {
+      position: relative;
+      background: var(--color-graphite);
+      border: 1px solid rgba(255,255,255,0.03);
+      padding: clamp(2.5rem, 3.5vw, 5rem) clamp(1.5rem, 2vw, 3rem);
+      min-height: clamp(180px, 20vh, 260px);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+      transition: border-color var(--duration-medium) ease;
+    }
+    .ce-audience-card:hover {
+      border-color: rgba(212,175,55,0.12);
+    }
+    .ce-audience-card .ce-card-bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.12;
+      filter: grayscale(40%) contrast(110%);
+      z-index: 0;
+      transition: opacity var(--duration-slow) ease, transform var(--duration-ambient) ease;
+    }
+    .ce-audience-card:hover .ce-card-bg {
+      opacity: 0.22;
+      transform: scale(1.03);
+    }
+    .ce-audience-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(20,20,21,0.95) 0%, rgba(20,20,21,0.5) 60%, rgba(20,20,21,0.2) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .ce-audience-card h4 {
+      position: relative; z-index: 2;
+      font-size: clamp(1.1rem, 1.3vw, 1.4rem);
+      font-weight: 300;
+      color: var(--color-white);
+      margin-bottom: 0;
+    }
+
+    /* ---------- SEC 9 — DELIVERABLES ---------- */
+    .ce-deliver-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .ce-deliver-card {
+      background: var(--color-graphite);
+      border: 1px solid rgba(255,255,255,0.03);
+      padding: clamp(2.5rem, 3.5vw, 5rem) clamp(2rem, 2.5vw, 3rem);
+      min-height: clamp(280px, 30vh, 380px);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: border-color var(--duration-medium) ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .ce-deliver-card:hover {
+      border-color: rgba(255,255,255,0.08);
+    }
+    .ce-deliver-card .ce-card-bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.15;
+      filter: grayscale(30%) contrast(120%);
+      z-index: 0;
+      transition: opacity var(--duration-slow) ease, transform var(--duration-ambient) ease;
+    }
+    .ce-deliver-card:hover .ce-card-bg {
+      opacity: 0.25;
+      transform: scale(1.04);
+    }
+    .ce-deliver-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, var(--color-graphite) 0%, rgba(20,20,21,0.7) 45%, rgba(20,20,21,0.2) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .ce-deliver-card h4 {
+      position: relative; z-index: 2;
+      font-size: clamp(1.15rem, 1.4vw, 1.5rem);
+      font-weight: 300;
+      color: var(--color-white);
+      margin-bottom: var(--space-xs);
+      line-height: 1.3;
+    }
+    .ce-deliver-card p {
+      position: relative; z-index: 2;
+      font-size: clamp(0.88rem, 1vw, 1rem);
+      font-weight: 300;
+      color: var(--color-gray-text);
+      line-height: 1.65;
+    }
+    .ce-deliver-num {
+      font-family: var(--font-secondary);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.1);
+      position: absolute;
+      top: clamp(1.5rem, 2vw, 2.5rem);
+      left: clamp(2rem, 2.5vw, 3rem);
+      z-index: 2;
+    }
+
+    /* ---------- FINAL CTA ---------- */
+    .ce-final {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ce-final__inner {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1024px) {
+      .ce-triad { grid-template-columns: 1fr; }
+      .ce-clone-grid { grid-template-columns: repeat(3, 1fr); }
+      .ce-alert-meta { grid-template-columns: 1fr; gap: var(--space-sm); }
+      .ce-deliver-grid { grid-template-columns: repeat(2, 1fr); }
+      .ce-audience-grid { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 768px) {
-      .territory-layer { display: none; }
-      .hero-eleitor { min-height: 85vh; }
+      .ce-hero { min-height: 90vh; }
+      .ce-hero__signal { display: none; }
+      .ce-signal-list { grid-template-columns: repeat(2, 1fr); }
+      .ce-clone-grid { grid-template-columns: repeat(2, 1fr); }
+      .ce-deliver-grid { grid-template-columns: 1fr; }
+      .ce-audience-grid { grid-template-columns: 1fr; }
+      .ce-triad-card { min-height: 280px; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .territory-layer { animation: none; }
-      .elegant-card, .problem-card, .asym-card { transition: none; }
+      .ce-hero__signal { animation: none; }
+      .ce-giant-word { opacity: 1; transform: none; transition: none; }
     }
   </style>
 </head>
@@ -284,194 +617,213 @@
   <main>
 
     <!-- ===== HERO ===== -->
-    <section class="hero-eleitor">
-      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2672&auto=format&fit=crop"
-        alt="Abstract territorial intelligence" class="img-cinematic" data-parallax="0.04" loading="eager">
-      <div class="territory-layer"></div>
+    <section class="ce-hero">
+      <img src="img/cortex-eleitor/CORTEX_TELA_2.jpg"
+        alt="Abstract territorial intelligence network" class="img-cinematic" data-parallax="0.03" loading="eager">
+      <div class="ce-hero__signal"></div>
 
       <div class="container" style="position: relative; z-index: 2;">
-        <div class="grid">
-          <div class="col-7 fade-up delay-1">
-            <p class="text-accent text-gold mb-md" style="letter-spacing: 0.15em; font-size: 0.8rem;">CORTEX ELEITOR</p>
-            <h1 style="font-size: clamp(2.6rem, 4.5vw, 5rem); line-height: 1.08; font-weight: 200; margin-bottom: var(--space-lg);">
-              Inteligência política que vê tudo, entende tudo e antecipa tudo.
-            </h1>
-            <p class="text-large text-gray-text" style="max-width: 90%; margin-bottom: var(--space-xl); font-weight: 300; line-height: 1.7;">
-              A primeira plataforma avançada de inteligência política da ZAKA, criada para monitorar redes, mídia, narrativas, comportamento digital e risco reputacional em tempo real.
-            </p>
-            <div style="display: flex; gap: var(--space-lg); align-items: center; flex-wrap: wrap;">
-              <a href="#plataforma" class="cta-primary">Conhecer a plataforma</a>
-              <a href="#contact" class="cta-secondary">Falar com a ZAKA</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ===== SEÇÃO 1 — O PROBLEMA ===== -->
-    <section id="plataforma" class="s-section">
-      <div class="container">
-        <div class="grid" style="gap: var(--space-xl);">
-          <div class="col-6 fade-up delay-1">
-            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
-              O ambiente político ficou hiperfragmentado, emocionalmente instável e acelerado.
-            </h2>
-            <p class="text-h3 text-gray-text mb-lg" style="font-weight: 300;">
-              O problema não é acesso à informação. É visão incompleta.
-            </p>
-            <p class="text-gray-text" style="font-weight: 300; line-height: 1.9; font-size: 1.05rem;">
-              Hoje, nenhuma equipe humana consegue ler tudo nas redes, acompanhar toda a mídia digital, correlacionar passado, presente e tendência futura, e reagir antes que o dano político ou reputacional se consolide.
-            </p>
-          </div>
-
-          <div class="col-5 fade-up delay-2" style="margin-left: auto;">
-            <div class="grid" style="gap: var(--space-md);">
-              <div class="col-6"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Decisões atrasadas</p></div></div>
-              <div class="col-6"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Respostas emocionais</p></div></div>
-              <div class="col-6"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Risco jurídico acumulado</p></div></div>
-              <div class="col-6"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Risco político e reputacional</p></div></div>
-              <div class="col-12"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Perda de controle narrativo</p></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ===== SEÇÃO 2 — O QUE O CORTEX É ===== -->
-    <section class="s-section bg-graphite" style="min-height: 65vh; display: flex; align-items: center;">
-      <div class="container text-center">
-        <div class="fade-up delay-1" style="max-width: 900px; margin: 0 auto;">
-          <h2 style="font-size: clamp(2.2rem, 4vw, 4rem); font-weight: 200; line-height: 1.12; margin-bottom: var(--space-lg);">
-            Não é clipping. Não é dashboard.<br>É inteligência política operacional.
-          </h2>
-          <p class="text-large text-gray-text mb-xl" style="font-weight: 300; max-width: 85%; margin: 0 auto var(--space-xl);">
-            O CORTEX Eleitor funciona como um super agente especializado em política, capaz de monitorar, interpretar, correlacionar e recomendar ações estratégicas com base em dados, contexto e memória política contínua.
+        <div class="ce-hero__content fade-up delay-1">
+          <span class="ce-hero__label">CORTEX ELEITOR</span>
+          <h1 class="ce-hero__headline">A inteligência política<br>mais avançada do Brasil.</h1>
+          <p class="ce-hero__sub">
+            IA especializada em campanha, reputação, narrativa e crise.<br>
+            Para quem precisa enxergar antes, decidir antes e agir antes.
           </p>
-          <p style="font-size: clamp(2rem, 3.5vw, 3.5rem); font-weight: 200; color: var(--color-accent-gold-muted);">
-            Não opina. Calcula.
-          </p>
+          <div class="ce-cta-group">
+            <a href="#contact" class="ce-cta">Solicitar apresentação</a>
+            <a href="#plataforma" class="ce-cta ce-cta--ghost">Ver como funciona</a>
+          </div>
         </div>
       </div>
     </section>
 
 
-    <!-- ===== SEÇÃO 3 — REDES SOCIAIS ===== -->
-    <section class="s-section">
+    <!-- ===== SEC 2 — O AMBIENTE MUDOU ===== -->
+    <section id="plataforma" class="ce-section ce-section--dark">
       <div class="container">
         <div class="grid" style="gap: var(--space-xl);">
           <div class="col-5 fade-up delay-1">
-            <span class="label-blue">REDES SOCIAIS</span>
-            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
-              O único que pega tudo nas redes sociais.
+            <h2 style="font-size: clamp(2.2rem, 3.5vw, 4rem); font-weight: 200; line-height: 1.1; margin-bottom: var(--space-lg);">
+              O ambiente político mudou.
             </h2>
-            <p class="text-gray-text mb-lg" style="font-weight: 300; line-height: 1.8; font-size: 1.05rem;">
-              O CORTEX captura o fluxo relevante em tempo real:
-            </p>
-            <ul class="spec-list">
-              <li>menções diretas e indiretas</li>
-              <li>velocidade de propagação</li>
-              <li>mudança de humor coletivo</li>
-              <li>crescimento anômalo de narrativas</li>
-              <li>sinais de ataque coordenado</li>
-              <li>reação por território e público</li>
-            </ul>
           </div>
-
-          <div class="col-6 fade-up delay-2" style="margin-left: auto; display: flex; align-items: center;">
-            <div style="border-left: 2px solid rgba(255,255,255,0.06); padding-left: var(--space-lg);">
-              <p class="text-gray-text" style="font-weight: 300; font-size: 1.15rem; line-height: 1.8;">
-                Não trabalha por amostragem.<br>
-                Não depende de hashtags isoladas.<br>
-                Não depende de relatórios manuais.
-              </p>
-            </div>
+          <div class="col-6 fade-up delay-2" style="margin-left: auto; display: flex; flex-direction: column; justify-content: center;">
+            <span class="ce-giant-word fade-up delay-1">Hiperfragmentado.</span>
+            <span class="ce-giant-word fade-up delay-2">Emocionalmente instável.</span>
+            <span class="ce-giant-word fade-up delay-3">Acelerado.</span>
           </div>
         </div>
-      </div>
-    </section>
 
-
-    <!-- ===== SEÇÃO 4 — MÍDIA E IMPRENSA ===== -->
-    <section class="s-section bg-graphite">
-      <div class="container">
-        <div class="fade-up delay-1 mb-xl" style="max-width: 800px;">
-          <span class="label-blue">MÍDIA E IMPRENSA</span>
-          <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
-            Ele não mostra apenas o que saiu. Mostra o que isso pode causar.
-          </h2>
-          <p class="text-gray-text" style="font-weight: 300; line-height: 1.8; font-size: 1.05rem;">
-            O sistema lê a mídia digital relevante, entende contexto, viés, timing e correlação com redes sociais.
+        <div style="margin-top: var(--space-xl); max-width: 700px;">
+          <p class="fade-up delay-2" style="font-weight: 300; line-height: 1.8; font-size: clamp(1rem, 1.15vw, 1.2rem); margin-bottom: var(--space-sm);">
+            A campanha moderna acontece simultaneamente em milhares de sinais, narrativas e movimentos invisíveis.
           </p>
-        </div>
-
-        <div class="grid fade-up delay-2" style="gap: var(--space-md);">
-          <div class="col-4 mb-md"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Imprensa digital</p></div></div>
-          <div class="col-4 mb-md"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Portais regionais</p></div></div>
-          <div class="col-4 mb-md"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Viés narrativo</p></div></div>
-          <div class="col-4 mb-md"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Timing de escalada</p></div></div>
-          <div class="col-4 mb-md"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Impacto provável</p></div></div>
-          <div class="col-4 mb-md"><div class="problem-card"><p style="font-weight: 300; font-size: 1.05rem;">Correlação com redes sociais</p></div></div>
+          <p class="fade-up delay-3" style="font-weight: 300; line-height: 1.8; font-size: clamp(1rem, 1.15vw, 1.2rem); margin-bottom: var(--space-md);">
+            O problema não é falta de informação.
+          </p>
+          <p class="ce-vision-text fade-up delay-4">É visão incompleta.</p>
         </div>
       </div>
     </section>
 
 
-    <!-- ===== SEÇÃO 5 — CLONE COGNITIVO ===== -->
-    <section class="s-section" style="position: relative; overflow: hidden;">
+    <!-- ===== SEC 3 — NENHUMA EQUIPE ===== -->
+    <section class="ce-section ce-section--graphite">
+      <div class="container">
+        <div style="max-width: 800px; margin-bottom: var(--space-lg);">
+          <h2 class="fade-up delay-1" style="font-size: clamp(2rem, 3.5vw, 4rem); font-weight: 200; line-height: 1.1; margin-bottom: var(--space-md);">
+            Nenhuma equipe humana<br>consegue ler tudo.
+          </h2>
+        </div>
+
+        <div class="ce-signal-list fade-up delay-2" style="margin-bottom: var(--space-lg);">
+          <div class="ce-signal-item">Redes sociais</div>
+          <div class="ce-signal-item">Mídia digital</div>
+          <div class="ce-signal-item">Narrativas</div>
+          <div class="ce-signal-item">Grupos locais</div>
+          <div class="ce-signal-item">Ataques coordenados</div>
+          <div class="ce-signal-item">Comportamento coletivo</div>
+        </div>
+
+        <div class="ce-tempo-block fade-up delay-3" style="max-width: 700px; margin-top: var(--space-lg);">
+          <p class="ce-tempo-line">Enquanto uma equipe analisa relatórios, <em>a narrativa já mudou.</em></p>
+          <p class="ce-tempo-line">Enquanto uma crise é percebida, <em>ela já ganhou velocidade.</em></p>
+          <p class="ce-tempo-line">Enquanto a resposta é aprovada, <em>o dano já se consolidou.</em></p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEC 4 — O QUE O CORTEX FAZ ===== -->
+    <section class="ce-section ce-section--dark">
+      <div class="container">
+        <div style="margin-bottom: var(--space-lg);">
+          <span class="ce-label ce-label--blue fade-up delay-1">PLATAFORMA</span>
+          <h2 class="fade-up delay-1" style="font-size: clamp(2rem, 3.5vw, 4rem); font-weight: 200; line-height: 1.1;">
+            O que o CORTEX faz.
+          </h2>
+        </div>
+
+        <div class="ce-triad fade-up delay-2">
+          <div class="ce-triad-card">
+            <img src="img/cortex-eleitor/triad-ve-tudo.png" alt="" class="ce-card-bg" loading="lazy">
+            <span class="ce-triad-num">01</span>
+            <h3 class="ce-triad-title">Vê tudo.</h3>
+            <p class="ce-triad-desc">
+              Captura menções diretas e indiretas, sinais emergentes, velocidade de propagação e mudanças de comportamento coletivo.
+            </p>
+          </div>
+          <div class="ce-triad-card">
+            <img src="img/cortex-eleitor/triad-entende-tudo.png" alt="" class="ce-card-bg" loading="lazy">
+            <span class="ce-triad-num">02</span>
+            <h3 class="ce-triad-title">Entende tudo.</h3>
+            <p class="ce-triad-desc">
+              Interpreta contexto, narrativa, intenção, impacto provável e risco reputacional.
+            </p>
+          </div>
+          <div class="ce-triad-card">
+            <img src="img/cortex-eleitor/triad-antecipa-tudo.png" alt="" class="ce-card-bg" loading="lazy">
+            <span class="ce-triad-num">03</span>
+            <h3 class="ce-triad-title">Antecipa tudo.</h3>
+            <p class="ce-triad-desc">
+              Detecta anomalias, projeta cenários e recomenda ações estratégicas em tempo real.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEC 5 — ALERTA PREDITIVO ===== -->
+    <section class="ce-section ce-section--graphite" style="position: relative;">
+      <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2670&auto=format&fit=crop"
+        alt="Data signal streams"
+        style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.04; filter: grayscale(100%); z-index: 0;" loading="lazy">
+      <div style="position: absolute; inset: 0; background: linear-gradient(180deg, var(--color-graphite) 0%, rgba(20,20,21,0.85) 50%, var(--color-graphite) 100%); z-index: 1;"></div>
+
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="text-center" style="margin-bottom: var(--space-lg);">
+          <span class="ce-label ce-label--gold fade-up delay-1">PREDITIVO EM TEMPO REAL</span>
+          <h2 class="fade-up delay-1" style="font-size: clamp(2rem, 3.5vw, 4rem); font-weight: 200; line-height: 1.1;">
+            Alerta preditivo.
+          </h2>
+        </div>
+
+        <div class="ce-alert-shell fade-up delay-2">
+          <span class="ce-alert-id">ALERTA PREDITIVO #3041</span>
+          <p class="ce-alert-quote">"Ataque crescendo 380% em 90 minutos na zona sul de São Paulo."</p>
+
+          <dl class="ce-alert-meta">
+            <div>
+              <dt>Público</dt>
+              <dd>Homens, classe C,<br>zona sul / SP.</dd>
+            </div>
+            <div>
+              <dt>Predominância</dt>
+              <dd class="text-danger">SENTIMENTO NEGATIVO.</dd>
+            </div>
+            <div>
+              <dt>Recomendação</dt>
+              <dd class="text-blue">Não responder em rede ampla. Ação localizada sugerida.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEC 6 — CLONE COGNITIVO ===== -->
+    <section class="ce-section ce-section--dark">
+      <div class="container">
+        <div class="grid" style="gap: var(--space-xl); margin-bottom: var(--space-lg);">
+          <div class="col-6 fade-up delay-1">
+            <span class="ce-label ce-label--gold">CLONE COGNITIVO</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 4rem); font-weight: 200; line-height: 1.1; margin-bottom: var(--space-sm);">
+              A inteligência pensa junto com o eu estratégico do candidato.
+            </h2>
+          </div>
+          <div class="col-5 fade-up delay-2" style="margin-left: auto; display: flex; align-items: center;">
+            <p style="font-weight: 300; line-height: 1.8; font-size: clamp(1rem, 1.15vw, 1.2rem); color: var(--color-gray-text);">
+              A IA não substitui o estrategista.<br>Ela amplifica o estrategista.
+            </p>
+          </div>
+        </div>
+
+        <div class="ce-clone-grid fade-up delay-3">
+          <div class="ce-clone-cell"><p>Tom de voz</p></div>
+          <div class="ce-clone-cell"><p>Posicionamento político</p></div>
+          <div class="ce-clone-cell"><p>Limites éticos</p></div>
+          <div class="ce-clone-cell"><p>Vulnerabilidades conhecidas</p></div>
+          <div class="ce-clone-cell"><p>Identidade estratégica</p></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEC 7 — SUPER AGENTE ===== -->
+    <section class="ce-section ce-section--graphite" style="position: relative; background-image: linear-gradient(180deg, var(--color-graphite) 0%, rgba(10,10,12,0.7) 50%, var(--color-graphite) 100%), url('img/cortex-eleitor/super-agente-bg.png'); background-size: cover; background-position: center; background-attachment: fixed;">
       <div class="container" style="position: relative; z-index: 2;">
         <div class="grid" style="gap: var(--space-xl);">
-          <div class="col-6 fade-up delay-1">
-            <span class="label-gold">CLONE COGNITIVO</span>
-            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
-              A inteligência pensa junto com o eu estratégico do cliente.
+          <div class="col-5 fade-up delay-1">
+            <span class="ce-label ce-label--blue">SUPER AGENTE</span>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 4rem); font-weight: 200; line-height: 1.1; margin-bottom: var(--space-sm);">
+              Um super agente político especializado.
             </h2>
-            <p class="text-gray-text" style="font-weight: 300; line-height: 1.9; font-size: 1.05rem;">
-              O CORTEX incorpora uma camada personalizada baseada em tom de voz, limites éticos, posicionamento político, vulnerabilidades conhecidas e identidade estratégica do candidato ou da estrutura política.
-            </p>
-          </div>
-
-          <div class="col-5 fade-up delay-2" style="margin-left: auto; display: flex; align-items: center;">
-            <div style="border-left: 2px solid rgba(201,166,107,0.2); padding-left: var(--space-lg);">
-              <p style="font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 200; line-height: 1.5; color: var(--color-white);">
-                Máquina + humano.<br>
-                Cálculo + identidade.<br>
-                Estratégia sem ruptura de personalidade.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ===== SEÇÃO 6 — SUPER AGENTE POLÍTICO ===== -->
-    <section class="s-section bg-graphite">
-      <div class="container">
-        <div class="grid" style="gap: var(--space-xl);">
-          <div class="col-5 fade-up delay-1" style="position: sticky; top: 120px; align-self: start;">
-            <span class="label-blue">SUPER AGENTE</span>
-            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
-              Um super agente especializado em política.
-            </h2>
-            <p class="text-gray-text" style="font-weight: 300; line-height: 1.8; font-size: 1.05rem;">
-              O sistema foi desenvolvido para operar como uma equipe inteira de especialistas simultâneos.
+            <p style="font-size: clamp(1.6rem, 2.5vw, 2.5rem); font-weight: 200; color: var(--color-accent-gold); margin-top: var(--space-sm);">
+              Não opina. Calcula.
             </p>
           </div>
 
           <div class="col-6 fade-up delay-2" style="margin-left: auto;">
-            <div style="border-left: 1px solid rgba(255,255,255,0.08); padding-left: var(--space-lg);">
-              <p class="text-gray-text mb-md" style="font-weight: 400; font-size: 1rem; letter-spacing: 0.05em;">ELE CARREGA:</p>
-              <ul class="spec-list" style="margin-top: var(--space-md);">
-                <li>história política</li>
-                <li>padrões eleitorais recorrentes</li>
-                <li>ciclos de ataque, crise e desgaste</li>
-                <li>comportamento regional e cultural</li>
-                <li>passado consolidado</li>
-                <li>presente em tempo real</li>
-                <li>predição probabilística contínua</li>
-              </ul>
+            <div class="ce-stack-list">
+              <div class="ce-stack-item">história política</div>
+              <div class="ce-stack-item">padrões eleitorais</div>
+              <div class="ce-stack-item">ciclos de crise</div>
+              <div class="ce-stack-item">comportamento regional</div>
+              <div class="ce-stack-item">contexto cultural</div>
+              <div class="ce-stack-item">presente em tempo real</div>
+              <div class="ce-stack-item">projeção probabilística</div>
             </div>
           </div>
         </div>
@@ -479,176 +831,113 @@
     </section>
 
 
-    <!-- ===== SEÇÃO 7 — PREDITIVO EM TEMPO REAL ===== -->
-    <section class="s-section" style="position: relative; overflow: hidden;">
-      <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2670&auto=format&fit=crop"
-        alt="Data streams"
-        style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.06; filter: grayscale(100%); z-index: 0;"
-        loading="lazy">
-      <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,1) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,1) 100%); z-index: 1;"></div>
-
-      <div class="container" style="position: relative; z-index: 2;">
-        <div class="text-center mb-xl fade-up delay-1">
-          <span class="label-gold">PREDITIVO EM TEMPO REAL</span>
-          <h2 class="text-h1" style="font-weight: 200;">Detecta anomalias no momento em que nascem.</h2>
-          <p class="text-gray-text mt-lg" style="font-weight: 300; font-size: 1.05rem; max-width: 700px; margin: var(--space-md) auto 0;">
-            O CORTEX calcula impacto provável, projeta cenários de escalada e dispara alertas com recomendação pronta.
-          </p>
-        </div>
-
-        <div class="grid justify-center fade-up delay-2">
-          <div class="col-8">
-            <div
-              style="background: rgba(10, 10, 10, 0.8); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: var(--space-xl); backdrop-filter: blur(10px);">
-              <span class="text-small text-gold display-block mb-md" style="letter-spacing: 0.1em;">ALERTA PREDITIVO #3041</span>
-
-              <p style="font-size: clamp(1.4rem, 2vw, 2rem); font-family: var(--font-primary); font-weight: 300; line-height: 1.4; color: var(--color-white); margin-bottom: var(--space-md);">
-                “Ataque crescendo 380% em 90 minutos na zona sul de São Paulo.”
-              </p>
-
-              <div class="grid"
-                style="margin-top: var(--space-lg); border-top: 1px solid rgba(255,255,255,0.05); padding-top: var(--space-md); gap: var(--space-md);">
-                <div class="col-4">
-                  <span class="text-small text-gray-text display-block mb-xs">Público:</span>
-                  <span style="font-size: clamp(1rem, 1.2vw, 1.15rem); font-weight: 300; color: var(--color-white); display: block; line-height: 1.5;">Homens, classe C,<br>zona sul / SP.</span>
-                </div>
-                <div class="col-4">
-                  <span class="text-small text-gray-text display-block mb-xs">Predominância:</span>
-                  <span style="font-size: clamp(0.85rem, 1vw, 1rem); font-weight: 500; color: #ef4444; text-transform: uppercase; letter-spacing: 0.05em; display: block; line-height: 1.5;">SENTIMENTO NEGATIVO.</span>
-                </div>
-                <div class="col-4">
-                  <span class="text-small text-gray-text display-block mb-xs">Recomendação:</span>
-                  <span style="font-size: clamp(1rem, 1.2vw, 1.15rem); font-weight: 300; color: var(--color-accent-blue); display: block; line-height: 1.5;">Não responder em rede ampla. Ação localizada.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ===== SEÇÃO 8 — ASSIMETRIA COMPETITIVA ===== -->
-    <section class="s-section bg-graphite">
+    <!-- ===== SEC 8 — PARA QUEM É ===== -->
+    <section class="ce-section ce-section--dark">
       <div class="container">
-        <div class="text-center mb-xl fade-up delay-1">
-          <h2 class="text-h1" style="font-weight: 200;">Não é só sistema. É assimetria competitiva.</h2>
-        </div>
-
-        <div class="grid fade-up delay-2" style="gap: var(--space-md);">
-          <div class="col-4 mb-md">
-            <div class="asym-card" style="padding: var(--space-xl) var(--space-lg); min-height: 200px; display: flex; flex-direction: column; justify-content: center;">
-              <p class="asym-label text-blue mb-md">REDUZ</p>
-              <p style="font-weight: 300; font-size: 1.25rem; color: var(--color-white); letter-spacing: 0.02em;">Custo</p>
-            </div>
-          </div>
-          <div class="col-4 mb-md">
-            <div class="asym-card" style="padding: var(--space-xl) var(--space-lg); min-height: 200px; display: flex; flex-direction: column; justify-content: center;">
-              <p class="asym-label text-blue mb-md">REDUZ</p>
-              <p style="font-weight: 300; font-size: 1.25rem; color: var(--color-white); letter-spacing: 0.02em;">Risco</p>
-            </div>
-          </div>
-          <div class="col-4 mb-md">
-            <div class="asym-card" style="padding: var(--space-xl) var(--space-lg); min-height: 200px; display: flex; flex-direction: column; justify-content: center;">
-              <p class="asym-label text-blue mb-md">REDUZ</p>
-              <p style="font-weight: 300; font-size: 1.25rem; color: var(--color-white); letter-spacing: 0.02em;">Erro</p>
-            </div>
-          </div>
-          <div class="col-4 mb-md">
-            <div class="asym-card" style="padding: var(--space-xl) var(--space-lg); min-height: 200px; display: flex; flex-direction: column; justify-content: center;">
-              <p class="asym-label text-gold mb-md">AUMENTA</p>
-              <p style="font-weight: 300; font-size: 1.25rem; color: var(--color-white); letter-spacing: 0.02em; word-break: keep-all; hyphens: none;">Controle</p>
-            </div>
-          </div>
-          <div class="col-4 mb-md">
-            <div class="asym-card" style="padding: var(--space-xl) var(--space-lg); min-height: 200px; display: flex; flex-direction: column; justify-content: center;">
-              <p class="asym-label text-gold mb-md">AUMENTA</p>
-              <p style="font-weight: 300; font-size: 1.25rem; color: var(--color-white); letter-spacing: 0.02em; word-break: keep-all; hyphens: none;">Velocidade<br>estratégica</p>
-            </div>
-          </div>
-          <div class="col-4 mb-md">
-            <div class="asym-card" style="padding: var(--space-xl) var(--space-lg); min-height: 200px; display: flex; flex-direction: column; justify-content: center;">
-              <p class="asym-label text-gold mb-md">AUMENTA</p>
-              <p style="font-weight: 300; font-size: 1.25rem; color: var(--color-white); letter-spacing: 0.02em; word-break: keep-all; hyphens: none;">Capacidade<br>de resposta</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-center fade-up delay-3" style="margin-top: var(--space-xl); max-width: 750px; margin-left: auto; margin-right: auto;">
-          <p class="text-gray-text" style="font-weight: 300; line-height: 1.8; font-size: 1.05rem;">
-            Contrato e suporte contínuo durante toda a campanha, com primeiro e segundo turnos incluídos. Primeira entrega de módulo em até 30 dias após contratação.
-          </p>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ===== SEÇÃO 9 — EXCLUSIVO ===== -->
-    <section class="s-section">
-      <div class="container">
-        <div class="grid" style="gap: var(--space-xl);">
-          <div class="col-4 fade-up delay-1">
-            <h2 class="text-h1 mb-lg" style="font-weight: 200; line-height: 1.12;">
-              O que ninguém tem.
-            </h2>
-            <p class="text-gray-text" style="font-weight: 300; line-height: 1.8; font-size: 1.05rem;">
-              Integração entre política, estratégia, direito e tecnologia.
-            </p>
-          </div>
-
-          <div class="col-7 fade-up delay-2" style="margin-left: auto;">
-            <div class="grid" style="gap: var(--space-md);">
-              <div class="col-6 mb-md">
-                <div class="elegant-card"><div class="card-content">
-                  <h4 class="text-large" style="font-weight: 300;">Arquitetura proprietária de correlação massiva</h4>
-                </div></div>
-              </div>
-              <div class="col-6 mb-md">
-                <div class="elegant-card"><div class="card-content">
-                  <h4 class="text-large" style="font-weight: 300;">Algoritmos próprios de expansão automática</h4>
-                </div></div>
-              </div>
-              <div class="col-6 mb-md">
-                <div class="elegant-card"><div class="card-content">
-                  <h4 class="text-large" style="font-weight: 300;">Base histórica contínua</h4>
-                </div></div>
-              </div>
-              <div class="col-6 mb-md">
-                <div class="elegant-card"><div class="card-content">
-                  <h4 class="text-large" style="font-weight: 300;">Memória política viva</h4>
-                </div></div>
-              </div>
-              <div class="col-6 mb-md">
-                <div class="elegant-card"><div class="card-content">
-                  <h4 class="text-large" style="font-weight: 300;">Alertas acionáveis</h4>
-                </div></div>
-              </div>
-              <div class="col-6 mb-md">
-                <div class="elegant-card"><div class="card-content">
-                  <h4 class="text-large" style="font-weight: 300;">Recomendação estratégica pronta</h4>
-                </div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ===== CTA FINAL ===== -->
-    <section id="contact" class="s-section bg-graphite" style="min-height: 80vh; display: flex; align-items: center;">
-      <div class="container text-center">
-        <div class="fade-up delay-1" style="max-width: 900px; margin: 0 auto;">
-          <h2 style="font-size: clamp(2.5rem, 4.5vw, 4.5rem); font-weight: 200; line-height: 1.1; margin-bottom: var(--space-lg);">
-            Campanha eleitoral como o Brasil nunca viu.
+        <div style="margin-bottom: var(--space-lg);">
+          <span class="ce-label ce-label--gold fade-up delay-1">PARA QUEM É</span>
+          <h2 class="fade-up delay-1" style="font-size: clamp(2rem, 3.5vw, 4rem); font-weight: 200; line-height: 1.1;">
+            Para quem é.
           </h2>
-          <p class="text-large text-gray-text mb-xl" style="font-weight: 300; max-width: 85%; margin-left: auto; margin-right: auto;">
-            O CORTEX Eleitor transforma ruído, mídia, narrativa e comportamento coletivo em percepção política contínua para campanhas que precisam operar em tempo real.
-          </p>
-          <div style="display: flex; gap: var(--space-lg); justify-content: center; align-items: center; flex-wrap: wrap;">
-            <a href="#contact" class="cta-primary">Falar com a ZAKA</a>
-            <a href="index.html#products" class="cta-secondary">Voltar para Produtos</a>
+        </div>
+
+        <div class="ce-audience-grid fade-up delay-2" style="margin-bottom: var(--space-lg);">
+          <div class="ce-audience-card">
+            <img src="img/cortex-eleitor/audience-candidatos.png" alt="" class="ce-card-bg" loading="lazy">
+            <h4>Candidatos</h4>
           </div>
+          <div class="ce-audience-card">
+            <img src="img/cortex-eleitor/audience-campanhas.png" alt="" class="ce-card-bg" loading="lazy">
+            <h4>Campanhas</h4>
+          </div>
+          <div class="ce-audience-card">
+            <img src="img/cortex-eleitor/audience-partidos.png" alt="" class="ce-card-bg" loading="lazy">
+            <h4>Partidos políticos</h4>
+          </div>
+          <div class="ce-audience-card">
+            <img src="img/cortex-eleitor/audience-estrategistas.png" alt="" class="ce-card-bg" loading="lazy">
+            <h4>Estrategistas eleitorais</h4>
+          </div>
+          <div class="ce-audience-card">
+            <img src="img/cortex-eleitor/audience-estruturas.png" alt="" class="ce-card-bg" loading="lazy">
+            <h4>Estruturas de campanha</h4>
+          </div>
+          <div class="ce-audience-card">
+            <img src="img/cortex-eleitor/audience-comunicacao.png" alt="" class="ce-card-bg" loading="lazy">
+            <h4>Equipes de comunicação política</h4>
+          </div>
+        </div>
+
+        <p class="fade-up delay-3" style="font-weight: 300; line-height: 1.8; font-size: clamp(1rem, 1.15vw, 1.2rem); max-width: 750px; color: var(--color-gray-text);">
+          Organizações que precisam compreender o ambiente político em tempo real, antecipar riscos, identificar oportunidades e tomar decisões com mais velocidade, precisão e contexto.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ===== SEC 9 — ENTREGAS PRINCIPAIS ===== -->
+    <section class="ce-section ce-section--graphite">
+      <div class="container">
+        <div style="margin-bottom: var(--space-lg);">
+          <span class="ce-label ce-label--blue fade-up delay-1">ENTREGAS</span>
+          <h2 class="fade-up delay-1" style="font-size: clamp(2rem, 3.5vw, 4rem); font-weight: 200; line-height: 1.1;">
+            Entregas principais.
+          </h2>
+        </div>
+
+        <div class="ce-deliver-grid fade-up delay-2">
+          <div class="ce-deliver-card">
+            <img src="img/cortex-eleitor/deliver-monitoramento.png" alt="" class="ce-card-bg" loading="lazy">
+            <span class="ce-deliver-num">01</span>
+            <h4>Monitoramento político contínuo</h4>
+            <p>Redes sociais, mídia digital, narrativas, ataques, menções e sinais emergentes.</p>
+          </div>
+          <div class="ce-deliver-card">
+            <img src="img/cortex-eleitor/deliver-preditiva.png" alt="" class="ce-card-bg" loading="lazy">
+            <span class="ce-deliver-num">02</span>
+            <h4>Análise preditiva</h4>
+            <p>Projeção de impacto, escalada e risco reputacional.</p>
+          </div>
+          <div class="ce-deliver-card">
+            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1000&auto=format&fit=crop" alt="" class="ce-card-bg" loading="lazy">
+            <span class="ce-deliver-num">03</span>
+            <h4>CORTEX CHAT</h4>
+            <p>Converse com toda a inteligência da campanha em linguagem natural.</p>
+          </div>
+          <div class="ce-deliver-card">
+            <img src="img/cortex-eleitor/deliver-clone.png" alt="" class="ce-card-bg" loading="lazy">
+            <span class="ce-deliver-num">04</span>
+            <h4>Clone cognitivo</h4>
+            <p>Resposta alinhada ao tom, ética, vulnerabilidade e posicionamento do candidato.</p>
+          </div>
+          <div class="ce-deliver-card">
+            <img src="img/cortex-eleitor/deliver-memoria.png" alt="" class="ce-card-bg" loading="lazy">
+            <span class="ce-deliver-num">05</span>
+            <h4>Memória política viva</h4>
+            <p>Base contínua de padrões, histórico, comportamento regional e ciclos eleitorais.</p>
+          </div>
+          <div class="ce-deliver-card">
+            <img src="img/cortex-eleitor/deliver-sala-guerra.png" alt="" class="ce-card-bg" loading="lazy">
+            <span class="ce-deliver-num">06</span>
+            <h4>Sala de guerra cognitiva</h4>
+            <p>Uma camada de inteligência para apoiar decisões críticas durante toda a campanha.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== FINAL CTA ===== -->
+    <section id="contact" class="ce-section ce-section--dark ce-final">
+      <div class="container">
+        <div class="ce-final__inner fade-up delay-1">
+          <h2 style="font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 200; line-height: 1.08; margin-bottom: var(--space-md); letter-spacing: -0.02em;">
+            Campanha eleitoral<br>como o Brasil nunca viu.
+          </h2>
+          <p style="font-weight: 300; line-height: 1.8; font-size: clamp(1rem, 1.2vw, 1.3rem); max-width: 720px; margin: 0 auto var(--space-lg); color: var(--color-gray-text);">
+            O CORTEX Eleitor transforma redes, mídia, comportamento e narrativa em inteligência política contínua para campanhas que precisam operar com precisão, velocidade e contexto.
+          </p>
+          <a href="#contact" class="ce-cta">Solicitar apresentação do CORTEX Eleitor</a>
         </div>
       </div>
     </section>
@@ -697,5 +986,6 @@
   <script src="js/navigation.js"></script>
   <script src="js/motion.js"></script>
   <script src="js/system.js"></script>
+
 </body>
 </html>
